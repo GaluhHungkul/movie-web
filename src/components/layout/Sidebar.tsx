@@ -1,7 +1,33 @@
+"use client"
+
+import { Camera, Home } from "lucide-react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+
+const NAVIGATION = [
+    {
+        name : "Dashboard",
+        href : "/",
+        icon : Home 
+    },
+    {
+        name : "Movies",
+        href : "/movies",
+        icon : Camera 
+    },
+]
+
 const Sidebar = () => {
+
+    const pathname = usePathname()
+
   return (
-    <div className="flex-1 shrink-0">
-        Ini adalah sidebar
+    <div className="flex-1 bg-primary border-r flex flex-col items-center pt-14 gap-2">
+        {NAVIGATION.map(nav => (
+            <Link href={nav.href} key={nav.name} className={`text-white w-full py-2 ${nav.href === pathname ? "bg-white/20" : "hover:bg-white/10"} `}>
+                <nav.icon size={20} className="mx-auto"/>
+            </Link>
+        ))}
     </div>
   )
 }
