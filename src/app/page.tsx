@@ -1,11 +1,9 @@
-// import Header from "@/components/layout/Header"; 
+import Header from "@/components/layout/Header"; 
 
 export default function Home() {
   return (
     <div className="min-h-screen">
-      {/* <Header>
-        Movie Web 
-      </Header> */}
+      <Header>Movie Web</Header>
     </div>
   );
 }

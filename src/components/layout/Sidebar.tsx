@@ -21,6 +21,7 @@ const Sidebar = () => {
 
     const pathname = usePathname()
 
+
   return (
     <div className="flex-1 bg-primary border-r flex flex-col items-center pt-14 gap-2">
         {NAVIGATION.map(nav => (

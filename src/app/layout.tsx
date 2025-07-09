@@ -1,41 +1,36 @@
+import './globals.css'
+import { Inter } from 'next/font/google'
+import type { Metadata } from 'next'
+import QueryProvider from '@/components/layout/QueryProvider'
+import Sidebar from '@/components/layout/Sidebar'
+import Footer from '@/components/layout/Footer'
 
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import Footer from "@/components/layout/Footer";
-import Sidebar from "@/components/layout/Sidebar"
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
-  title: "Error mulu dah ngapa si 😭😭",
-  description: "Males ah",
-};
+  title: 'Movie Web',
+  description: 'Best movies in one place',
+}
+
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} bg-foreground antialiased`}>
-        <main className="flex">
-          <Sidebar />
-          <div className="flex-5">
+    <html lang="en" className={inter.variable}>
+      <body>
+        <QueryProvider>
+        <div className='flex'>
+        <Sidebar />
+        <main className='flex-6 bg-foreground'>
             {children}
             <Footer />
-          </div>
         </main>
+        </div>
+    </QueryProvider>
       </body>
     </html>
-  );
+  )
 }
