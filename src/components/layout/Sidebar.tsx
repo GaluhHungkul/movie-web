@@ -19,11 +19,10 @@ const NAVIGATION = [
 
 const Sidebar = () => {
 
-    const pathname = usePathname()
-
+    const pathname = usePathname()  
 
   return (
-    <div className="flex-1 bg-primary border-r flex flex-col items-center pt-14 gap-2">
+    <div className="hidden shrink-0 w-20 bg-primary border-r md:flex flex-col items-center pt-14 gap-2">
         {NAVIGATION.map(nav => (
             <Link href={nav.href} key={nav.name} className={`text-white w-full py-2 ${nav.href === pathname ? "bg-white/20" : "hover:bg-white/10"} `}>
                 <nav.icon size={20} className="mx-auto"/>

@@ -1,0 +1,73 @@
+✅ TMDB API — Semua Endpoint + Genre ID
+
+🌐 BASE URL & API KEY
+BASE_URL = https://api.themoviedb.org/3
+API_KEY  = your_api_key
+
+
+🎬 MOVIE ENDPOINTS
+GET /movie/popular
+GET /movie/top_rated
+GET /movie/upcoming
+GET /movie/now_playing
+GET /movie/{movie_id}
+GET /movie/{movie_id}/credits
+GET /movie/{movie_id}/recommendations
+GET /search/movie?query={query}
+Contoh: https://api.themoviedb.org/3/movie/popular?api_key=YOUR_API_KEY&page=1
+
+
+📺 TV SERIES ENDPOINTS
+GET /tv/popular
+GET /tv/top_rated
+GET /tv/airing_today
+GET /tv/on_the_air
+GET /tv/{tv_id}
+GET /tv/{tv_id}/credits
+GET /tv/{tv_id}/recommendations
+GET /search/tv?query={query}
+
+
+👤 PERSON (AKTOR / ARTIS)
+GET /person/popular
+GET /person/{person_id}
+GET /person/{person_id}/combined_credits
+
+
+🔍 SEARCH ENDPOINTS
+GET /search/movie?query={query}
+GET /search/tv?query={query}
+GET /search/person?query={query}
+GET /search/multi?query={query}
+
+
+🎞️ GENRE LIST
+GET /genre/movie/list
+GET /genre/tv/list
+
+
+🎨 GENRE ID MOVIE (Update Juli 2025)
+Action              → 28
+Adventure           → 12
+Animation           → 16
+Comedy              → 35
+Crime               → 80
+Documentary         → 99
+Drama               → 18
+Family              → 10751
+Fantasy             → 14
+History             → 36
+Horror              → 27
+Music               → 10402
+Mystery             → 9648
+Romance             → 10749
+Science Fiction     → 878
+TV Movie            → 10770
+Thriller            → 53
+War                 → 10752
+Western             → 37
+
+
+🖼️ BASE URL GAMBAR
+https://image.tmdb.org/t/p/w500/{poster_path}
+Contoh: https://image.tmdb.org/t/p/w500/abc123.jpg

@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import QueryProvider from '@/components/layout/QueryProvider'
 import Sidebar from '@/components/layout/Sidebar'
 import Footer from '@/components/layout/Footer'
+import Header from '@/components/layout/Header'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
@@ -22,13 +23,14 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <body>
         <QueryProvider>
-        <div className='flex'>
-        <Sidebar />
-        <main className='flex-6 bg-foreground'>
+        <Header />
+        <div className='flex overflow-x-hidden'>
+          <Sidebar />          
+          <main className='bg-foreground min-h-screen w-full'>
             {children}
-            <Footer />
-        </main>
+          </main>
         </div>
+        <Footer />
     </QueryProvider>
       </body>
     </html>
