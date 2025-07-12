@@ -8,24 +8,13 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { Clapperboard, Home, Menu, X } from "lucide-react"
+import { Home, Menu, X } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
-
-const NAVIGATION = [
-    {
-      name : "Dashboard",
-      href : "/",
-      icon : Home 
-    },
-    {
-      name : "Movies",
-      href : "/movies",
-      icon : Clapperboard
-    },
-]
+import Navigation from "./Navigation"
+import ListFilterMoviesBy from "./ListFilterMoviesBy"
 
 const MobileSheet = () => {
 
@@ -53,13 +42,9 @@ const MobileSheet = () => {
             </Link>
           </SheetTitle>
         </SheetHeader>
-        <div className="flex text-white  flex-col">
-          {NAVIGATION.map(nav => (
-            <Link key={nav.name} className={`rounded font-semibold text-lg items-center flex py-2 px-4 gap-4 ${pathname === nav.href ? "bg-slate-100/20" : "hover:bg-slate-100/10"}`} href={nav.href}>
-              <nav.icon />
-              <span>{nav.name}</span>
-            </Link>
-          ))}
+        <div className="text-white space-y-2">
+          <Navigation icon={Home} name="Dashboard" href="/"/>
+          <ListFilterMoviesBy />
         </div>
       </SheetContent>
     </Sheet>

@@ -13,7 +13,6 @@ export const metadata: Metadata = {
   description: 'Best movies in one place',
 }
 
-
 export default function RootLayout({
   children,
 }: {
@@ -23,15 +22,15 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <body>
         <QueryProvider>
-        <Header />
-        <div className='flex overflow-x-hidden'>
-          <Sidebar />          
-          <main className='bg-foreground min-h-screen w-full'>
-            {children}
-          </main>
-        </div>
-        <Footer />
-    </QueryProvider>
+          <Header />
+          <div className='flex overflow-x-hidden'>
+            <Sidebar />          
+            <main className='bg-foreground min-h-screen w-full'>
+              {children}
+            </main>
+          </div>
+          <Footer />
+        </QueryProvider>
       </body>
     </html>
   )
