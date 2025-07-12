@@ -21,7 +21,7 @@ const Banner = () => {
     if(error) return <p className="text-white font-bold text-center content-center h-[50vh]">Error : {error.message}</p>
 
   return (
-    <div className="rounded overflow-hidden w-[95%] mt-4 mx-auto ">
+    <div className="rounded overflow-hidden  mt-4 mx-auto ">
         <Swiper 
         modules={[Pagination, Autoplay]}
         pagination={{ clickable : true }}

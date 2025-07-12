@@ -46,7 +46,7 @@ const SwiperMovieList : FC<Props> = ({ title, href, endpoint }) => {
         loop
         >
             {data?.map(movie => (
-                <SwiperSlide key={movie.id} className="!w-40 ">
+                <SwiperSlide key={movie.id} className="!w-28 ">
                     <Image src={movie.poster_path} alt={movie.title ?? movie.name ?? ""} width={900} height={500} />
                 </SwiperSlide> 
             ))}

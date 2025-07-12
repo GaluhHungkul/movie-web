@@ -23,9 +23,9 @@ export default function RootLayout({
       <body>
         <QueryProvider>
           <Header />
-          <div className='flex overflow-x-hidden'>
+          <div className='flex overflow-x-hidden text-white'>
             <Sidebar />          
-            <main className='bg-foreground min-h-screen w-full'>
+            <main className='bg-foreground min-h-screen w-full px-2'>
               {children}
             </main>
           </div>
