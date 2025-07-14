@@ -32,8 +32,8 @@ const MobileSheet = () => {
         <Menu size={32}/>
       </SheetTrigger>
       <SheetContent side="left" className="bg-black px-2">
-        <SheetClose className="w-max cursor-pointer absolute right-4 top-4 "  color="white">
-          <X color="white" className="relative z-10"/>
+        <SheetClose className="w-max cursor-pointer absolute right-4 top-4"  color="black">
+          <X color="white" className="relative bg-black z-10"/>
         </SheetClose>
         <SheetHeader>
           <SheetTitle>
