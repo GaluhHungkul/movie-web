@@ -2,7 +2,7 @@ import MobileSheet from "./MobileSheet"
 
 const Header = () => {
   return (
-    <div className="bg-primary border-b text-white/80 text-sm h-14 content-center pl-4 font-bold">
+    <div className="text-white/80 text-sm h-16 content-center px-4 font-bold lg:px-6">
       <MobileSheet />
     </div>
   )

@@ -20,10 +20,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.variable}>
-      <body>
+      <body className='bg-foreground'>
         <QueryProvider>
           <Header />
-          <main className='bg-foreground min-h-screen w-full px-2 py-4 overflow-x-hidden lg:px-6'>
+          <main className=' min-h-screen w-full px-2 py-4 overflow-x-hidden md:px-4 lg:px-6'>
             {children}
           </main>
           <Footer />

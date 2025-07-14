@@ -29,9 +29,9 @@ const SwiperMovieList : FC<Props> = ({ title, href, endpoint }) => {
 
   return (
     <div className="rounded overflow-hidden px-2 w-full  mb-6 mx-auto ">
-        <header className="flex justify-between items-center mb-4 lg:mb-8">  
-            <h1 className="font-bold text-white lg:text-2xl">{title}</h1>
-            <Link href={href} className="hover:underline text-white/80 text-sm lg:text-base">Show More</Link>
+        <header className="flex justify-between items-center mb-4">  
+            <h1 className="font-bold text-white md:text-xl lg:text-2xl">{title}</h1>
+            <Link href={href} className="hover:underline text-white/80 text-sm md:text-base">Show More</Link>
         </header>
         <Swiper 
         modules={[Navigation, Pagination]}
@@ -46,7 +46,7 @@ const SwiperMovieList : FC<Props> = ({ title, href, endpoint }) => {
         loop
         >
             {data?.map(movie => (
-                <SwiperSlide key={movie.id} className="!w-28 lg:!w-60 ">
+                <SwiperSlide key={movie.id} className="!w-28 md:!w-40 lg:!w-60 ">
                     <Image src={movie.poster_path} alt={movie.title ?? movie.name ?? ""} width={900} height={500} />
                 </SwiperSlide> 
             ))}

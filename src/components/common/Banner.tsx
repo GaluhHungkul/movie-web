@@ -32,7 +32,7 @@ const Banner = () => {
         slidesPerView={1}
         loop
         >
-            {data?.map(movie => <SwiperSlide className="w-[500px] !h-48 bg-cover bg-center lg:!h-[500px]" key={movie.id} style={{ backgroundImage : `url(${movie.backdrop_path})` }} /> )}
+            {data?.map(movie => <SwiperSlide className="!h-48 bg-cover bg-center md:!h-96 lg:!h-[500px]" key={movie.id} style={{ backgroundImage : `url(${movie.backdrop_path})` }} /> )}
         </Swiper>
     </div>
   )
