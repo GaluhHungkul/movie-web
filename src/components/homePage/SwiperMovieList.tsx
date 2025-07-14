@@ -28,10 +28,10 @@ const SwiperMovieList : FC<Props> = ({ title, href, endpoint }) => {
     if(error) return <p className="text-white font-bold text-center content-center h-[50vh]">Error : {error.message}</p>
 
   return (
-    <div className="rounded overflow-hiddn w-[95%] mb-6 mx-auto ">
-        <header className="flex justify-between items-center mb-4">  
-            <h1 className="font-bold text-white">{title}</h1>
-            <Link href={href} className="hover:underline text-white/80 text-sm">Show More</Link>
+    <div className="rounded overflow-hidden px-2 w-full  mb-6 mx-auto ">
+        <header className="flex justify-between items-center mb-4 lg:mb-8">  
+            <h1 className="font-bold text-white lg:text-2xl">{title}</h1>
+            <Link href={href} className="hover:underline text-white/80 text-sm lg:text-base">Show More</Link>
         </header>
         <Swiper 
         modules={[Navigation, Pagination]}
@@ -46,7 +46,7 @@ const SwiperMovieList : FC<Props> = ({ title, href, endpoint }) => {
         loop
         >
             {data?.map(movie => (
-                <SwiperSlide key={movie.id} className="!w-28 ">
+                <SwiperSlide key={movie.id} className="!w-28 lg:!w-60 ">
                     <Image src={movie.poster_path} alt={movie.title ?? movie.name ?? ""} width={900} height={500} />
                 </SwiperSlide> 
             ))}

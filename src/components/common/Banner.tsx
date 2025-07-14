@@ -21,7 +21,7 @@ const Banner = () => {
     if(error) return <p className="text-white font-bold text-center content-center h-[50vh]">Error : {error.message}</p>
 
   return (
-    <div className="rounded overflow-hidden  mt-4 mx-auto ">
+    <div className="rounded overflow-hidden mx-auto">
         <Swiper 
         modules={[Pagination, Autoplay]}
         pagination={{ clickable : true }}
@@ -32,11 +32,7 @@ const Banner = () => {
         slidesPerView={1}
         loop
         >
-            {data?.map(movie => (
-                <SwiperSlide key={movie.id}>
-                    <Image src={movie.backdrop_path} alt={movie.title ?? movie.name ?? ""} width={900} height={500} />
-                </SwiperSlide> 
-            ))}
+            {data?.map(movie => <SwiperSlide className="w-[500px] !h-48 bg-cover bg-center lg:!h-[500px]" key={movie.id} style={{ backgroundImage : `url(${movie.backdrop_path})` }} /> )}
         </Swiper>
     </div>
   )
