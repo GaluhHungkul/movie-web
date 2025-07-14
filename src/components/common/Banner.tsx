@@ -30,6 +30,7 @@ const Banner = () => {
             disableOnInteraction : false,
         }}
         slidesPerView={1}
+        spaceBetween={40}
         loop
         >
             {data?.map(movie => <SwiperSlide className="!h-48 bg-cover bg-center md:!h-96 lg:!h-[500px]" key={movie.id} style={{ backgroundImage : `url(${movie.backdrop_path})` }} /> )}
