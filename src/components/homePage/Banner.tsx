@@ -6,16 +6,12 @@ import { Autoplay, Pagination } from "swiper/modules"
 
 import 'swiper/css';
 import "swiper/css/pagination"
-import Image from "next/image";
 
-const endpoint = {
-    type : "movie",
-    category : "popular"
-}
+const endpoint = "/movie/popular"
 
 const Banner = () => {
 
-    const { data, isLoading, error } = useMovieQuery(endpoint)
+    const { data, isLoading, error } = useMovieQuery(endpoint, ["movies", "banner"])
 
     if(isLoading) return <p className="text-white  font-bold text-center content-center h-[50vh]">Loading...</p>
     if(error) return <p className="text-white font-bold text-center content-center h-[50vh]">Error : {error.message}</p>

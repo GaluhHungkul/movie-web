@@ -1,30 +1,21 @@
-import Banner from "@/components/common/Banner";
+import Banner from "@/components/homePage/Banner";
 import SwiperMovieList from "@/components/homePage/SwiperMovieList";
 
 const MOVIES_IN_DASHBOARD = [
   {
     title : "Populer Movies",
     href : "/",
-    endpoint : {
-      type : "movie",
-      category : "popular"
-    }
+    endpoint : "/movie/popular",
   },
   {
     title : "Top Rated Movies",
     href : "/",
-    endpoint : {
-      type : "movie",
-      category : "top_rated"
-    }
+    endpoint : "/movie/top_rated",
   },
   {
     title : "Upcoming Movies",
     href : "/",
-    endpoint : {
-      type : "movie",
-      category : "upcoming"
-    }
+    endpoint : "/movie/upcoming",
   },
 ]
 

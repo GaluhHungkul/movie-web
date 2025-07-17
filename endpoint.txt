@@ -67,6 +67,8 @@ Thriller            → 53
 War                 → 10752
 Western             → 37
 
+https://api.themoviedb.org/3/discover/movie?api_key=YOUR_API_KEY&with_genres=28
+
 
 🖼️ BASE URL GAMBAR
 https://image.tmdb.org/t/p/w500/{poster_path}

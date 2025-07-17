@@ -14,17 +14,14 @@ import { FC } from "react";
 type Props = {
     title : string;
     href : string;
-    endpoint : {
-        type : string;
-        category : string;
-    };
+    endpoint : string;
 }
 
 const SwiperMovieList : FC<Props> = ({ title, href, endpoint }) => {
 
-    const { data, isLoading, error } = useMovieQuery(endpoint)
+    const { data, isPending, error } = useMovieQuery(endpoint)
 
-    if(isLoading) return <p className="text-white  font-bold text-center content-center h-[50vh]">Loading...</p>
+    if(isPending) return <p className="text-white  font-bold text-center content-center h-[50vh]">Loading...</p>
     if(error) return <p className="text-white font-bold text-center content-center h-[50vh]">Error : {error.message}</p>
 
   return (
