@@ -5,7 +5,7 @@ const MoviesByGenre = async ({ params : { genreId }} : { params : { genreId : st
   return (
     <div>
       <h1 className="text-center font-bold text-xl mb-10">Movie genre Id {genreId}</h1>
-      <GridMovieList  endpoint={`/discover/movie?with_genres=${genreId}`}/>
+      <GridMovieList endpoint={`/discover/movie?with_genres=${genreId}`}/>
     </div>
   )
 }

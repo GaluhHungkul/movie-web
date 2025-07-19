@@ -7,16 +7,18 @@ import { FC } from "react"
 import SkeletonGridMovieList from "./SkeletonGridMovieList"
 
 type Props = {
-    endpoint : string
+  endpoint : string
 }
 
 const GridMovieList : FC<Props> = ({ endpoint }) => {
 
-    const { data, isPending } = useMovieQuery(endpoint)
+    const { data, isPending, error } = useMovieQuery(endpoint)
    
-    if(isPending) return <p className="text-white  font-bold text-center content-center h-[50vh]">Loading...</p> 
+    if(isPending) return <SkeletonGridMovieList />
+    if(error) return <p className="text-white  font-bold text-center content-center h-[50vh]">Erro : {error.message}</p> 
+    
 
-  return isPending ? <SkeletonGridMovieList /> : (
+  return (
     <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5 ">
       {data?.map(movie => (
         <Link href={`/movies/${movie.id}`} className="overflow-hidden aspect-[2/3] relative rounded group" key={movie.id}>
