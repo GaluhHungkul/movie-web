@@ -1,22 +1,21 @@
 import { TypeMovie } from "@/types/types-movie";
 import { useQuery } from "@tanstack/react-query";
 
-export const useMovieQuery = (endpoint:string) => {
+export const useMovieQuery = (endpoint:string, isBanner:boolean=false) => {
   return useQuery({
     queryKey : ["movies", endpoint],
     queryFn: async () : Promise<TypeMovie[]> => {
       try {         
         const chain = endpoint.includes("?") ? "&" : "?"
         const path = process.env.NEXT_PUBLIC_TMDB_API_BASE_URL + endpoint + chain
-        console.log({path})
         const res = await fetch(`${path}api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`);
         if (!res.ok) throw new Error("Failed to fetch movie banner data");
         const { results } = await res.json()
-        return results.splice(0,10).map((movie:TypeMovie) => {
+        return results.map((movie:TypeMovie) => {
           return {
             ...movie, 
-            backdrop_path : process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL + movie.backdrop_path,
-            poster_path : process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL + movie.poster_path,
+            backdrop_path : (isBanner ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL: process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL ) + movie.backdrop_path,
+            poster_path :  process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  movie.poster_path,
           }
         })
       } catch (error) {

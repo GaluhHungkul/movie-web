@@ -11,7 +11,7 @@ const endpoint = "/movie/popular"
 
 const Banner = () => {
 
-    const { data, isLoading, error } = useMovieQuery(endpoint, ["movies", "banner"])
+    const { data, isLoading, error } = useMovieQuery(endpoint, true)
 
     if(isLoading) return <p className="text-white  font-bold text-center content-center h-[50vh]">Loading...</p>
     if(error) return <p className="text-white font-bold text-center content-center h-[50vh]">Error : {error.message}</p>
@@ -29,7 +29,7 @@ const Banner = () => {
         spaceBetween={40}
         loop
         >
-            {data?.map(movie => <SwiperSlide className="!h-48 bg-cover bg-center md:!h-96 lg:!h-[500px]" key={movie.id} style={{ backgroundImage : `url(${movie.backdrop_path})` }} /> )}
+          {data?.map(movie => <SwiperSlide className="!h-48 bg-cover bg-center md:!h-96 lg:!h-[500px]" key={movie.id} style={{ backgroundImage : `url(${movie.backdrop_path})` }} /> )}
         </Swiper>
     </div>
   )

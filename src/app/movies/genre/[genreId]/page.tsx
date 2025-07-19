@@ -1,6 +1,5 @@
 import GridMovieList from "@/components/common/GridMovieList"
 
-
 const MoviesByGenre = async ({ params : { genreId }} : { params : { genreId : string } }) => {
 
   return (
