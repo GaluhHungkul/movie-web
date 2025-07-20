@@ -26,5 +26,26 @@ export const useMovieQuery = (endpoint:string, isBanner:boolean=false) => {
   });
 };
 
+export const useMovieQueryById = (movie_id:string)  => {
+  return useQuery({
+    queryKey : ["movie_id" , movie_id],
+    queryFn : async () : Promise<TypeMovie | null> => {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_TMDB_API_BASE_URL}/movie/${movie_id}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`)
+        if(!res.ok) throw new Error("Failed to fetch")
+        const movie = await res.json()
+        return {
+          ...movie,
+          poster_path : process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  movie.poster_path,
+          backdrop_path : process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL + movie.backdrop_path
+        }
+      } catch (error) {
+        console.log("Error : " , error)
+        return null
+      }
+    }
+  })
+}
+
 
   
