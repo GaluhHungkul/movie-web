@@ -14,9 +14,10 @@ const DetailMoviePage = () => {
     if(isPending) return <p className="text-white font-bold text-3xl h-[80vh] text-center content-center">Loading...</p>
 
   return (
-    <div>
-        DetailMoviePage dari id : {id}
-        <Image src={`${process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL}${data?.poster_path}`} alt={data?.title ?? ""} width={300} height={300}/> 
+    <div className="min-h-[200vh]">
+        <div className=" aspect-[2/3] rounded overflow-hidden relative">
+          <Image src={`${process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL}${data?.poster_path}`} alt={data?.title ?? ""} fill/> 
+        </div>
     </div>
   )
 }

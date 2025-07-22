@@ -2,7 +2,7 @@
 
 import { useMovieQuery } from "@/lib/api/getMovies"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Navigation, Pagination } from "swiper/modules"
+import { Autoplay, Navigation, Pagination } from "swiper/modules"
 
 import 'swiper/css';
 import "swiper/css/pagination"
@@ -15,9 +15,10 @@ type Props = {
     title : string;
     href : string;
     endpoint : string;
+    isReverse : boolean
 }
 
-const SwiperMovieList : FC<Props> = ({ title, href, endpoint }) => {
+const SwiperMovieList : FC<Props> = ({ title, href, endpoint, isReverse }) => {
 
     const { data, isPending, error } = useMovieQuery(endpoint)
 
@@ -31,11 +32,12 @@ const SwiperMovieList : FC<Props> = ({ title, href, endpoint }) => {
             <Link href={href} className="hover:underline text-white/80 text-sm md:text-base">Show More</Link>
         </header>
         <Swiper 
-        modules={[Navigation, Pagination]}
+        modules={[Navigation, Pagination, Autoplay]}
         pagination={{ clickable : true }}
         autoplay={{
             delay : 2000,
             disableOnInteraction : false,
+            reverseDirection : isReverse
         }}
         spaceBetween={10}
         navigation
@@ -44,7 +46,9 @@ const SwiperMovieList : FC<Props> = ({ title, href, endpoint }) => {
         >
             {data?.map(movie => (
                 <SwiperSlide key={movie.id} className="!w-28 md:!w-40 lg:!w-60 ">
+                    <Link href={`/movies/${movie.id}`}>
                     <Image src={movie.poster_path} alt={movie.title ?? movie.name ?? ""} width={900} height={500} />
+                    </Link>
                 </SwiperSlide> 
             ))}
         </Swiper>
