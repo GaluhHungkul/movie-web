@@ -4,7 +4,7 @@ import { useMovieQuery } from "@/lib/api/getMovies"
 import Image from "next/image"
 import Link from "next/link"
 import { FC } from "react"
-import SkeletonGridMovieList from "./SkeletonGridMovieList"
+import SkeletonGridMovieList from "../skeleton/SkeletonGridMovieList"
 
 type Props = {
   endpoint : string
