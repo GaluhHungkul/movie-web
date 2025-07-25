@@ -11,11 +11,12 @@ export const useMovieQuery = (endpoint:string, isBanner:boolean=false) => {
         const res = await fetch(`${path}api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`);
         if (!res.ok) throw new Error("Failed to fetch movie banner data");
         const { results } = await res.json()
-        return results.map((movie:TypeMovie) => {
+        return results.map((movie:TypeMovie & { name : string }) => {
           return {
             ...movie, 
             backdrop_path : (isBanner ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL: process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL ) + movie.backdrop_path,
             poster_path :  process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  movie.poster_path,
+            title : movie.title ?? movie.name ?? "No Title"
           }
         })
       } catch (error) {
@@ -36,8 +37,9 @@ export const useMovieQueryById = (movie_id:string)  => {
         const movie = await res.json()
         return {
           ...movie,
-          poster_path : process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  movie.poster_path,
-          backdrop_path : process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL + movie.backdrop_path
+          poster_path : process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL +  movie.poster_path,
+          backdrop_path : process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + movie.backdrop_path,
+          title : movie.title ?? movie.name
         }
       } catch (error) {
         console.log("Error : " , error)
