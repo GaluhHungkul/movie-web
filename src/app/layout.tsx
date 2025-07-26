@@ -2,7 +2,6 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import type { Metadata } from 'next'
 import QueryProvider from '@/components/layout/QueryProvider'
-import Sidebar from '@/components/layout/Sidebar'
 import Footer from '@/components/layout/Footer'
 import Header from '@/components/layout/Header'
 
