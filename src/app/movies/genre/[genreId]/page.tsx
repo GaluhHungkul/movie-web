@@ -1,6 +1,6 @@
 import GridMovieList from "@/components/common/GridMovieList"
 
-const MoviesByGenre = async ({ params : { genreId }} : { params : { genreId : string } }) => {
+const MoviesByGenrePage = ({ params : { genreId }} : { params : { genreId : string } }) => {
 
   return (
     <div>
@@ -10,4 +10,4 @@ const MoviesByGenre = async ({ params : { genreId }} : { params : { genreId : st
   )
 }
 
-export default MoviesByGenre
+export default MoviesByGenrePage
