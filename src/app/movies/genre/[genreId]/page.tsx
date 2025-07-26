@@ -1,6 +1,14 @@
 import GridMovieList from "@/components/common/GridMovieList"
 
-const MoviesByGenrePage = ({ params : { genreId }} : { params : { genreId : string } }) => {
+import { FC } from 'react';
+
+type PageProps = {
+  params: {
+    genreId: string;
+  };
+}
+
+const MoviesByGenrePage : FC<PageProps> = async ({ params : { genreId }}) => {
 
   return (
     <div>
