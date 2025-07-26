@@ -3,7 +3,6 @@ export type TypeMovie = {
     backdrop_path : string;
     poster_path : string;
     title? : string
-    name? : string
     adult: boolean
     genre_ids: number[]
     overview: string

@@ -6,6 +6,7 @@ import { Autoplay, Pagination } from "swiper/modules"
 
 import 'swiper/css';
 import "swiper/css/pagination"
+import Link from "next/link";
 
 const endpoint = "/movie/popular"
 
@@ -29,7 +30,11 @@ const Banner = () => {
         spaceBetween={40}
         loop
         >
-          {data?.map(movie => <SwiperSlide className="!h-48 bg-cover bg-center md:!h-96 lg:!h-[500px]" key={movie.id} style={{ backgroundImage : `url(${movie.backdrop_path})` }} /> )}
+          {data?.map(movie => (
+            <SwiperSlide className="!h-48 bg-cover  relative bg-center md:!h-96 lg:!h-[500px]" key={movie.id} style={{ backgroundImage : `url(${movie.backdrop_path})` }}>
+              <Link href={`/movies/${movie.id}`} className="absolute inset-0"/>
+            </SwiperSlide>
+          ) )}
         </Swiper>
     </div>
   )

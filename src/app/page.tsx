@@ -25,7 +25,7 @@ export default function Home() {
       <Banner />
       <div className="mt-10">
         {MOVIES_IN_DASHBOARD.map(({ title, href, endpoint }, i) => (
-          <SwiperMovieList title={title} href={href} endpoint={endpoint} key={i}/>
+          <SwiperMovieList title={title} href={href} endpoint={endpoint} key={i} isReverse={i % 2 === 0}/>
         ))}
       </div>
     </div>
