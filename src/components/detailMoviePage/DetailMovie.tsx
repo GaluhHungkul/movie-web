@@ -20,7 +20,7 @@ const DetailMovie = () => {
 
 
   return (
-    <div className="min-h-[200vh] text-white">   
+    <div className=" text-white lg:flex lg:space-x-10">   
         <MoviePoster poster_path={data?.descriptionMovie?.poster_path ?? ""} alt={data?.descriptionMovie?.title ?? ""}/>       
         <MovieDescription descriptionMovie={data?.descriptionMovie}/>
         <PreviewVideo preview_video_key={data?.previewMovie?.results[0].key ?? ""}/>
