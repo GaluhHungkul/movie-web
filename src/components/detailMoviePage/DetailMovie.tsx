@@ -16,8 +16,8 @@ const DetailMovie = () => {
   const { data, isPending, error } = useMovieQueryById(movieId + "")
 
 
-  if(error) return <h1 className="text-white  text-3xl h-[80vh] text-center content-center">Error : {error.message}</h1>
   if(isPending) return <SkeletonDetailMovie />
+  if(error) return <h1 className="text-white  text-3xl h-[80vh] text-center content-center">Error : {error.message}</h1>
 
 
   return (

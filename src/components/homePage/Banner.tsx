@@ -7,14 +7,15 @@ import { Autoplay, Pagination } from "swiper/modules"
 import 'swiper/css';
 import "swiper/css/pagination"
 import Link from "next/link";
+import SkeletonBanner from "../skeleton/SkeletonBanner";
 
 const endpoint = "/movie/popular"
 
 const Banner = () => {
 
-    const { data, isLoading, error } = useMovieQuery(endpoint, true)
+    const { data, isPending, error } = useMovieQuery(endpoint, true)
 
-    if(isLoading) return <p className="text-white  font-bold text-center content-center h-[50vh]">Loading...</p>
+    if(isPending) return <SkeletonBanner />
     if(error) return <p className="text-white font-bold text-center content-center h-[50vh]">Error : {error.message}</p>
 
   return (
