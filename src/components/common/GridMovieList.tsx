@@ -22,7 +22,7 @@ const GridMovieList : FC<Props> = ({ endpoint }) => {
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5 ">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5">
         {data?.movies.map(movie => <MovieCard movie={movie} key={movie.id}/>)}
       </div>
       <Pagination page={page} setPage={setPage} isNextPage={data?.isNextPage}/>
