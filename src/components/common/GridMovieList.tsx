@@ -22,7 +22,7 @@ const GridMovieList : FC<Props> = ({ endpoint }) => {
     <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5 ">
       {data?.map(movie => (
         <Link href={`/movies/${movie.id}`} className="overflow-hidden aspect-[2/3] relative rounded group" key={movie.id}>
-          <Image src={movie.poster_path} alt={movie.title ?? ""} className="object-cover object-bottom group-hover:scale-110 duration-300" fill />
+          <Image src={movie.poster_path} alt={movie.title ?? ""} className="object-cover object-bottom group-hover:scale-110 duration-300" fill sizes="25vw"/>
         </Link>
       ))}
     </div>

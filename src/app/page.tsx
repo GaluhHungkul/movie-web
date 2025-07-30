@@ -4,17 +4,17 @@ import SwiperMovieList from "@/components/homePage/SwiperMovieList";
 const MOVIES_IN_DASHBOARD = [
   {
     title : "Populer Movies",
-    href : "/",
+    href : "/movies/showmore/popular",
     endpoint : "/movie/popular",
   },
   {
     title : "Top Rated Movies",
-    href : "/",
+    href : "/movies/showmore/top_rated",
     endpoint : "/movie/top_rated",
   },
   {
     title : "Upcoming Movies",
-    href : "/",
+    href : "/movies/showmore/upcoming",
     endpoint : "/movie/upcoming",
   },
 ]
