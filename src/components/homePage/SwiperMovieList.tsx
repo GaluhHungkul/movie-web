@@ -21,7 +21,7 @@ type Props = {
 
 const SwiperMovieList : FC<Props> = ({ title, href, endpoint, isReverse }) => {
 
-    const { data, isPending, error } = useMovieQuery(endpoint)
+    const { data, isPending, error } = useMovieQuery({endpoint})
 
     if(isPending) return <SkeletonSwiperMovieList />
     if(error) return <p className="text-white font-bold text-center content-center h-[50vh]">Error : {error.message}</p>
@@ -45,7 +45,7 @@ const SwiperMovieList : FC<Props> = ({ title, href, endpoint, isReverse }) => {
         slidesPerView="auto"
         loop
         >
-            {data?.map(movie => (
+            {data?.movies.map(movie => (
                 <SwiperSlide key={movie.id} className="!w-28 md:!w-40 lg:!w-60">
                     <Link href={`/movies/${movie.id}`}>
                     <Image src={movie.poster_path} alt={movie.title ?? ""} width={900} height={500} />
