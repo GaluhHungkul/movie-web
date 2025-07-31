@@ -21,7 +21,7 @@ const SearchBar = () => {
     }
 
   return (
-    <form onSubmit={handleSearchMovie} className="flex items-center gap-2 w-52">
+    <form onSubmit={handleSearchMovie} className="flex items-center gap-2 w-52 md:w-1/2 lg:w-1/4">
         <Input value={searchValue} onChange={(e) => setSearchValue(e.target.value)} placeholder="Search"/>
         <Button className="cursor-pointer" variant="secondary"><Search /></Button>
     </form>
