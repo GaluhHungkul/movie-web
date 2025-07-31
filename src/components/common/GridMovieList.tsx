@@ -22,10 +22,18 @@ const GridMovieList : FC<Props> = ({ endpoint }) => {
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5">
-        {data?.movies.map(movie => <MovieCard movie={movie} key={movie.id}/>)}
-      </div>
-      <Pagination page={page} setPage={setPage} isNextPage={data?.isNextPage}/>
+      {data?.movies.length 
+      ? 
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5">
+          {data?.movies.map(movie => <MovieCard movie={movie} key={movie.id}/>)}
+        </div>
+      :
+        <h1 className="text-center h-[60vh]  justify-center content-center flex flex-col text-xl">
+          <span>Movie not found</span>
+          <span className="text-6xl">404</span>
+        </h1>
+      }
+      {!!data?.movies.length &&  <Pagination page={page} setPage={setPage} isNextPage={data?.isNextPage}/>}
     </>
   )
 }

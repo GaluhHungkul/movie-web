@@ -10,9 +10,9 @@ type Props = {
 const Pagination : FC<Props> = ({ page, setPage, isNextPage }) => {
   return (
     <div className="my-10 flex items-center justify-center gap-4">
-      <button className="bg-white/10 p-2 rounded-full cursor-pointer hover:bg-white/20 active:bg-white/30 disabled:bg-white/5" disabled={page <= 1} onClick={() => setPage(page - 1)}><ChevronLeft /></button>
+      <button className="bg-white/10 p-2 rounded-full cursor-pointer hover:bg-white/20 active:bg-white/30 disabled:brightness-50 disabled:bg-white/5 disabled:cursor-default" disabled={page <= 1} onClick={() => setPage(page - 1)}><ChevronLeft /></button>
       <span className="text-2xl md:text-3xl">{page}</span>
-      <button className="bg-white/10 p-2 rounded-full cursor-pointer hover:bg-white/20 active:bg-white/30 disabled:bg-white/5" disabled={!isNextPage} onClick={() => setPage(page + 1)}><ChevronRight /></button>
+      <button className="bg-white/10 p-2 rounded-full cursor-pointer hover:bg-white/20 active:bg-white/30 disabled:brightness-50 disabled:bg-white/5 disabled:cursor-default" disabled={!isNextPage} onClick={() => setPage(page + 1)}><ChevronRight /></button>
     </div>
   )
 }
