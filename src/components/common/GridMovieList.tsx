@@ -21,7 +21,7 @@ const GridMovieList : FC<Props> = ({ endpoint }) => {
     
 
   return (
-    <>
+    <div className="relative min-h-screen">
       {data?.movies.length 
       ? 
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5">
@@ -34,7 +34,7 @@ const GridMovieList : FC<Props> = ({ endpoint }) => {
         </h1>
       }
       {!!data?.movies.length &&  <Pagination page={page} setPage={setPage} isNextPage={data?.isNextPage}/>}
-    </>
+    </div>
   )
 }
 
