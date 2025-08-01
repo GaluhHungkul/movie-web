@@ -13,7 +13,7 @@ const endpoint = "/movie/popular"
 
 const Banner = () => {
 
-    const { data, isPending, error } = useMovieQuery({ endpoint, isBanner : true })
+    const { data, isPending, error } = useMovieQuery({ endpoint, isBanner : true, totalMoviePerRequest : 10 })
 
     if(isPending) return <SkeletonBanner />
     if(error) return <p className="text-white font-bold text-center content-center h-[50vh]">Error : {error.message}</p>

@@ -1,6 +1,8 @@
 import { TypeMovie } from "@/types/types-movie";
 import { useQuery } from "@tanstack/react-query";
 
+const DEFAULT_TOTAL_MOVIE_PER_REQUEST = 20
+
 type Video =  {
   id : string
   iso_639_1 : string
@@ -28,6 +30,7 @@ type MovieQueryParam = {
   endpoint : string
   isBanner? : boolean
   page? : number
+  totalMoviePerRequest? : number
 }
 
 type ReturnMovieQuery = {
@@ -38,12 +41,13 @@ type ReturnMovieQuery = {
 const defaultMovieQueryParams : MovieQueryParam= {
   isBanner : false,
   page : 1,
-  endpoint : "/movie/popular"
+  endpoint : "/movie/popular",
+  totalMoviePerRequest : DEFAULT_TOTAL_MOVIE_PER_REQUEST
 }
 
 export const useMovieQuery = (params = defaultMovieQueryParams) => {
 
-  const { endpoint, isBanner } = params
+  const { endpoint, isBanner, totalMoviePerRequest } = params
  
   const page = isNaN(params.page!) ? 1 : params.page
 
@@ -56,7 +60,7 @@ export const useMovieQuery = (params = defaultMovieQueryParams) => {
         const res = await fetch(`${path}&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`);
         if (!res.ok) throw new Error("Failed to fetch movie data");
         const { results, page: currPage, total_pages } = await res.json()
-        const movies = results.map((movie:TypeMovie & { name? : string }) => {
+        const movies = results.slice(0,totalMoviePerRequest).map((movie:TypeMovie & { name? : string }) => {
           return {
             ...movie, 
             backdrop_path : (isBanner ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL: process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL ) + movie.backdrop_path,

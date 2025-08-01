@@ -21,7 +21,7 @@ const GridMovieList : FC<Props> = ({ endpoint }) => {
     
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen pb-28">
       {data?.movies.length 
       ? 
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5">
