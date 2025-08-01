@@ -1,6 +1,8 @@
 import { TypeMovie } from "@/types/types-movie";
 import { useQuery } from "@tanstack/react-query";
 
+const DEFAULT_TOTAL_MOVIE_PER_REQUEST = 20
+
 type Video =  {
   id : string
   iso_639_1 : string
@@ -24,17 +26,41 @@ type ResMovieById = {
   previewMovie : ResVideo
 }
 
-export const useMovieQuery = (endpoint:string, isBanner:boolean=false) => {
+type MovieQueryParam = {
+  endpoint : string
+  isBanner? : boolean
+  page? : number
+  totalMoviePerRequest? : number
+}
+
+type ReturnMovieQuery = {
+  movies : TypeMovie[],
+  isNextPage : boolean
+}
+
+const defaultMovieQueryParams : MovieQueryParam= {
+  isBanner : false,
+  page : 1,
+  endpoint : "/movie/popular",
+  totalMoviePerRequest : DEFAULT_TOTAL_MOVIE_PER_REQUEST
+}
+
+export const useMovieQuery = (params = defaultMovieQueryParams) => {
+
+  const { endpoint, isBanner, totalMoviePerRequest } = params
+ 
+  const page = isNaN(params.page!) ? 1 : params.page
+
   return useQuery({
-    queryKey : ["movies", endpoint],
-    queryFn: async () : Promise<TypeMovie[]> => {
+    queryKey : ["movies", endpoint, page],
+    queryFn: async () : Promise<ReturnMovieQuery | null> => {
       try {         
         const chain = endpoint.includes("?") ? "&" : "?"
-        const path = process.env.NEXT_PUBLIC_TMDB_API_BASE_URL + endpoint + chain
-        const res = await fetch(`${path}api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`);
-        if (!res.ok) throw new Error("Failed to fetch movie banner data");
-        const { results } = await res.json()
-        return results.map((movie:TypeMovie & { name? : string }) => {
+        const path = process.env.NEXT_PUBLIC_TMDB_API_BASE_URL + endpoint + `${chain}page=${page}` 
+        const res = await fetch(`${path}&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`);
+        if (!res.ok) throw new Error("Failed to fetch movie data");
+        const { results, page: currPage, total_pages } = await res.json()
+        const movies = results.slice(0,totalMoviePerRequest).map((movie:TypeMovie & { name? : string }) => {
           return {
             ...movie, 
             backdrop_path : (isBanner ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL: process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL ) + movie.backdrop_path,
@@ -42,9 +68,13 @@ export const useMovieQuery = (endpoint:string, isBanner:boolean=false) => {
             title : movie.title ?? movie.name ?? "No Title"
           }
         })
+        return {
+          movies, 
+          isNextPage : currPage < total_pages
+        }
       } catch (error) {
         console.log("Error : " , error)
-        return []
+        return null
       }
     },
   });

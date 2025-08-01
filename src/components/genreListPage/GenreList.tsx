@@ -6,11 +6,12 @@ import { FC } from "react";
 import SkeletonGenreList from "../skeleton/SkeletonGenreList";
 
 type Props = {
-    title : string;
-    index : number;
+  title : string;
+  index : number;
+  href : string
 }
 
-const GenreList : FC<Props>= ({ title, index }) => {
+const GenreList : FC<Props>= ({ title, index, href }) => {
 
     const { data, isPending, error, isError } = useGenresQuery()
     if (isPending) return <SkeletonGenreList />
@@ -22,7 +23,7 @@ const GenreList : FC<Props>= ({ title, index }) => {
         <h1 className="text-center font-bold text-xl mb-10">{title}</h1>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center gap-y-4">
         {genres?.map((genre) => (
-            <Link href={`/movies/genre/${genre.id}`} className="hover:underline text-white/80 hover:text-white md:text-lg" key={genre.id}>{genre.name}</Link>
+            <Link href={`${href}/${genre.id}`} className="hover:underline text-white/80 hover:text-white md:text-lg" key={genre.id}>{genre.name}</Link>
         ))}
         </div>
     </div>
