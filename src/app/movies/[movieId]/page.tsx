@@ -1,8 +1,10 @@
 import DetailMovie from "@/components/detailMoviePage/DetailMovie"
 
-const DetailMoviePage = () => {    
+const DetailMoviePage = async (props : { params : Promise<{ movieId : string }> }) => {    
 
-  return <DetailMovie />
+  const params = await props.params
+
+  return <DetailMovie movieId={params.movieId}/>
 }
 
 export default DetailMoviePage

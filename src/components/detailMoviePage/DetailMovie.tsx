@@ -1,7 +1,6 @@
 "use client"
 
 import { useMovieQueryById } from "@/lib/api/getMovies"
-import { useParams } from "next/navigation"
 import MovieDescription from "./MovieDescription"
 import MoviePoster from "./MoviePoster"
 import PreviewVideo from "./PreviewVideo"
@@ -9,9 +8,7 @@ import SkeletonDetailMovie from "../skeleton/SkeletonDetailMovie"
 
 
 
-const DetailMovie = () => {
-
-  const { movieId } = useParams() 
+const DetailMovie = ({ movieId } : { movieId : string }) => {
 
   const { data, isPending, error } = useMovieQueryById(movieId + "")
 
