@@ -1,9 +1,13 @@
 import GridMovieList from "@/components/common/GridMovieList"
 import { movieGenres } from "@/lib/data/genres"
 import { redirect } from "next/navigation"
+import { FC } from "react"
 
+type Props = {
+  params : Promise<{ genreId : string }>
+}
 
-const MoviesByGenrePage  = async (props : { params : Promise<{ genreId : string }> }) => {
+const MoviesByGenrePage : FC<Props> = async (props) => {
 
   const params = await props.params
   const genre = movieGenres.find(genre => genre.id === Number(params.genreId))
