@@ -5,14 +5,16 @@ import React, { FC } from 'react'
 type TypeTagMovie = "popular" | "top_rated" | "upcoming"
 
 type Props = {
-  params : {
-    tagMovie : TypeTagMovie
-  }
+  params : Promise<{ tagMovie : TypeTagMovie }>
 }
 
 const validTagMovie : TypeTagMovie[] = ["popular", "top_rated", "upcoming"]
 
-const ShowMoreByTagMovie : FC<Props>= ({ params : { tagMovie } }) => {
+const ShowMoreByTagMovie : FC<Props>= async (props) => {
+
+  const params = await props.params
+
+  const { tagMovie } = params
 
   if(!validTagMovie.includes(tagMovie)) redirect("/movies/showmore/popular")    
 
