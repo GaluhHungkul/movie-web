@@ -4,7 +4,10 @@ export type TypeMovie = {
     poster_path : string;
     title? : string
     adult: boolean
-    genre_ids: number[]
+    genres: {
+        id : number;
+        name : string
+    }[]
     overview: string
     popularity :  number
     vote_average :  number
