@@ -1,10 +1,11 @@
 "use client"
 
 import { useMovieQuery } from "@/lib/api/getMovies"
-import { FC, useState } from "react"
+import { FC } from "react"
 import SkeletonGridMovieList from "../skeleton/SkeletonGridMovieList"
 import MovieCard from "./MovieCard"
 import Pagination from "./Pagination"
+import { useSearchParams } from "next/navigation"
 
 type Props = {
   endpoint : string
@@ -12,12 +13,13 @@ type Props = {
 
 const GridMovieList : FC<Props> = ({ endpoint }) => {
 
-  const [page, setPage] = useState<number>(1)
+  const searchParams = useSearchParams()
+  const params = new URLSearchParams(searchParams.toString())
 
-  const { data, isPending, error } = useMovieQuery({ endpoint, page })
+  const { data, isPending, error } = useMovieQuery({ endpoint, page : Math.abs(Number(params.get("page"))) || 1})
   
   if(isPending) return <SkeletonGridMovieList />
-  if(error) return <p className="text-white  font-bold text-center content-center h-[50vh]">Erro : {error.message}</p> 
+  if(error) return <p className="text-white  font-bold text-center content-center h-[50vh]">Error : {error.message}</p> 
     
 
   return (
@@ -33,7 +35,7 @@ const GridMovieList : FC<Props> = ({ endpoint }) => {
           <span className="text-6xl">404</span>
         </h1>
       }
-      {!!data?.movies.length &&  <Pagination page={page} setPage={setPage} isNextPage={data?.isNextPage}/>}
+      {!!data?.movies.length &&  <Pagination page={Math.abs(Number(params.get("page"))) || 1} params={params} isNextPage={data?.isNextPage} />}
     </div>
   )
 }
