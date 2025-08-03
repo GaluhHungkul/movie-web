@@ -24,7 +24,7 @@ const ListGenre : FC<Props> = ({ data }) => {
         </div>
         <ul className={`mt-2 grid-cols-2 pl-4 md:text-xl lg:text-base pt-2 lg:grid mb-2 gap-y-4 lg:gap-y-6 gap-x-6 lg:pl-0 text-gray-400 md:grid-cols-4 ${showGenre ? "grid" : "hidden"}`} >
             {data.map((genre) => (
-                <li key={genre.id} className="hover:text-gray-500 hover:underline"><Link href={``}>{genre.name}</Link></li>
+                <li key={genre.id} className="hover:text-gray-500 hover:underline"><Link href={`/movies/genre/${genre.id}`}>{genre.name}</Link></li>
             ))}
         </ul>
     </section>

@@ -17,7 +17,7 @@ const Footer = () => {
   return (
     <footer className="p-5 flex flex-col gap-10 border-t border-gray-600 lg:pt-15 pb-16 md:mb-24 lg:px-5 lg:flex-row ">
         <AllRightsReserved />
-        <div className="lg:flex lg:ml-28 lg:flex-1 lg:justify-evenly">
+        <div className="lg:flex lg:ml-28 lg:flex-1 lg:justify-around">
             <ListGenre data={movieGenres}/>
             <Help />
         </div>
