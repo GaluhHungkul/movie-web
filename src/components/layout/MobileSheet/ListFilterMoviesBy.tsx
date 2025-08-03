@@ -1,4 +1,4 @@
-import { CalendarDays, Drama, ListFilter, TvMinimalPlay } from "lucide-react"
+import { CalendarDays, Drama, ListFilter, Trophy } from "lucide-react"
 import FilterBy from "./FilterBy"
 import { AnimatePresence } from "framer-motion"
 import { useState } from "react"
@@ -11,9 +11,9 @@ const FILTERING_MOVIES = [
     icon : Drama
   },
   {
-    by : "Type",
-    href : "/movies/filterby/type",
-    icon : TvMinimalPlay
+    by : "Popularity",
+    href : "/movies/filterby/popularity",
+    icon : Trophy
   },
   {
     by : "Year",

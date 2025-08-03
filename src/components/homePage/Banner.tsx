@@ -33,7 +33,7 @@ const Banner = () => {
         >
           {data?.movies.map(movie => (
             <SwiperSlide className="!h-48 bg-cover  relative bg-center md:!h-96 lg:!h-[500px]" key={movie.id} style={{ backgroundImage : `url(${movie.backdrop_path})` }}>
-              <Link href={`/movies/${movie.id}`} className="absolute inset-0"/>
+              <Link href={`/movies/detail/${movie.id}`} className="absolute inset-0"/>
             </SwiperSlide>
           ) )}
         </Swiper>
