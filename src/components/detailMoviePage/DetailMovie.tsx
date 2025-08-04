@@ -8,9 +8,9 @@ import SkeletonDetailMovie from "../skeleton/SkeletonDetailMovie"
 
 
 
-const DetailMovie = ({ movieId } : { movieId : string }) => {
+const DetailMovie = ({ movieId, type }: { movieId : string, type? : "movie" | "tv" }) => {
 
-  const { data, isPending, error } = useMovieQueryById(movieId + "")
+  const { data, isPending, error } = useMovieQueryById(movieId, type ?? "movie")
 
 
   if(isPending) return <SkeletonDetailMovie />
@@ -21,7 +21,7 @@ const DetailMovie = ({ movieId } : { movieId : string }) => {
     <div className="text-white lg:flex lg:space-x-10">   
       <MoviePoster poster_path={data?.descriptionMovie?.poster_path ?? ""} alt={data?.descriptionMovie?.title ?? ""}/>       
       <MovieDescription descriptionMovie={data?.descriptionMovie}/>
-      <PreviewVideo preview_video_key={data?.previewMovie?.results[0].key ?? ""}/>
+      {!!data?.previewMovie?.results?.length && <PreviewVideo preview_video_key={data?.previewMovie?.results[0].key ?? ""}/>}
     </div>
   )
 }

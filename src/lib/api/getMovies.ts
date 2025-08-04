@@ -80,17 +80,17 @@ export const useMovieQuery = (params = defaultMovieQueryParams) => {
   });
 };
 
-export const useMovieQueryById = (movie_id:string)  => {
+export const useMovieQueryById = (media_id:string, type:"movie" | "tv"="movie")  => {
   return useQuery({
-    queryKey : ["movie_id" , movie_id],
+    queryKey : [type , media_id],
     queryFn : async () : Promise<ResMovieById | null> => {
       try {
               
         const [previewMovie, descriptionMovie] = await Promise.all([
-          fetch(`https://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`).then(res => res.json()),
-          fetch(`${process.env.NEXT_PUBLIC_TMDB_API_BASE_URL}/movie/${movie_id}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`).then(res => res.json())
+          fetch(`https://api.themoviedb.org/3/${type}/${media_id}/videos?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`).then(res => res.json()),
+          fetch(`${process.env.NEXT_PUBLIC_TMDB_API_BASE_URL}/${type}/${media_id}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`).then(res => res.json())
         ])
-        console.log({descriptionMovie})
+        console.log({descriptionMovie, previewMovie})
         return {
           previewMovie,  
           descriptionMovie : {
