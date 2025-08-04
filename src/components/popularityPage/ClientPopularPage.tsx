@@ -1,13 +1,13 @@
 "use client"
 
 import { useMovieQuery } from "@/lib/api/getMovies"
-import SkeletonGridMovieList from "../skeleton/SkeletonGridMovieList"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useState } from "react"
 import HeaderPopularityPage from "./HeaderPopularityPage"
 import PopularList from "./PopularList"
 import Pagination from "../common/Pagination"
 import MovieNotFound from "../common/MovieNotFound"
+import SkeletonPopularList from "../skeleton/SkeletonPopularList"
 
 const ClientPopularPage  = () => {
 
@@ -20,7 +20,7 @@ const ClientPopularPage  = () => {
   
   const { data, isPending, error } = useMovieQuery({ endpoint, page : Math.abs(Number(params.get("page"))) || 1, totalMoviePerRequest : 10})
   
-  if(isPending) return <SkeletonGridMovieList />
+  if(isPending) return <SkeletonPopularList />
   if(error) return <p className="text-white  font-bold text-center content-center h-[50vh]">Error : {error.message}</p> 
 
     
