@@ -3,7 +3,7 @@ import { TvGenres } from "@/lib/data/genres"
 import { redirect } from "next/navigation"
 
 
-const MoviesByGenrePage  = async (props : { params : Promise<{ genreId : string }> }) => {
+const TvByGenrePage  = async (props : { params : Promise<{ genreId : string }> }) => {
 
   const params = await props.params
   const genre = TvGenres.find(genre => genre.id === Number(params.genreId))
@@ -12,9 +12,9 @@ const MoviesByGenrePage  = async (props : { params : Promise<{ genreId : string 
   return (
     <div>
       <h1 className="text-center font-bold text-xl mb-10">{genre.name}</h1>
-      <GridMovieList endpoint={`/discover/tv?with_genres=${params.genreId}`}/>
+      <GridMovieList endpoint={`/discover/tv?with_genres=${params.genreId}`} isMovie={false}/>
     </div>
   )
 }
 
-export default MoviesByGenrePage
+export default TvByGenrePage

@@ -9,9 +9,10 @@ import { useSearchParams } from "next/navigation"
 
 type Props = {
   endpoint : string
+  isMovie? : boolean
 }
 
-const GridMovieList : FC<Props> = ({ endpoint }) => {
+const GridMovieList : FC<Props> = ({ endpoint, isMovie=true }) => {
 
   const searchParams = useSearchParams()
   const params = new URLSearchParams(searchParams.toString())
@@ -27,7 +28,7 @@ const GridMovieList : FC<Props> = ({ endpoint }) => {
       {data?.movies.length 
       ? 
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5">
-          {data?.movies.map(movie => <MovieCard movie={movie} key={movie.id}/>)}
+          {data?.movies.map(movie => <MovieCard movie={movie} key={movie.id} isMovie={isMovie}/>)}
         </div>
       :
         <h1 className="text-center h-[60vh]  justify-center content-center flex flex-col text-xl">

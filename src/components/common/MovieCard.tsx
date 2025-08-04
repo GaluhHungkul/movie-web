@@ -2,9 +2,9 @@ import { TypeMovie } from "@/types/types-movie"
 import Image from "next/image"
 import Link from "next/link"
 
-const MovieCard = ({ movie, className } : { movie : TypeMovie, className? : string }) => {
+const MovieCard = ({ movie, className, isMovie=true } : { movie : TypeMovie, className? : string, isMovie? : boolean }) => {
   return (
-    <Link href={`/movies/detail/${movie.id}`} className={`overflow-hidden aspect-[2/3] relative rounded group ${className}`} key={movie.id}>
+    <Link href={`/${isMovie ? "movies" : "tv"}/detail/${movie.id}`} className={`overflow-hidden aspect-[2/3] relative rounded group ${className}`} key={movie.id}>
       <Image src={movie.poster_path} alt={movie.title ?? ""} className="object-cover object-bottom group-hover:scale-110 duration-300" fill sizes="25vw"/>
     </Link>
   )
