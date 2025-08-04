@@ -1,4 +1,4 @@
-import { CalendarDays, Drama, ListFilter, Trophy } from "lucide-react"
+import { ChartNoAxesCombined, Drama, ListFilter, Trophy } from "lucide-react"
 import FilterBy from "./FilterBy"
 import { AnimatePresence } from "framer-motion"
 import { useState } from "react"
@@ -13,12 +13,12 @@ const FILTERING_MOVIES = [
   {
     by : "Popularity",
     href : "/filterby/popularity",
-    icon : Trophy
+    icon : ChartNoAxesCombined
   },
   {
-    by : "Year",
-    href : "/filterby/year",
-    icon : CalendarDays
+    by : "Top Rated",
+    href : "/filterby/top_rated",
+    icon : Trophy
   },
 ]
 

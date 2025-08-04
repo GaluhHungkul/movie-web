@@ -20,7 +20,7 @@ const DetailMovie = ({ movieId, type }: { movieId : string, type? : "movie" | "t
   return (
     <div className="text-white lg:flex lg:space-x-10">   
       <MoviePoster poster_path={data?.descriptionMovie?.poster_path ?? ""} alt={data?.descriptionMovie?.title ?? ""}/>       
-      <MovieDescription descriptionMovie={data?.descriptionMovie} isMovie={type === "movie"}/>
+      <MovieDescription descriptionMovie={data?.descriptionMovie} isMovie={type !== "tv"}/>
       {!!data?.previewMovie?.results?.length && <PreviewVideo preview_video_key={data?.previewMovie?.results[0].key ?? ""}/>}
     </div>
   )
