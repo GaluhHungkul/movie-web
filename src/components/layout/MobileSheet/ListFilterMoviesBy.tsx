@@ -7,17 +7,17 @@ import { useState } from "react"
 const FILTERING_MOVIES = [
   {
     by : "Genre",
-    href : "/movies/filterby/genre",
+    href : "/filterby/genre",
     icon : Drama
   },
   {
     by : "Popularity",
-    href : "/movies/filterby/popularity",
+    href : "/filterby/popularity",
     icon : Trophy
   },
   {
     by : "Year",
-    href : "/movies/filterby/year",
+    href : "/filterby/year",
     icon : CalendarDays
   },
 ]

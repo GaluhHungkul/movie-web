@@ -30,7 +30,7 @@ const ClientPopularPage  = () => {
     params.delete("page")
     if(val === "/tv/popular") params.set("type", "tv")
     else params.delete("type")
-    router.push(`/movies/filterby/popularity?${params.toString()}`)
+    router.push(`/filterby/popularity?${params.toString()}`)
   }
 
   
