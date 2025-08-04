@@ -1,12 +1,12 @@
 import ClientPopularPage  from '@/components/popularityPage/ClientPopularPage'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 const PopularityPage = () => {
     
   return (
-    <div>
-        <ClientPopularPage />
-    </div>
+    <Suspense>
+      <ClientPopularPage />
+    </Suspense>
   )
 }
 
