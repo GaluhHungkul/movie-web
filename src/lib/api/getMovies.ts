@@ -90,7 +90,6 @@ export const useMovieQueryById = (media_id:string, type:"movie" | "tv"="movie") 
           fetch(`https://api.themoviedb.org/3/${type}/${media_id}/videos?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`).then(res => res.json()),
           fetch(`${process.env.NEXT_PUBLIC_TMDB_API_BASE_URL}/${type}/${media_id}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`).then(res => res.json())
         ])
-        console.log({descriptionMovie, previewMovie})
         return {
           previewMovie,  
           descriptionMovie : {
