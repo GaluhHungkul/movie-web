@@ -21,8 +21,9 @@ type Props = {
 
 const SwiperMovieList : FC<Props> = ({ title, href, endpoint, isReverse }) => {
 
-    const { data, isPending, error } = useMovieQuery({endpoint})
+    const { data, isPending, error } = useMovieQuery({ endpoint, totalMoviePerRequest : 10})
 
+   
     if(isPending) return <SkeletonSwiperMovieList />
     if(error) return <p className="text-white font-bold text-center content-center h-[50vh]">Error : {error.message}</p>
 

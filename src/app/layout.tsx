@@ -18,11 +18,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className='bg-foreground text-white px-2 lg:px-8'>
+    <html lang="en" className={`${inter.variable} `} >
+      <body className='bg-foreground text-white relative overflow-x-hidden' >
         <QueryProvider>
           <Header />
-          <main className=' min-h-screen w-full  py-4 overflow-x-hidden   '>
+          <main className=' min-h-screen w-full  py-4 overflow-x-hidden px-2 lg:px-8'>
             {children}
           </main>
           <Footer />

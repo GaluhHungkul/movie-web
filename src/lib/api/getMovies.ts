@@ -28,7 +28,6 @@ type ResMovieById = {
 
 type MovieQueryParam = {
   endpoint : string
-  isBanner? : boolean
   page? : number
   totalMoviePerRequest? : number
 }
@@ -39,7 +38,6 @@ type ReturnMovieQuery = {
 }
 
 const defaultMovieQueryParams : MovieQueryParam= {
-  isBanner : false,
   page : 1,
   endpoint : "/movie/popular",
   totalMoviePerRequest : DEFAULT_TOTAL_MOVIE_PER_REQUEST
@@ -47,7 +45,7 @@ const defaultMovieQueryParams : MovieQueryParam= {
 
 export const useMovieQuery = (params = defaultMovieQueryParams) => {
 
-  const { endpoint, isBanner, totalMoviePerRequest } = params
+  const { endpoint, totalMoviePerRequest } = params
  
   const page = isNaN(params.page!) ? 1 : params.page
 
@@ -63,7 +61,7 @@ export const useMovieQuery = (params = defaultMovieQueryParams) => {
         const movies = results.slice(0,totalMoviePerRequest).map((movie:TypeMovie & { name? : string }) => {
           return {
             ...movie, 
-            backdrop_path : (isBanner ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL: process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL ) + movie.backdrop_path,
+            backdrop_path : process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + movie.backdrop_path,
             poster_path :  process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  movie.poster_path,
             title : movie.title ?? movie.name ?? "No Title"
           }

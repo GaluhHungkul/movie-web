@@ -13,13 +13,15 @@ const endpoint = "/movie/popular"
 
 const Banner = () => {
 
-    const { data, isPending, error } = useMovieQuery({ endpoint, isBanner : true, totalMoviePerRequest : 10 })
-
+    const { data, isPending, error } = useMovieQuery({ endpoint, totalMoviePerRequest : 10 })
+    
+   
     if(isPending) return <SkeletonBanner />
     if(error) return <p className="text-white font-bold text-center content-center h-[50vh]">Error : {error.message}</p>
 
+
   return (
-    <div className="rounded overflow-hidden mx-auto">
+    <div className="rounded overflow-hidden mx-auto relative ">
         <Swiper 
         modules={[Pagination, Autoplay]}
         pagination={{ clickable : true }}
@@ -32,10 +34,10 @@ const Banner = () => {
         loop
         >
           {data?.movies.map(movie => (
-            <SwiperSlide className="!h-48 bg-cover  relative bg-center md:!h-96 lg:!h-[500px]" key={movie.id} style={{ backgroundImage : `url(${movie.backdrop_path})` }}>
+          <SwiperSlide className="!h-48 bg-cover  relative bg-center md:!h-96 lg:!h-[500px]" key={movie.id} style={{ backgroundImage : `url(${movie.backdrop_path})` }}>
               <Link href={`/movies/detail/${movie.id}`} className="absolute inset-0"/>
             </SwiperSlide>
-          ) )}
+          ))}
         </Swiper>
     </div>
   )

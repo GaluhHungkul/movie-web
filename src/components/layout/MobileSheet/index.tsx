@@ -28,7 +28,7 @@ const MobileSheet = () => {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger asChild className="cursor-pointer duration-300 hover:bg-white/10 rounded-full p-1 lg:scale-110 lg:hover:scale-120">
+      <SheetTrigger asChild className="cursor-pointer duration-300 hover:bg-white/10 rounded-full p-1 lg:scale-110 lg:hover:scale-120 relative">
         <Menu size={32}/>
       </SheetTrigger>
       <SheetContent side="left" className="bg-black px-2">
