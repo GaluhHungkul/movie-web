@@ -5,13 +5,13 @@ import { usePathname } from 'next/navigation'
 import ListGenre from './ListGenre'
 import AllRightsReserved from './AllRightsReserved'
 import Help from './Help'
+import { disabledLayout } from '@/lib/data/disabledLayout'
 
 const Footer = () => {
 
     const pathname = usePathname()
-    const disableFooter = ["/login", "/register", "/watch", "/404"]
 
-    if(disableFooter.includes(pathname)) return null
+    if(disabledLayout.includes(pathname)) return null
 
     
   return (

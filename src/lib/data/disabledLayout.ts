@@ -1,0 +1,1 @@
+export const disabledLayout = ["/login", "/register", "/watch", "/404"]
