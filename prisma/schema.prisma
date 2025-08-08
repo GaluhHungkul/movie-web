@@ -11,11 +11,15 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model User {
   id String @id @default(uuid())
   name String
   email String @unique
-  password String
+  password String?
+  oauthProvider String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
