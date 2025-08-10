@@ -27,12 +27,12 @@ export default async function RootLayout({
     <html lang="en" className={`${inter.variable} `} >
       <body className='bg-foreground text-white relative overflow-x-hidden' >
         <QueryProvider>
-          <Header />
-          <main className=' min-h-screen w-full  py-4 overflow-x-hidden px-2 lg:px-8'>   
             <SessionProviderWrapper session={session}>
-              {children}
+              <Header />
+              <main className=' min-h-screen w-full  py-4 overflow-x-hidden px-2 lg:px-8'>   
+                  {children}
+              </main>
             </SessionProviderWrapper>
-          </main>
           <Footer />
         </QueryProvider>
       </body>
