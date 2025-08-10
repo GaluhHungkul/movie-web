@@ -16,8 +16,8 @@ const AuthInputCard : FC<Props>= ({
     ...res
 }) => {
   return (
-    <div className="space-y-1">
-        <Input className={`${className} md:text-xl md:py-6`} placeholder={placeholder} type={type} {...res}/>
+    <div className="space-y-1 relative">
+        <Input required className={`${className} md:text-xl md:py-6`} placeholder={placeholder} type={type} {...res}/>
         <span className="text-red-500 text-sm md:text-lg">{errorMsg}</span>
     </div>
   )
