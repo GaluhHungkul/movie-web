@@ -18,7 +18,7 @@ type LoginSchema = z.infer<typeof loginSchema>
 
 const LoginAuthCard = () => {
 
-    const { register, reset, formState : { errors }, handleSubmit } = useForm({
+    const { register, reset, formState : { errors, isSubmitting }, handleSubmit } = useForm({
         resolver : zodResolver(loginSchema)
     })
 
@@ -39,7 +39,7 @@ const LoginAuthCard = () => {
         <AuthInputCard errorMsg={errors.email?.message} placeholder='Email' type='email' {...register("email")}/>
         <AuthInputCard errorMsg={errors.password?.message} placeholder='Password' type='password' {...register("password")}/>
         <p className='text-center text-white/50 relative top-2 text-xs md:text-base'>Didn{"'"}t have an account yet? <Link href={"/register"} className='text-blue-500 hover:underline'>Sign Up</Link></p>
-        <Button className='w-full font-bold mt-6 cursor-pointer md:mt-6 md:text-lg lg:py-6 lg:text-xl' variant={"secondary"}>Sign In</Button>
+        <Button disabled={isSubmitting} className='w-full font-bold mt-6 cursor-pointer md:mt-6 md:text-lg lg:py-6 lg:text-xl' variant={"secondary"}>{isSubmitting ? "Loading..." : "Sign In"}</Button>
     </form>
   )
 }
