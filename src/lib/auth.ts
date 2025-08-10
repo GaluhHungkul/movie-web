@@ -44,6 +44,9 @@ export const authOptions : NextAuthOptions = {
     session : {
         strategy : "jwt"
     },
+    pages : {
+        signIn : "/login"
+    },
     callbacks : {
         async signIn({ account, user }) {
             const { name, email, id } = user
@@ -59,15 +62,12 @@ export const authOptions : NextAuthOptions = {
             return true
         },
         async jwt({ token, user }) {
-            if(!user.email) return token
-            
-            const currUser = await prisma.user.findFirst({ where : { email : user.email } })
-            if(!currUser) return token
 
-            const { id, name, email } = currUser
-            token.id = id
-            token.name = name
-            token.email = email
+            if(user) {
+                token.id = user.id
+                token.name = user.name
+                token.email = user.email
+            }
 
             return token
         },
