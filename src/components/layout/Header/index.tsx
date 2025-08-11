@@ -12,8 +12,6 @@ const Header  = () => {
 
   const pathname = usePathname()
 
-
-
   if(disabledLayout.includes(pathname)) return null
 
 
