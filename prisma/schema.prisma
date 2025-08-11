@@ -18,6 +18,7 @@ model User {
   id String @id @default(uuid())
   name String
   email String @unique
+  image String @default("/assets/img/default_pp.png")
   password String?
   oauthProvider String?
   createdAt DateTime @default(now())

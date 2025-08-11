@@ -7,6 +7,8 @@ import SearchBar from "./SearchBar"
 import { usePathname } from "next/navigation"
 import { disabledLayout } from "@/lib/data/disabledLayout"
 import ProfileButtonArea from "./ProfileButtonArea"
+import { Button } from "@/components/ui/button"
+import { signOut } from "next-auth/react"
 
 const Header  = () => {
 
@@ -22,6 +24,7 @@ const Header  = () => {
         <Image src={"/assets/img/icon_full.png"} alt="" width={100} height={400} className=""/>
       </Link>
       <SearchBar /> 
+      <Button onClick={() => signOut({ callbackUrl : "/login" })}>Sign Out</Button>
       <ProfileButtonArea />
     </div>
   )
