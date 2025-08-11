@@ -14,8 +14,7 @@ export async function POST(req:NextRequest) {
 
         const newUser = await prisma.user.create({
             data : { 
-                name, email, password : hashedPassword,
-                oauthProvider : "Credentials",
+                name, email, password : hashedPassword
             }
         })
         if(!newUser) return NextResponse.json({ message : "Sign up error. Something went wrong"}, { status : 500 })
