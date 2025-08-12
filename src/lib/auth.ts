@@ -21,7 +21,12 @@ export const authOptions : NextAuthOptions = {
                     if(!credentials) return null
                     const { email, password } = credentials
                     console.log({email, password})
-                    const currUser = await prisma.user.findFirst({ where : { email } })
+                    const currUser = await prisma.user.findUnique({ 
+                        where : { email },
+                        include : {
+                            favoritesMovie : true
+                        }
+                    })
                     if(!currUser) return null
                     
                     const isValidPassword = await compare(password, currUser.password!)
@@ -32,6 +37,7 @@ export const authOptions : NextAuthOptions = {
                         name : currUser.name,
                         email : currUser.email,
                         image : currUser.image,
+                        favoritesMovie : currUser.favoritesMovie
                     }
 
                 } catch (error) {
@@ -53,7 +59,7 @@ export const authOptions : NextAuthOptions = {
             const { name, email } = user
             if(!(name && email )) return false
             if(account?.provider === "google") {
-                const currUser = await prisma.user.findFirst({ where : { email } })
+                const currUser = await prisma.user.findUnique({ where : { email } })
                 if(!currUser) {
                     await prisma.user.create({ data : { 
                         name, email, oauthProvider : "google",
@@ -69,16 +75,18 @@ export const authOptions : NextAuthOptions = {
                 token.name = user.name
                 token.email = user.email
                 token.image = user.image
+                token.favoritesMovie = user.favoritesMovie
             }
 
             return token
         },
-        async session({ session, token : { id, name, email, image } }) {
+        async session({ session, token : { id, name, email, image, favoritesMovie } }) {
             if(session.user) {
                 session.user.id = id!
                 session.user.name = name!
                 session.user.email = email!
                 session.user.image = image!
+                session.user.favoritesMovie = favoritesMovie
             }
             return session
         }

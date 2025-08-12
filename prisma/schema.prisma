@@ -23,4 +23,16 @@ model User {
   oauthProvider String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  favoritesMovie FavoriteMovie[]
+}
+
+model FavoriteMovie {
+  id String @id @default(uuid())
+  userId String
+  movieId String
+  title String
+  poster_path String
+  backdrop_path String
+
+  user User @relation(fields: [userId], references: [id])
 }
