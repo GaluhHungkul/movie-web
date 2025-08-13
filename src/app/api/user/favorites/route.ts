@@ -11,7 +11,14 @@ export async function POST(req:NextRequest) {
             
         const { backdrop_path, title, poster_path, movieId } = await req.json()
         if(!(backdrop_path || title || poster_path || movieId)) return NextResponse.json({ message : "Incomplete data" }, { status : 422})
-
+        
+        const isAlreadyExist = await prisma.favoriteMovie.findFirst({
+            where : {
+                movieId : movieId.toString(),
+                userId : token.id
+            }
+        })
+        if(isAlreadyExist) return NextResponse.json({ message : "Movie already exist" }, { status : 409})
         await prisma.favoriteMovie.create({
             data : {
                 backdrop_path, title, poster_path, movieId : movieId.toString(), userId : token.id
