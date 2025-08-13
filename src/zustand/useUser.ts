@@ -1,9 +1,15 @@
-import { User } from "@prisma/client"
+import { Prisma } from "@prisma/client"
 import { create } from "zustand"
 
+type UserWithFavoritesMovie = Prisma.UserGetPayload<{
+    include : {
+        favoritesMovie : true
+    }
+}>
+
 type useUser = {
-    data : User | null,
-    setUser : (val:User) => void
+    data : UserWithFavoritesMovie | null,
+    setUser : (val:UserWithFavoritesMovie) => void
 }
 
 const useUser = create<useUser>()((set) => ({

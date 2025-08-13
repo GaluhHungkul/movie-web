@@ -9,10 +9,12 @@ const ClientMyProfilePage = () => {
 
   const { data } = useUser()
 
+  console.log(data)
+
   return (
     <div className="min-h-screen  px-4  relative text-white lg:px-12 ">
       <HeaderProfile data={data}/>
-      <MyFavoritesMovie userId={data?.id}/>
+      <MyFavoritesMovie data={data?.favoritesMovie}/>
     </div>
   )
 }
