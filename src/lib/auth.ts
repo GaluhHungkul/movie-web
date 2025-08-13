@@ -18,6 +18,8 @@ export const authOptions : NextAuthOptions = {
             },
             async authorize(credentials) {
                 try {
+                    console.log("masuk authorize")
+                    console.log("---------------------------------------------")
                     if(!credentials) return null
                     const { email, password } = credentials
                     console.log({email, password})
@@ -56,6 +58,8 @@ export const authOptions : NextAuthOptions = {
     },
     callbacks : {
         async signIn({ account, user }) {
+            console.log("Masuk SignIn")
+            console.log("----------------------------------------")
             const { name, email } = user
             if(!(name && email )) return false
             if(account?.provider === "google") {
@@ -69,7 +73,8 @@ export const authOptions : NextAuthOptions = {
             return true
         },
         async jwt({ token, user }) {
-
+            console.log("masuk jwt")
+            console.log("---------------------------------------------")
             if(user) {
                 token.id = user.id
                 token.name = user.name
@@ -81,6 +86,8 @@ export const authOptions : NextAuthOptions = {
             return token
         },
         async session({ session, token : { id, name, email, image, favoritesMovie } }) {
+            console.log("masuk session")
+            console.log("---------------------------------------------")
             if(session.user) {
                 session.user.id = id!
                 session.user.name = name!

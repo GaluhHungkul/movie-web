@@ -7,12 +7,13 @@ import PreviewVideo from "./PreviewVideo"
 import SkeletonDetailMovie from "../skeleton/SkeletonDetailMovie"
 import DetailMovieBanner from "./DetailMovieBanner"
 import { Bookmark } from "lucide-react"
+import { useSession } from "next-auth/react"
 
 type FavoriteMovieSent = { 
   backdrop_path : string | undefined
   title : string | undefined
   poster_path : string | undefined
-  id : number | undefined
+  movieId : number | undefined
 }
 
 
@@ -20,6 +21,7 @@ const DetailMovie = ({ movieId, type }: { movieId : string, type? : "movie" | "t
 
   const { data, isPending, error } = useMovieQueryById(movieId, type ?? "movie")
 
+  const { update } = useSession()
 
   if(isPending) return <SkeletonDetailMovie />
   if(error) return <h1 className="text-white  text-3xl h-[80vh] text-center content-center">Error : {error.message}</h1>
@@ -33,15 +35,15 @@ const DetailMovie = ({ movieId, type }: { movieId : string, type? : "movie" | "t
         },
         body : JSON.stringify(value)
       })
-
     } catch (error) {
       console.log("Error : " , error)
     }
   }
 
   const handleClickFavorite = async () => {
-    const { backdrop_path, title, poster_path, id } = data?.descriptionMovie || {}
-    await handleFavorite({ backdrop_path, title, poster_path, id })
+    const { backdrop_path, title, poster_path, id:movieId } = data?.descriptionMovie || {}
+    await handleFavorite({ backdrop_path, title, poster_path, movieId })
+    await update()
   }
 
   return (
