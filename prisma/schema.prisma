@@ -35,4 +35,6 @@ model FavoriteMovie {
   backdrop_path String
 
   user User @relation(fields: [userId], references: [id])
+
+  @@unique([userId, movieId])
 }

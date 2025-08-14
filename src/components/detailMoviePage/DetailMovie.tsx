@@ -28,13 +28,14 @@ const DetailMovie = ({ movieId, type }: { movieId : string, type? : "movie" | "t
 
   const handleFavorite = async (value:FavoriteMovieSent) => {
     try {
-      await fetch(`/api/user/favorites`, {
+      const res = await fetch(`/api/user/favorites`, {
         method : "POST",
         headers : {
           "Content-Type" : "application/json"
         },
         body : JSON.stringify(value)
       })
+      console.log(await res.json())
     } catch (error) {
       console.log("Error : " , error)
     }

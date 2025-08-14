@@ -29,7 +29,7 @@ export default async function RootLayout({
         <QueryProvider>
             <SessionProviderWrapper session={session}>
               <Header />
-              <main className=' min-h-screen w-full  py-4 overflow-x-hidden px-2 lg:px-8'>   
+              <main className='min-h-screen w-full  py-4 overflow-x-hidden px-2 lg:px-8'>   
                   {children}
               </main>
             </SessionProviderWrapper>
