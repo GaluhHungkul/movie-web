@@ -7,6 +7,8 @@ import SearchBar from "./SearchBar"
 import { usePathname } from "next/navigation"
 import { disabledLayout } from "@/lib/data/disabledLayout"
 import ProfileButtonArea from "./ProfileButtonArea"
+import { Button } from "@/components/ui/button"
+import { signOut } from "next-auth/react"
 const Header  = () => {
 
   const pathname = usePathname()
@@ -22,6 +24,7 @@ const Header  = () => {
       </Link>
       <SearchBar />       
       <ProfileButtonArea />
+      <Button onClick={() => signOut({ callbackUrl : "/login"})}>SignOut</Button>
     </div>
   )
 }

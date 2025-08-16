@@ -3,7 +3,7 @@ import Link from "next/link"
 
 const MovieDescription = ({ descriptionMovie, isMovie } : { descriptionMovie : TypeMovie | undefined, isMovie : boolean }) => {
   return (
-    <div className="size-full mt-10 space-y-3  md:text-xl lg:flex-1/3 lg:mt-0 lg:w-2/3">
+    <div className="w-full mt-10 space-y-3  md:text-xl  lg:mt-0 ">
       <h1>Title : <span className="text-white/70">{descriptionMovie?.title}</span></h1>
       <h2>Overview : <span className="text-white/70">{descriptionMovie?.overview}</span></h2>
       <h2>Rate : {descriptionMovie?.vote_average} ⭐ | {descriptionMovie?.vote_count}</h2>

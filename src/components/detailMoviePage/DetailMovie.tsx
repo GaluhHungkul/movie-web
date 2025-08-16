@@ -50,12 +50,12 @@ const DetailMovie = ({ movieId, type }: { movieId : string, type? : "movie" | "t
   return (
     <div className="text-white lg:space-x-10 relative mb-10">   
       <DetailMovieBanner img={data?.descriptionMovie.backdrop_path ?? ""}/>
-      <section className="lg:my-10 relative lg:flex justify-between items-start">
-        <div className="flex lg:items-start lg:gap-10">
+      <section className="lg:my-10 w-full relative lg:flex justify-between items-start">
+        <div className="lg:flex lg:items-start lg:gap-20 ">
           <MoviePoster poster_path={data?.descriptionMovie?.poster_path ?? ""} alt={data?.descriptionMovie?.title ?? ""}/>       
           {!!data?.previewMovie?.results?.length && <PreviewVideo preview_video_key={data?.previewMovie?.results[0].key ?? ""}/>}
         </div>
-        <button className="cursor-pointer" onClick={handleClickFavorite}><Bookmark  size={64}/></button>
+        <button className="cursor-pointer absolute right-4 -bottom-16 lg:static" onClick={handleClickFavorite}><Bookmark size={52}/></button>
       </section>
       <MovieDescription descriptionMovie={data?.descriptionMovie} isMovie={type !== "tv"}/>
     </div>

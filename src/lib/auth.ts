@@ -1,12 +1,12 @@
 import { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
-import GoogleProviders from "next-auth/providers/google"
+import GoogleProvider from "next-auth/providers/google"
 import { prisma } from "./prisma"
 import { compare } from "bcrypt"
 
 export const authOptions : NextAuthOptions = {
     providers : [
-        GoogleProviders({
+        GoogleProvider({
             clientId : process.env.GOOGLE_CLIENT_ID!,
             clientSecret : process.env.GOOGLE_CLIENT_SECRET!,
         }),
@@ -20,7 +20,6 @@ export const authOptions : NextAuthOptions = {
                 try {
                     if(!credentials) return null
                     const { email, password } = credentials
-                    console.log({email, password})
                     const currUser = await prisma.user.findUnique({ 
                         where : { email },
                         include : {
@@ -28,8 +27,9 @@ export const authOptions : NextAuthOptions = {
                         }
                     })
                     if(!currUser) return null
-                    
-                    const isValidPassword = await compare(password, currUser.password!)
+                    if(!currUser.password) return null
+
+                    const isValidPassword = await compare(password, currUser.password)
                     if(!isValidPassword) return null
 
                     return {
@@ -62,14 +62,17 @@ export const authOptions : NextAuthOptions = {
                 const currUser = await prisma.user.findUnique({ where : { email } })
                 if(!currUser) {
                     await prisma.user.create({ data : { 
-                        name, email, oauthProvider : "google",
+                        name, email, 
+                        oauthProvider : "google",
+                        favoritesMovie : {
+                            create : []
+                        }
                     }})
                 }
             }
             return true
         },
         async jwt({ token, user, trigger }) {
-
             if(trigger === "update" && token.email) {
                 const currUser = await prisma.user.findUnique({ 
                     where : { email : token.email },
