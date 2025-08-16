@@ -6,8 +6,10 @@ import MoviePoster from "./MoviePoster"
 import PreviewVideo from "./PreviewVideo"
 import SkeletonDetailMovie from "../skeleton/SkeletonDetailMovie"
 import DetailMovieBanner from "./DetailMovieBanner"
-import { Bookmark } from "lucide-react"
+import { Bookmark, BookmarkCheck } from "lucide-react"
 import { useSession } from "next-auth/react"
+import { useState } from "react"
+import useUser from "@/zustand/useUser"
 
 type FavoriteMovieSent = { 
   backdrop_path : string | undefined
@@ -19,15 +21,22 @@ type FavoriteMovieSent = {
 
 const DetailMovie = ({ movieId, type }: { movieId : string, type? : "movie" | "tv" }) => {
 
+  const [isSubmitFavorite, setIsSubmitFavorite] = useState(false)
+
   const { data, isPending, error } = useMovieQueryById(movieId, type ?? "movie")
 
   const { update } = useSession()
+
+  const { data:user } = useUser()
+
+  const favorited = user?.favoritesMovie.map((movie) => movie.movieId).includes(movieId)
 
   if(isPending) return <SkeletonDetailMovie />
   if(error) return <h1 className="text-white  text-3xl h-[80vh] text-center content-center">Error : {error.message}</h1>
 
   const handleFavorite = async (value:FavoriteMovieSent) => {
     try {
+      setIsSubmitFavorite(true)
       const res = await fetch(`/api/user/favorites`, {
         method : "POST",
         headers : {
@@ -38,6 +47,8 @@ const DetailMovie = ({ movieId, type }: { movieId : string, type? : "movie" | "t
       console.log(await res.json())
     } catch (error) {
       console.log("Error : " , error)
+    } finally {
+      setIsSubmitFavorite(false)
     }
   }
 
@@ -55,7 +66,9 @@ const DetailMovie = ({ movieId, type }: { movieId : string, type? : "movie" | "t
           <MoviePoster poster_path={data?.descriptionMovie?.poster_path ?? ""} alt={data?.descriptionMovie?.title ?? ""}/>       
           {!!data?.previewMovie?.results?.length && <PreviewVideo preview_video_key={data?.previewMovie?.results[0].key ?? ""}/>}
         </div>
-        <button className="cursor-pointer absolute right-4 -bottom-16 lg:static" onClick={handleClickFavorite}><Bookmark size={52}/></button>
+        <button disabled={isSubmitFavorite} className="cursor-pointer absolute right-4 -bottom-16 lg:static" onClick={handleClickFavorite}>
+          {isSubmitFavorite ? <div className="absolute right-3 border-4 border-r-white/50 border-b-white/50 animate-spin size-10 rounded-full "></div> : (favorited ? <BookmarkCheck size={52}/> : <Bookmark size={52}/>)}
+          </button>
       </section>
       <MovieDescription descriptionMovie={data?.descriptionMovie} isMovie={type !== "tv"}/>
     </div>
