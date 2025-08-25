@@ -9,7 +9,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { Home, Menu, X } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
@@ -38,7 +37,8 @@ const MobileSheet = () => {
         <SheetHeader>
           <SheetTitle>
             <Link href={"/"}>
-              <Image src={"/assets/img/icon_full.png"} alt="" width={100} height={400} className=""/>
+              {/* <Image src={"/assets/img/icon_full.png"} alt="" width={100} height={400} className=""/> */}
+              <h1 className="font-bold text-3xl text-secondary">Chill.</h1>
             </Link>
           </SheetTitle>
         </SheetHeader>
