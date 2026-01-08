@@ -9,7 +9,7 @@ type Props = {
 
 const DetailTvPage : FC<Props>= async ({ params }) => {
 
-  return <DetailMovie movieId={(await params).tvId} type='tv'/>
+  return <DetailMovie movieId={(await params).tvId} tv/>
 }
 
 export default DetailTvPage

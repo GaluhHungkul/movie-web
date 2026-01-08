@@ -2,7 +2,7 @@
 
 import { useMovieQuery } from "@/lib/api/getMovies"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Autoplay, Navigation, Pagination } from "swiper/modules"
+import { Autoplay, Pagination } from "swiper/modules"
 
 import 'swiper/css';
 import "swiper/css/pagination"
@@ -34,7 +34,7 @@ const SwiperMovieList : FC<Props> = ({ title, href, endpoint, isReverse }) => {
             <Link href={href} className="hover:underline text-white/80 text-sm md:text-base">Show More</Link>
         </header>
         <Swiper 
-        modules={[Navigation, Pagination, Autoplay]}
+        modules={[Pagination, Autoplay]}
         pagination={{ clickable : true }}
         autoplay={{
             delay : 2000,
@@ -42,7 +42,6 @@ const SwiperMovieList : FC<Props> = ({ title, href, endpoint, isReverse }) => {
             reverseDirection : isReverse
         }}
         spaceBetween={10}
-        navigation
         slidesPerView="auto"
         loop
         >
