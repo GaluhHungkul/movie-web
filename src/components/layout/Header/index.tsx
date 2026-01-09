@@ -1,13 +1,9 @@
 "use client"
 
-import Link from "next/link"
-import MobileSheet from "../MobileSheet"
-import SearchBar from "./SearchBar"
 import { usePathname } from "next/navigation"
 import { disabledLayout } from "@/lib/data/disabledLayout"
 import ProfileButtonArea from "./ProfileButtonArea"
-import { Button } from "@/components/ui/button"
-import { signOut } from "next-auth/react"
+import Logo from "@/components/common/Logo"
 const Header  = () => {
 
   const pathname = usePathname()
@@ -16,14 +12,10 @@ const Header  = () => {
 
 
   return (
-    <div className="text-white/80 text-sm flex  px-2 lg:px-8 h-16 content-center gap-8 lg:gap-12 font-bold  items-center sticky top-0 z-[50] bg-foreground w-screen">
-      <MobileSheet />
-      <Link href={"/"} className="hidden md:inline">
-        <h1 className="font-bold text-3xl text-secondary">Chill.</h1>
-      </Link>
-      <SearchBar />       
+    <div className="text-white/80 px-5 md:px-10 lg:px-20 text-sm flex justify-between h-16 content-center gap-8 lg:gap-12 font-bold  items-center sticky top-0 z-[50] bg-foreground ">
+      <Logo />
+      {/* <SearchBar />        */}
       <ProfileButtonArea />
-      <Button onClick={() => signOut({ callbackUrl : "/login"})}>SignOut</Button>
     </div>
   )
 }

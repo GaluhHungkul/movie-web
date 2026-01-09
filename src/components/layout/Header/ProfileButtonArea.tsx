@@ -21,18 +21,14 @@ const ProfileButtonArea = () => {
 
   
 
-  return (
-    <div className="absolute right-3 lg:right-12">
-        {session ? 
-        <Link href={"/myprofile"}>
-            <section className="relative border size-10 rounded-full overflow-hidden cursor-pointer md:size-12">
-                <Image fill src={default_pp} sizes="50vw" alt="User"/>
-            </section>
-        </Link> :
-        <Button variant={"secondary"}><Link href={"/login"}>Login</Link></Button>
-        }
-    </div>
-  )
+  return session 
+  ? <Link href={"/myprofile"}>
+      <section className="relative border size-10 rounded-full overflow-hidden cursor-pointer md:size-12">
+          <Image fill src={default_pp} sizes="50vw" alt="User"/>
+      </section>
+    </Link> 
+  : <Button variant={"secondary"} className="font-semibold cursor-pointer"><Link href={"/login"}>Sign In</Link></Button>
+  
 }
 
 export default ProfileButtonArea

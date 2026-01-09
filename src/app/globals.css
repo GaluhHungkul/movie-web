@@ -122,6 +122,42 @@
 }
 
 
+@keyframes float {
+  0% { 
+    transform: 
+      translateY(0px)
+      translateX(0px)
+    ; 
+  }
+  33% { 
+    transform: 
+      translateY(90px)
+      translateX(0px)
+    ; 
+  }
+  66% { 
+    transform: 
+      translateY(0px)
+      translateX(90px)
+    ; 
+  }
+  100% { 
+    transform: 
+      translateY(0px)
+      translateX(0px)
+    ; 
+  }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float 10s ease-in-out infinite;
+}
+
+
 
 h1 {
   font-weight: 700;
