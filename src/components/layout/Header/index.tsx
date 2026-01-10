@@ -12,7 +12,7 @@ const Header  = () => {
 
 
   return (
-    <div className="text-white/80 px-5 md:px-10 lg:px-20 text-sm flex justify-between h-16 content-center gap-8 lg:gap-12 font-bold  items-center sticky top-0 z-[50] bg-foreground ">
+    <div className="text-white/80 px-5 md:px-10 lg:px-20 text-sm flex justify-between h-16 content-center gap-8 lg:gap-12 font-bold  items-center  top-0 z-[50] bg-foreground ">
       <Logo />
       {/* <SearchBar />        */}
       <ProfileButtonArea />

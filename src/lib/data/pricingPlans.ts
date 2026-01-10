@@ -1,0 +1,46 @@
+export const pricingPlans = [
+  {
+    id: 1,
+    title: "Basic",
+    price: "$4.99",
+    period: "month",
+    description: "Good for personal use on a single device.",
+    features: [
+      "Unlimited movies and series",
+      "Watch on 1 device",
+      "HD streaming",
+      "Cancel anytime",
+    ],
+    highlighted: false,
+  },
+  {
+    id: 2,
+    title: "Standard",
+    price: "$9.99",
+    period: "month",
+    description: "Perfect balance for most users.",
+    features: [
+      "Unlimited movies and series",
+      "Watch on 2 devices",
+      "Full HD streaming",
+      "Download for offline viewing",
+      "Cancel anytime",
+    ],
+    highlighted: true, 
+  },
+  {
+    id: 3,
+    title: "Premium",
+    price: "$14.99",
+    period: "month",
+    description: "Best experience with maximum quality.",
+    features: [
+      "Unlimited movies and series",
+      "Watch on 4 devices",
+      "Ultra HD (4K) streaming",
+      "Download for offline viewing",
+      "Priority support",
+    ],
+    highlighted: false,
+  },
+];

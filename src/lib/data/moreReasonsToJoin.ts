@@ -17,12 +17,12 @@ export const moreReasonsToJoin = [
     id: 2,
     title: "Flexible Subscription Plans",
     content:
-      "Choose a subscription plan that fits your needs, with the freedom to upgrade or cancel anytime.",
+      "Choose a subscription with the freedom to upgrade or cancel anytime.",
     icon: CreditCard,
   },
   {
     id: 3,
-    title: "Watch on Any Device",
+    title: "Watch on Any Different Device",
     content:
       "Stream seamlessly on mobile, tablet, laptop, or smart TV with a single account.",
     icon: MonitorPlay,

@@ -28,12 +28,12 @@ const CarouselTrendingMovies = () => {
         <Swiper
             spaceBetween={12}
             modules={[Pagination]}
-            slidesPerView={isLargeScreen ? 6 : 4}
-            className="mt-4 lg:mt-10 "
+            slidesPerView={isLargeScreen ? 6 : 3}
+            className="mt-4 lg:mt-10"
         >
             {data?.movies.map((movie, index) => (
                 <SwiperSlide key={movie.id}>
-                    <div className="relative aspect-[9/16] hover:scale-110 duration-300">
+                    <div className="relative aspect-[9/16] hover:scale-105 duration-300">
                         <Image src={movie.poster_path} alt={movie.title ?? ""} fill className="object-cover object-center rounded-lg"/>
                         <span className={`absolute font-bold text-5xl bottom-2 -left-3 md:text-6xl lg:text-8xl`}>{index + 1}</span>
                     </div>

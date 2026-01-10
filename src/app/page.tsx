@@ -2,6 +2,7 @@ import CarouselNowPlayingMovies from "@/components/homePage/CarouselNowPlayingMo
 import FAQ from "@/components/homePage/FAQ";
 import Intro from "@/components/homePage/Intro";
 import MoreReasonsToJoin from "@/components/homePage/MoreReasonsToJoin";
+import PricingPlans from "@/components/homePage/PricingPlans";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <Intro />
       <CarouselNowPlayingMovies />
       <MoreReasonsToJoin />
+      <PricingPlans />
       <FAQ />
     </div>
   );
