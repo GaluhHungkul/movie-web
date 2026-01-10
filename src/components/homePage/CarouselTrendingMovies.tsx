@@ -21,7 +21,7 @@ const CarouselTrendingMovies = () => {
 
   return (
     <div className="mt-20 w-full mb-20">
-        <h1 className="text-xl">Now Playing</h1>
+        <h1 className="text-xl md:text-2xl">Now Playing</h1>
         <Swiper
             loop
             modules={[Pagination]}
@@ -32,7 +32,7 @@ const CarouselTrendingMovies = () => {
                 <SwiperSlide key={movie.id} className="mx-2">
                     <div className="relative aspect-[9/16] hover:scale-110 duration-300">
                         <Image src={movie.poster_path} alt={movie.title ?? ""} fill className="object-cover object-center rounded-lg"/>
-                        <span className={`absolute font-bold text-5xl bottom-2 -left-3 ${index === 0 ? "text-yellow-400" : ""}`}>{index + 1}</span>
+                        <span className={`absolute font-bold text-5xl bottom-2 -left-3 ${index === 0 ? "text-yellow-400" : ""} md:text-6xl`}>{index + 1}</span>
                     </div>
                 </SwiperSlide>
             ))}

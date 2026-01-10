@@ -1,6 +1,6 @@
 const AnimatedBackground = () => {
   return (
-    <div className="absolute h-1/4 -top-10 w-full">
+    <div className="absolute h-1/6 top-0 inset-x-0 md:inset-x-20">
         <div
             className="
             absolute
