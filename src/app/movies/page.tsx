@@ -1,16 +1,8 @@
-"use client"
-
-// import Header from "@/components/layout/Header"
-// import Banner from "@/components/moviesPage/Banner"
+import ClientMoviesPage from "@/components/moviesPage/ClientMoviesPage"
 
 const MoviesPage =  () => {
 
-  return (
-    <div className="bg-white"> 
-        {/* <Header>Movies</Header> */}
-        {/* <Banner /> */}
-    </div>
-  )
+  return <ClientMoviesPage />
 }
 
 export default MoviesPage
