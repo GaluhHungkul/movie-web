@@ -10,6 +10,8 @@ const AnimatedBackground = () => {
             blur-3xl
             animate-float
             top-10 left-10
+            lg:size-52
+            lg:-left-20
             "
         />
 
@@ -23,6 +25,8 @@ const AnimatedBackground = () => {
             blur-3xl
             animate-float-slow
             bottom-10 right-20
+            lg:size-52
+            lg:right-0
             "
         />
     </div>
