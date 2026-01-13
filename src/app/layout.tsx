@@ -7,9 +7,8 @@ import Header from '@/components/layout/Header'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import SessionProviderWrapper from '@/components/layout/SessionProviderWrapper'
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
-import { AppSidebar } from '@/components/layout/Sidebar'
-import { ModeToggle } from '@/components/layout/Sidebar/ModeToggle'
+import { SidebarProvider } from '@/components/ui/sidebar'
+import AppSidebar  from '@/components/layout/AppSidebar'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
@@ -35,7 +34,6 @@ export default async function RootLayout({
                 <AppSidebar />
                 <main className='min-h-screen w-full overflow-x-hidden px-5 '>  
                   <Header />
-                  
                   {children}
                   <Footer />
                 </main>

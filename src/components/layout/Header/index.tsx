@@ -11,9 +11,8 @@ const Header  = () => {
 
   if(disabledLayout.includes(pathname)) return null
 
-
   return (
-    <div className="text-white/80 text-sm flex justify-between h-16 content-center gap-8 lg:gap-12 font-bold  items-center  top-0 z-[50] bg-foreground ">
+    <div className={`text-white/80 text-sm flex justify-between h-16 content-center gap-8 lg:gap-12 font-bold  items-center  top-0 z-[50] bg-foreground ${pathname === "/" ? "px-5 md:px-10 lg:px-20" : ""}`}>
       <div className="flex items-center gap-4">
         <SidebarTrigger />
         <Logo />

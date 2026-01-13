@@ -55,7 +55,7 @@ const Banner = () => {
           <div className="absolute inset-x-0 h-20 bottom-0  bg-gradient-to-t from-black via-black/80 to-transparent z-10" />
           {/* gradient overlay  */}
           {data?.movies.map(movie => (
-            <SwiperSlide className="aspect-[9/16] relative md:aspect-[3/2] lg:aspect-[16/9]" key={movie.id}>
+            <SwiperSlide className="aspect-[9/16] relative md:aspect-[3/2] lg:aspect-[2/1]" key={movie.id}>
               <BannerSlideContent movie={movie} img={movie[isLargeScreen ? 'backdrop_path' : 'poster_path']}/>
             </SwiperSlide>
           ))}

@@ -25,7 +25,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { usePathname } from "next/navigation"
-import { disabledLayout } from "@/lib/data/disabledLayout"
+import { disableSidebar } from "@/lib/data/disableSidebar"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -238,7 +238,7 @@ function Sidebar({
           // Adjust the padding for floating and inset variants.
           variant === "floating" || variant === "inset"
             ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
-            : "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l",
+            : "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=right]:border-l",
           className
         )}
         {...props}
@@ -264,7 +264,7 @@ function SidebarTrigger({
 
   const pathname = usePathname()
   
-    if([...disabledLayout, "/"].includes(pathname)) return null
+    if(disableSidebar.includes(pathname)) return null
 
   return (
     <Button

@@ -1,7 +1,7 @@
 import { TypeMovie } from "@/types/types-movie";
 import { useQuery } from "@tanstack/react-query";
 
-const DEFAULT_TOTAL_MOVIE_PER_REQUEST = 20
+const DEFAULT_TOTAL_MOVIE_PER_REQUEST = 10
 
 type Video =  {
   id : string

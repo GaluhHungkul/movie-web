@@ -3,17 +3,16 @@
 import * as React from "react";
 import {
   AudioWaveform,
-  Clapperboard,
   Command,
+  Compass,
   Frame,
   GalleryVerticalEnd,
   Map,
   PieChart,
-  Tv,
 } from "lucide-react";
 
-import { NavMain } from "@/components/layout/Sidebar/NavMain";
-import { NavUser } from "@/components/layout/Sidebar/NavUser";
+import { NavMain } from "@/components/layout/AppSidebar/NavMain";
+import { NavUser } from "@/components/layout/AppSidebar/NavUser";
 import {
   Sidebar,
   SidebarContent,
@@ -21,7 +20,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { usePathname } from "next/navigation";
-import { disabledLayout } from "@/lib/data/disabledLayout";
+import { disableSidebar } from "@/lib/data/disableSidebar";
 
 // This is sample data.
 const data = {
@@ -49,60 +48,60 @@ const data = {
   ],
   navMain: [
     {
-      title: "Movies",
+      title: "Explore",
       url: "/movies",
-      icon: Clapperboard,
+      icon: Compass,
       isActive: true,
       items: [
         {
-          title: "Explore",
+          title: "Movies",
           url: "/movies",
         },
         {
-          title: "Popular",
-          url: "/movies/popular",
-        },
-        {
-          title: "Upcoming",
-          url: "/movies/upcoming",
-        },
-        {
-          title: "Now Playing",
-          url: "/movies/now-playing",
-        },
-        {
-          title: "Genre",
-          url: "/movies/genre",
-        },
-      ],
-    },
-    {
-      title: "TV Series",
-      url: "/tv",
-      icon: Tv,
-      items: [
-        {
-          title: "Explore",
+          title: "TV Series",
           url: "/tv",
         },
-        {
-          title: "Popular",
-          url: "/tv/popular",
-        },
-        {
-          title: "Airing Today",
-          url: "/tv/airing-today",
-        },
-        {
-          title: "On the Air",
-          url: "/tv/on-the-air",
-        },
-        {
-          title: "Genre",
-          url: "/tv/genre",
-        },
+        // {
+        //   title: "Upcoming",
+        //   url: "/movies/upcoming",
+        // },
+        // {
+        //   title: "Now Playing",
+        //   url: "/movies/now-playing",
+        // },
+        // {
+        //   title: "Genre",
+        //   url: "/movies/genre",
+        // },
       ],
     },
+    // {
+    //   title: "TV Series",
+    //   url: "/tv",
+    //   icon: Tv,
+    //   items: [
+    //     {
+    //       title: "Explore",
+    //       url: "/tv",
+    //     },
+    //     {
+    //       title: "Popular",
+    //       url: "/tv/popular",
+    //     },
+    //     {
+    //       title: "Airing Today",
+    //       url: "/tv/airing-today",
+    //     },
+    //     {
+    //       title: "On the Air",
+    //       url: "/tv/on-the-air",
+    //     },
+    //     {
+    //       title: "Genre",
+    //       url: "/tv/genre",
+    //     },
+    //   ],
+    // },
 
     // {
     //   title: "Documentation",
@@ -170,11 +169,11 @@ const data = {
   ],
 };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
 
   const pathname = usePathname()
 
-  if([...disabledLayout, "/"].includes(pathname)) return null
+  if(disableSidebar.includes(pathname)) return null
 
   return (
     <Sidebar collapsible="icon" {...props} variant="sidebar" className="font-bold">
@@ -192,3 +191,5 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     </Sidebar>
   );
 }
+
+export default AppSidebar
