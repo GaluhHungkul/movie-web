@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { Autoplay, Navigation } from "swiper/modules"
 import SkeletonBanner from "../skeleton/SkeletonBanner";
 import { useState } from "react";
-import { Swiper as SwiperInstace } from "swiper/types";
+import { Swiper as SwiperType } from "swiper/types";
 import { Button } from "../ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useIsLargeScreen } from "@/lib/useIsLargeScreen";
@@ -20,11 +20,10 @@ const Banner = () => {
 
   const { data, isPending, error } = useMovieQuery({ endpoint, totalMoviePerRequest : 5 })
   
-  const [swiperInstance, setSwiperInstance] = useState<SwiperInstace>(null!);
+  const [swiperInstance, setSwiperInstance] = useState<SwiperType>(null!);
   const [activeIndex, setActiveIndex] = useState(0)
   
-  const isLargeScreen = useIsLargeScreen()
-
+  const isLargeScreen = useIsLargeScreen(768)
   if(isPending) return <SkeletonBanner />
   if(error) return <p className="text-white font-bold text-center content-center h-[50vh]">Error : {error.message}</p>
 
@@ -56,7 +55,7 @@ const Banner = () => {
           <div className="absolute inset-x-0 h-20 bottom-0  bg-gradient-to-t from-black via-black/80 to-transparent z-10" />
           {/* gradient overlay  */}
           {data?.movies.map(movie => (
-            <SwiperSlide className="aspect-[9/16] relative md:!h-96 lg:!h-[500px]" key={movie.id}>
+            <SwiperSlide className="aspect-[9/16] relative md:aspect-[3/2] lg:aspect-[16/9]" key={movie.id}>
               <BannerSlideContent movie={movie} img={movie[isLargeScreen ? 'backdrop_path' : 'poster_path']}/>
             </SwiperSlide>
           ))}

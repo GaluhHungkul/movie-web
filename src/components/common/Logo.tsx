@@ -1,10 +1,9 @@
 import Link from 'next/link'
-import React from 'react'
 
-const Logo = () => {
+const Logo = ({ className } : { className?: string }) => {
   return (
     <Link href={"/"}>
-        <h1 className="font-bold text-3xl text-secondary">Chill.</h1>
+        <h1 className={`font-bold text-3xl text-secondary ${className}`}>Chill.</h1>
     </Link>
   )
 }

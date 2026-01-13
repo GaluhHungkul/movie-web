@@ -1,15 +1,20 @@
-import { useEffect, useState } from "react";
+"use client"
+import { useEffect, useState } from "react"
 
-export function useIsLargeScreen() {
-  const [isLarge, setIsLarge] = useState(false);
+export function useIsLargeScreen(minWidth = 1024) {
+  const [isLarge, setIsLarge] = useState(false)
 
   useEffect(() => {
-    const checkScreen = () => setIsLarge(window.innerWidth >= 1024);
-    checkScreen();
+    const media = window.matchMedia(`(min-width: ${minWidth}px)`)
 
-    window.addEventListener("resize", checkScreen);
-    return () => window.removeEventListener("resize", checkScreen);
-  }, []);
+    setIsLarge(media.matches)
 
-  return isLarge;
+    const handler = (e: MediaQueryListEvent) =>
+      setIsLarge(e.matches)
+
+    media.addEventListener("change", handler)
+    return () => media.removeEventListener("change", handler)
+  }, [minWidth])
+
+  return isLarge
 }

@@ -23,7 +23,7 @@ const ProfileButtonArea = () => {
 
   return session 
   ? <Link href={"/myprofile"}>
-      <section className="relative border size-10 rounded-full overflow-hidden cursor-pointer md:size-12">
+      <section className="relative border size-10 rounded-full overflow-hidden ">
           <Image fill src={default_pp} sizes="50vw" alt="User"/>
       </section>
     </Link> 

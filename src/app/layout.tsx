@@ -7,6 +7,9 @@ import Header from '@/components/layout/Header'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import SessionProviderWrapper from '@/components/layout/SessionProviderWrapper'
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
+import { AppSidebar } from '@/components/layout/Sidebar'
+import { ModeToggle } from '@/components/layout/Sidebar/ModeToggle'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
@@ -28,12 +31,16 @@ export default async function RootLayout({
       <body className='bg-foreground text-white relative overflow-x-hidden '>
         <QueryProvider>
             <SessionProviderWrapper session={session}>
-              <Header />
-              <main className='min-h-screen w-full py-4 overflow-x-hidden px-5 md:px-10 lg:px-32'>   
-                {children}
-              </main>
+              <SidebarProvider>
+                <AppSidebar />
+                <main className='min-h-screen w-full overflow-x-hidden px-5 '>  
+                  <Header />
+                  
+                  {children}
+                  <Footer />
+                </main>
+              </SidebarProvider>
             </SessionProviderWrapper>
-          <Footer />
         </QueryProvider>
       </body>
     </html>
