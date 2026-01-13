@@ -2,7 +2,7 @@
 
 import { useMovieQuery } from "@/lib/api/getMovies"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Autoplay, Navigation, Pagination } from "swiper/modules"
+import { Autoplay, Navigation } from "swiper/modules"
 
 import 'swiper/css';
 import "swiper/css/pagination"
@@ -21,14 +21,15 @@ type Props = {
     href : string;
     endpoint : string;
     reverse? : boolean
+    tv?: boolean
 }
 
-const SwiperMovieList : FC<Props> = ({ title, href, endpoint, reverse=false }) => {
+const SwiperMovieList : FC<Props> = ({ title, href, endpoint, reverse=false, tv=false }) => {
 
     const { data, isPending, error } = useMovieQuery({ endpoint, totalMoviePerRequest : 8})
 
     const [swiperInstance, setSwiperInstance] = useState<SwiperType>(null!);
-  const [activeIndex, setActiveIndex] = useState(0)
+    const [activeIndex, setActiveIndex] = useState(0)
    
     if(isPending) return <SkeletonSwiperMovieList />
     if(error) return <p className="text-white font-bold text-center content-center h-[50vh]">Error : {error.message}</p>
@@ -41,19 +42,19 @@ const SwiperMovieList : FC<Props> = ({ title, href, endpoint, reverse=false }) =
         </header>
         <Swiper 
         onSwiper={setSwiperInstance}
-        modules={[Pagination, Autoplay, Navigation]}
+        modules={[Autoplay, Navigation]}
         navigation={{
             prevEl: "#prevEl",
             nextEl: "#nextEl",
         }}
-        pagination={{ clickable : true }}
         autoplay={{
             delay : 2000,
             disableOnInteraction : false,
-            reverseDirection : reverse
+            reverseDirection : reverse,
+            pauseOnMouseEnter: true
         }}
         spaceBetween={10}
-        slidesPerView="auto"
+        slidesPerView={"auto"}
         onSlideChange={(swiper) => {
             setActiveIndex(swiper.realIndex)
         }}
@@ -64,8 +65,8 @@ const SwiperMovieList : FC<Props> = ({ title, href, endpoint, reverse=false }) =
           
             {data?.movies.map(movie => (
                 <SwiperSlide key={movie.id} className="!w-28 md:!w-40 lg:!w-60">
-                    <Link href={`/movies/detail/${movie.id}`}>
-                    <Image src={movie.poster_path} alt={movie.title ?? ""} width={900} height={500} />
+                    <Link href={`/${tv ? "tv" : "movies"}/detail/${movie.id}`}>
+                        <Image src={movie.poster_path} alt={movie.title ?? ""} width={900} height={500} />
                     </Link>
                 </SwiperSlide> 
             ))}

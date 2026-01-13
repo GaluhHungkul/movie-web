@@ -43,6 +43,35 @@ const defaultMovieQueryParams : MovieQueryParam= {
   totalMoviePerRequest : DEFAULT_TOTAL_MOVIE_PER_REQUEST
 }
 
+export const useBannerQuery = ({ endpoint } : { endpoint: string }) => {
+  return useQuery({
+    queryKey : ["banner", endpoint],
+    queryFn: async () : Promise<ReturnMovieQuery | null> => {
+      try {         
+        const path = process.env.NEXT_PUBLIC_TMDB_API_BASE_URL + endpoint 
+        const res = await fetch(`${path}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`);
+        if (!res.ok) throw new Error("Failed to fetch banner data");
+        const { results, page: currPage, total_pages } = await res.json()
+        const movies = results.slice(0,5).map((movie:TypeMovie & { name? : string }) => {
+          return {
+            ...movie, 
+            backdrop_path : process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + movie.backdrop_path,
+            poster_path :  process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  movie.poster_path,
+            title : movie.title ?? movie.name ?? "No Title"
+          }
+        })
+        return {
+          movies, 
+          isNextPage : currPage < total_pages
+        }
+      } catch (error) {
+        console.log("Error : " , error)
+        return null
+      }
+    },
+  });
+}
+
 export const useMovieQuery = (params = defaultMovieQueryParams) => {
 
   const { endpoint, totalMoviePerRequest } = params

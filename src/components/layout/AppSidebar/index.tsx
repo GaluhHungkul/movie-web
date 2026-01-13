@@ -3,12 +3,13 @@
 import * as React from "react";
 import {
   AudioWaveform,
+  Clapperboard,
   Command,
-  Compass,
   Frame,
   GalleryVerticalEnd,
   Map,
   PieChart,
+  Tv,
 } from "lucide-react";
 
 import { NavMain } from "@/components/layout/AppSidebar/NavMain";
@@ -50,7 +51,7 @@ const data = {
     {
       title: "Explore",
       url: "/movies",
-      icon: Compass,
+      icon: Clapperboard,
       isActive: true,
       items: [
         {
@@ -58,50 +59,51 @@ const data = {
           url: "/movies",
         },
         {
-          title: "TV Series",
-          url: "/tv",
+          title: "Popular",
+          url: "/movies/popular",
         },
-        // {
-        //   title: "Upcoming",
-        //   url: "/movies/upcoming",
-        // },
-        // {
-        //   title: "Now Playing",
-        //   url: "/movies/now-playing",
-        // },
-        // {
-        //   title: "Genre",
-        //   url: "/movies/genre",
-        // },
+        {
+          title: "Upcoming",
+          url: "/movies/upcoming",
+        },
+        {
+          title: "Now Playing",
+          url: "/movies/now-playing",
+        },
+        {
+          title: "Genre",
+          url: "/movies/genre",
+        },
       ],
     },
-    // {
-    //   title: "TV Series",
-    //   url: "/tv",
-    //   icon: Tv,
-    //   items: [
-    //     {
-    //       title: "Explore",
-    //       url: "/tv",
-    //     },
-    //     {
-    //       title: "Popular",
-    //       url: "/tv/popular",
-    //     },
-    //     {
-    //       title: "Airing Today",
-    //       url: "/tv/airing-today",
-    //     },
-    //     {
-    //       title: "On the Air",
-    //       url: "/tv/on-the-air",
-    //     },
-    //     {
-    //       title: "Genre",
-    //       url: "/tv/genre",
-    //     },
-    //   ],
-    // },
+    {
+      title: "TV Series",
+      url: "/tv",
+      icon: Tv,
+      isActive: true,
+      items: [
+        {
+          title: "Explore",
+          url: "/tv",
+        },
+        {
+          title: "Popular",
+          url: "/tv/popular",
+        },
+        {
+          title: "Airing Today",
+          url: "/tv/airing-today",
+        },
+        {
+          title: "On the Air",
+          url: "/tv/on-the-air",
+        },
+        {
+          title: "Genre",
+          url: "/tv/genre",
+        },
+      ],
+    },
 
     // {
     //   title: "Documentation",

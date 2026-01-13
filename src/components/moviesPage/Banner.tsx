@@ -1,6 +1,6 @@
 "use client"
 
-import { useMovieQuery } from "@/lib/api/getMovies"
+import { useBannerQuery } from "@/lib/api/getMovies"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Autoplay, Navigation } from "swiper/modules"
 import SkeletonBanner from "../skeleton/SkeletonBanner";
@@ -14,19 +14,26 @@ import BannerPagination from "./BannerPagination";
 
 import 'swiper/css';
 
-const endpoint = "/movie/popular"
 
-const Banner = () => {
+type Props = {
+  tv?: boolean
+}
 
-  const { data, isPending, error } = useMovieQuery({ endpoint, totalMoviePerRequest : 5 })
+const Banner = ({ tv=false } : Props) => {
+
+  const { data, isPending, error } = useBannerQuery({ 
+    endpoint : `/${tv ? 'tv' : 'movie'}/popular`,
+  })
   
   const [swiperInstance, setSwiperInstance] = useState<SwiperType>(null!);
   const [activeIndex, setActiveIndex] = useState(0)
   
   const isLargeScreen = useIsLargeScreen(768)
+
   if(isPending) return <SkeletonBanner />
   if(error) return <p className="text-white font-bold text-center content-center h-[50vh]">Error : {error.message}</p>
 
+  console.log(data)
 
   return (
     <div className="rounded overflow-hidden mx-auto relative ">
