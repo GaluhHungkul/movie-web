@@ -14,7 +14,6 @@ const ProfileButtonArea = () => {
 
   useEffect(() => {
     if(session?.user) setUser(session.user)
-    console.log(session?.user)
   },[session, setUser])
 
   if(status === "loading") return <div className="absolute right-3 border-4 border-r-white/50 border-b-white/50 animate-spin size-10 rounded-full "></div>

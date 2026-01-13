@@ -104,6 +104,3 @@ export const useMovieQueryById = (media_id:string, type:"movie" | "tv"="movie") 
     }
   })
 }
-
-
-  

@@ -1,6 +1,4 @@
-import React from 'react'
-
-const BannerPagination = ({ length, activeIndex, onClick } : { length: number; onClick: (val:number) => void; activeIndex: number;}) => {
+const BannerPagination = ({ length, activeIndex, onClick=() => {} } : { length: number; onClick?: (val:number) => void; activeIndex: number;}) => {
   return Array(length).fill(null).map((_, index) => (
         <button
         key={index}

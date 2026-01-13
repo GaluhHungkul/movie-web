@@ -10,21 +10,23 @@ import { useSearchParams } from "next/navigation"
 type Props = {
   endpoint : string
   isMovie? : boolean
+  title?: string
 }
 
-const GridMovieList : FC<Props> = ({ endpoint, isMovie=true }) => {
+const GridMovieList : FC<Props> = ({ endpoint, isMovie=true, title="Movies" }) => {
 
   const searchParams = useSearchParams()
   const params = new URLSearchParams(searchParams.toString())
 
-  const { data, isPending, error } = useMovieQuery({ endpoint, page : Math.abs(Number(params.get("page"))) || 1})
+  const { data, isPending, error } = useMovieQuery({ endpoint, page : Math.abs(Number(params.get("page"))) || 1, totalMoviePerRequest: 10 })
   
   if(isPending) return <SkeletonGridMovieList />
   if(error) return <p className="text-white  font-bold text-center content-center h-[50vh]">Error : {error.message}</p> 
     
 
   return (
-    <div className="relative min-h-screen pb-28">
+    <div className="relative min-h-screen pb-28 mt-8">
+      <h1 className="mb-6 text-xl">{title}</h1>
       {data?.movies.length 
       ? 
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5">

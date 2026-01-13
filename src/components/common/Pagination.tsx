@@ -20,7 +20,9 @@ const Pagination : FC<Props> = ({ page, isNextPage, params }) => {
     } else {
       params.set("page", (page + 1).toString())
     }
-    router.push(`${pathname}?${params.toString()}`)
+    router.push(`${pathname}?${params.toString()}`, {
+      scroll: false
+    })
   }
 
   return (
