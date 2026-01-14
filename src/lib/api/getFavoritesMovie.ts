@@ -8,7 +8,7 @@ export const useFavoritesMovie = (userId:string) => {
             try {
                 const res = await fetch(`/api/favoritesmovie/${userId}`)
                 const data = await res.json()
-                console.log(data)
+                return data
             } catch (error) {
                 console.log("Error : " , error)
                 return null

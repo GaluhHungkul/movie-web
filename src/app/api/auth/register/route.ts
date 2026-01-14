@@ -22,7 +22,6 @@ export async function POST(req:NextRequest) {
             }
         })
         if(!newUser) return NextResponse.json({ message : "Sign up error. Something went wrong"}, { status : 500 })
-        console.log(newUser)
         return NextResponse.json({ message : "Sign up success" }, { status : 200 })
         
     } catch (error) {

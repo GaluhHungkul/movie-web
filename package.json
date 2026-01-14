@@ -33,6 +33,7 @@
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-hook-form": "^7.62.0",
+    "react-intersection-observer": "^10.0.0",
     "react-simple-typewriter": "^5.0.1",
     "swiper": "^11.2.10",
     "tailwind-merge": "^3.3.1",

@@ -49,10 +49,10 @@ const data = {
   ],
   navMain: [
     {
-      title: "Explore",
+      title: "Movies",
       url: "/movies",
       icon: Clapperboard,
-      isActive: true,
+      isActive: false,
       items: [
         {
           title: "Movies",
@@ -80,7 +80,7 @@ const data = {
       title: "TV Series",
       url: "/tv",
       icon: Tv,
-      isActive: true,
+      isActive: false,
       items: [
         {
           title: "Explore",

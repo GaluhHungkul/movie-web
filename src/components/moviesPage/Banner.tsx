@@ -33,8 +33,6 @@ const Banner = ({ tv=false } : Props) => {
   if(isPending) return <SkeletonBanner />
   if(error) return <p className="text-white font-bold text-center content-center h-[50vh]">Error : {error.message}</p>
 
-  console.log(data)
-
   return (
     <div className="rounded overflow-hidden mx-auto relative ">
         <Swiper 

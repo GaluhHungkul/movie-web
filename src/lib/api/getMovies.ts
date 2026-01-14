@@ -1,5 +1,6 @@
 import { TypeMovie } from "@/types/types-movie";
 import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query"
 
 const DEFAULT_TOTAL_MOVIE_PER_REQUEST = 10
 
@@ -35,6 +36,11 @@ type MovieQueryParam = {
 type ReturnMovieQuery = {
   movies : TypeMovie[],
   isNextPage : boolean
+}
+
+type ReturnInfiniteMovieQuery = {
+  movies : TypeMovie[],
+  nextPage : number | undefined
 }
 
 const defaultMovieQueryParams : MovieQueryParam= {
@@ -86,7 +92,8 @@ export const useMovieQuery = (params = defaultMovieQueryParams) => {
         const path = process.env.NEXT_PUBLIC_TMDB_API_BASE_URL + endpoint + `${chain}page=${page}` 
         const res = await fetch(`${path}&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`);
         if (!res.ok) throw new Error("Failed to fetch movie data");
-        const { results, page: currPage, total_pages } = await res.json()
+        const data = await res.json()
+        const { results, page: currPage, total_pages } = data
         const movies = results.slice(0,totalMoviePerRequest).map((movie:TypeMovie & { name? : string }) => {
           return {
             ...movie, 
@@ -106,6 +113,59 @@ export const useMovieQuery = (params = defaultMovieQueryParams) => {
     },
   });
 };
+
+export const useInfiniteMovieQuery = (
+  params = defaultMovieQueryParams
+) => {
+  const { endpoint, totalMoviePerRequest } = params
+
+  return useInfiniteQuery({
+    queryKey: ["movies", endpoint],
+    initialPageParam: 1,
+    queryFn: async ({ pageParam = 1 }): Promise<ReturnInfiniteMovieQuery | null> => {
+      try {
+        const chain = endpoint.includes("?") ? "&" : "?"
+        const path =
+          process.env.NEXT_PUBLIC_TMDB_API_BASE_URL +
+          endpoint +
+          `${chain}page=${pageParam}`
+
+        const res = await fetch(
+          `${path}&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
+        )
+
+        if (!res.ok) throw new Error("Failed to fetch movie data")
+
+        const { results, page, total_pages } = await res.json()
+
+        const movies = results
+          .slice(0, totalMoviePerRequest)
+          .map((movie: TypeMovie & { name?: string }) => ({
+            ...movie,
+            backdrop_path:
+              process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL +
+              movie.backdrop_path,
+            poster_path:
+              process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +
+              movie.poster_path,
+            title: movie.title ?? movie.name ?? "No Title",
+          }))
+
+        return {
+          movies,
+          nextPage: page < total_pages ? page + 1 : undefined,
+        }
+      } catch (error) {
+        console.log("Error:", error)
+        return null
+      }
+    },
+
+    getNextPageParam: (lastPage) => {
+      return lastPage?.nextPage
+    },
+  })
+}
 
 export const useMovieQueryById = (media_id:string, type:"movie" | "tv"="movie")  => {
   return useQuery({

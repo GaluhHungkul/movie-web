@@ -38,14 +38,13 @@ const DetailMovie = ({ movieId, tv=false }: { movieId : string, tv?:boolean }) =
   const handleFavorite = async (value:FavoriteMovieSent) => {
     try {
       setIsSubmitFavorite(true)
-      const res = await fetch(`/api/user/favorites`, {
+      await fetch(`/api/user/favorites`, {
         method : "POST",
         headers : {
           "Content-Type" : "application/json"
         },
         body : JSON.stringify(value)
       })
-      console.log(await res.json())
     } catch (error) {
       console.log("Error : " , error)
     } finally {
