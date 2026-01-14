@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 import { useState } from "react"
 import HeaderTopRatedPage from "./HeaderTopRatedPage"
 import TopRatedList from "./TopRatedList"
-import Pagination from "../common/Pagination"
+// import Pagination from "../common/Pagination"
 import MovieNotFound from "../common/MovieNotFound"
 import SkeletonPopularList from "../skeleton/SkeletonPopularList"
 
@@ -38,7 +38,7 @@ const ClientTopRatedPage  = () => {
     <div className="relative min-h-screen pb-28">
       <HeaderTopRatedPage endpoint={endpoint} handleChangeEndpoint={handleChangeEndpoint}/>
       {data?.movies.length ?  <TopRatedList data={data} endpoint={endpoint}/> : <MovieNotFound /> }
-      {!!data?.movies.length &&  <Pagination page={Math.abs(Number(params.get("page"))) || 1} params={params} isNextPage={data?.isNextPage} />}
+      {/* {!!data?.movies.length &&  <Pagination page={Math.abs(Number(params.get("page"))) || 1} params={params} isNextPage={data?.isNextPage} />} */}
     </div>
   )
 }
