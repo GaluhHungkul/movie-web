@@ -59,8 +59,8 @@ const data = {
           url: "/movies",
         },
         {
-          title: "Popular",
-          url: "/movies/popular",
+          title: "Top Rated",
+          url: "/movies/top_rated",
         },
         {
           title: "Upcoming",
@@ -87,8 +87,8 @@ const data = {
           url: "/tv",
         },
         {
-          title: "Popular",
-          url: "/tv/popular",
+          title: "Top Rated",
+          url: "/tv/top_rated",
         },
         {
           title: "Airing Today",
