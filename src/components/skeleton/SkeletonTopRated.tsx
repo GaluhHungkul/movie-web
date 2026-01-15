@@ -1,13 +1,16 @@
 import { Skeleton } from "../ui/skeleton"
 
-const SkeletonPopularList = () => {
+const SkeletonTopRated = () => {
   return (
     <div className="mt-2">
         <div>
-            <h1 className="text-center text-xl md:text-4xl">Popularity</h1>
-            <div className="flex items-center justify-evenly mb-6 mt-2  md:mt-6 md:mb-10">
-                <Skeleton className="h-2 w-20 md:h-4 md:w-32"/>
-                <Skeleton className="h-2 w-20 md:h-4 md:w-32"/>
+            <Skeleton className="h-2 w-20 mx-auto mb-6 md:h-4 md:w-32"/>
+            <div className="mb-6 mt-2 md:mt-6 md:mb-10">
+                <section className="flex items-center justify-evenly">
+                    <Skeleton className="h-6 w-20 md:w-32"/>
+                    <Skeleton className="h-6 w-20 md:w-32"/>
+                </section>
+                <Skeleton className="ml-auto h-4 w-32 mt-8"/>
             </div>
         </div>
         <div className="flex flex-col gap-2 lg:w-4/5 mx-auto">
@@ -31,4 +34,4 @@ const SkeletonPopularList = () => {
   )
 }
 
-export default SkeletonPopularList
+export default SkeletonTopRated

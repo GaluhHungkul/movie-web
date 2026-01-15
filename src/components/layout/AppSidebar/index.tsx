@@ -5,10 +5,8 @@ import {
   AudioWaveform,
   Clapperboard,
   Command,
-  Frame,
   GalleryVerticalEnd,
-  Map,
-  PieChart,
+  Trophy,
   Tv,
 } from "lucide-react";
 
@@ -22,6 +20,7 @@ import {
 } from "@/components/ui/sidebar";
 import { usePathname } from "next/navigation";
 import { disableSidebar } from "@/lib/data/disableSidebar";
+import { NavProjects } from "./NavProjects";
 
 // This is sample data.
 const data = {
@@ -48,67 +47,10 @@ const data = {
     },
   ],
   navMain: [
-    {
-      title: "Movies",
-      url: "/movies",
-      icon: Clapperboard,
-      isActive: false,
-      items: [
-        {
-          title: "Movies",
-          url: "/movies",
-        },
-        {
-          title: "Top Rated",
-          url: "/movies/top_rated",
-        },
-        {
-          title: "Upcoming",
-          url: "/movies/upcoming",
-        },
-        {
-          title: "Now Playing",
-          url: "/movies/now-playing",
-        },
-        {
-          title: "Genre",
-          url: "/movies/genre",
-        },
-      ],
-    },
-    {
-      title: "TV Series",
-      url: "/tv",
-      icon: Tv,
-      isActive: false,
-      items: [
-        {
-          title: "Explore",
-          url: "/tv",
-        },
-        {
-          title: "Top Rated",
-          url: "/tv/top_rated",
-        },
-        {
-          title: "Airing Today",
-          url: "/tv/airing-today",
-        },
-        {
-          title: "On the Air",
-          url: "/tv/on-the-air",
-        },
-        {
-          title: "Genre",
-          url: "/tv/genre",
-        },
-      ],
-    },
-
     // {
     //   title: "Documentation",
     //   url: "#",
-    //   icon: BookOpen,
+    //   icon: Trophy,
     //   items: [
     //     {
     //       title: "Introduction",
@@ -128,6 +70,62 @@ const data = {
     //     },
     //   ],
     // },
+    {
+      title: "Movies",
+      url: "/movies",
+      icon: Clapperboard,
+      isActive: false,
+      items: [
+        {
+          title: "Explore",
+          url: "/movies",
+        },
+        // {
+        //   title: "Top Rated",
+        //   url: "/showmore/top_rated",
+        // },
+        {
+          title: "Upcoming",
+          url: "/movies/upcoming",
+        },
+        {
+          title: "Now Playing",
+          url: "/movies/now_playing",
+        },
+        {
+          title: "Genre",
+          url: "/movies/genre",
+        },
+      ],
+    },
+    {
+      title: "TV Series",
+      url: "/tv",
+      icon: Tv,
+      isActive: false,
+      items: [
+        {
+          title: "Explore",
+          url: "/tv",
+        },
+        // {
+        //   title: "Top Rated",
+        //   url: "/showmore/top_rated?type=tv",
+        // },
+        {
+          title: "Airing Today",
+          url: "/tv/airing_today",
+        },
+        {
+          title: "On the Air",
+          url: "/tv/on_the_air",
+        },
+        {
+          title: "Genre",
+          url: "/tv/genre",
+        },
+      ],
+    },
     // {
     //   title: "Settings",
     //   url: "#",
@@ -154,20 +152,20 @@ const data = {
   ],
   projects: [
     {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
+      name: "Top Rated",
+      url: "/showmore/top_rated",
+      icon: Trophy,
     },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-    },
+    // {
+    //   name: "Sales & Marketing",
+    //   url: "#",
+    //   icon: PieChart,
+    // },
+    // {
+    //   name: "Travel",
+    //   url: "#",
+    //   icon: Map,
+    // },
   ],
 };
 
@@ -184,7 +182,7 @@ const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
       </SidebarHeader> */}
       <SidebarContent>
         <NavMain items={data.navMain} />
-        {/* <NavProjects projects={data.projects} /> */}
+        <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser />

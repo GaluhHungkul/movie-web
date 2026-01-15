@@ -115,7 +115,9 @@ export const useMovieQuery = (params = defaultMovieQueryParams) => {
 };
 
 export const useInfiniteMovieQuery = (
-  params = defaultMovieQueryParams
+  params = {
+    ...defaultMovieQueryParams, 
+  }
 ) => {
   const { endpoint, totalMoviePerRequest } = params
 

@@ -1,4 +1,4 @@
-import ClientTopRatedPage from "@/components/top_ratedPage/ClientTopRatedPage"
+import ClientTopRatedPage from "@/components/topRatedPage/ClientTopRatedPage"
 import { Suspense } from "react"
 
 const TopRatedPage = () => {

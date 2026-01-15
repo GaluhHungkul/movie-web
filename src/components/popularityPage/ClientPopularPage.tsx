@@ -7,7 +7,7 @@ import HeaderPopularityPage from "./HeaderPopularityPage"
 import PopularList from "./PopularList"
 // import Pagination from "../common/Pagination"
 import MovieNotFound from "../common/MovieNotFound"
-import SkeletonPopularList from "../skeleton/SkeletonPopularList"
+import SkeletonPopularList from "../skeleton/SkeletonTopRated"
 
 const ClientPopularPage  = () => {
 
@@ -30,7 +30,7 @@ const ClientPopularPage  = () => {
     params.delete("page")
     if(val === "/tv/popular") params.set("type", "tv")
     else params.delete("type")
-    router.push(`/filterby/popularity?${params.toString()}`)
+    router.push(`/showmore/popularity?${params.toString()}`)
   }
 
   
