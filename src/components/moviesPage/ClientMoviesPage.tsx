@@ -13,7 +13,7 @@ const ClientMoviesPage = () => {
       <div className="my-12 h-px bg-gradient-to-r from-transparent via-border to-my-primary" />
       <SwiperMovieList endpoint="/movie/now_playing" href="/movies/now_playing" title="Now Playing Movies" />
       <div className="my-12 h-px bg-gradient-to-l from-transparent via-border to-my-primary" />
-      <GridMovieList endpoint="/movie/popular" title="Popular Movie" />
+      <GridMovieList endpoint="/movie/popular" title="Popular Movie" popular/>
     </div>
   )
 }

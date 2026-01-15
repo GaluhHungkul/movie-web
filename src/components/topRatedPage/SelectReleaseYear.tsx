@@ -35,7 +35,7 @@ const SelectReleaseYear = () => {
             setYear(value)
             params.set("year", value)
         }
-        router.replace(`${pathname}?${params.toString()}`)
+        router.replace(`${pathname}?${params.toString()}`, { scroll: false })
     }
 
   return (

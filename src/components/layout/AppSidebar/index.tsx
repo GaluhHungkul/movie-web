@@ -74,7 +74,7 @@ const data = {
       title: "Movies",
       url: "/movies",
       icon: Clapperboard,
-      isActive: false,
+      isActive: true,
       items: [
         {
           title: "Explore",
@@ -102,7 +102,7 @@ const data = {
       title: "TV Series",
       url: "/tv",
       icon: Tv,
-      isActive: false,
+      isActive: true,
       items: [
         {
           title: "Explore",
