@@ -6,22 +6,21 @@ export type Genre = {
 }
 
 type GenreList = {
-  genres : Genre[]
-}[]
+  genres : Genre[]  
+}
 
-export const useGenresQuery = () => {
+export const useGenresQuery = (type : "movie" | "tv"="movie") => {
   return useQuery({
-    queryKey : ["all_genres"],
+    queryKey : ["all_genres", type],
     queryFn: async () : Promise<GenreList> => {
       try { 
-        const base_path = (type : "movie" | "tv") =>  `${process.env.NEXT_PUBLIC_TMDB_API_BASE_URL}/genre/${type}/list?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`        
-        return Promise.all([
-            fetch(base_path("movie")).then(res => res.json()),
-            fetch(base_path("tv")).then(res => res.json())
-        ])
+        const base_path = `${process.env.NEXT_PUBLIC_TMDB_API_BASE_URL}/genre/${type}/list?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`        
+        const res = await fetch(base_path)
+        if(!res.ok) throw Error("Failed to get genres data")
+        return res.json()
       } catch (error) {
         console.log("Error : " , error)
-        return []
+        throw error
       }
     },
   });

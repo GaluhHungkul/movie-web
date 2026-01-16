@@ -72,7 +72,7 @@ export const useBannerQuery = ({ endpoint } : { endpoint: string }) => {
         }
       } catch (error) {
         console.log("Error : " , error)
-        return null
+        throw error
       }
     },
   });
@@ -108,7 +108,7 @@ export const useMovieQuery = (params = defaultMovieQueryParams) => {
         }
       } catch (error) {
         console.log("Error : " , error)
-        return null
+        throw error
       }
     },
   });
@@ -159,7 +159,7 @@ export const useInfiniteMovieQuery = (
         }
       } catch (error) {
         console.log("Error:", error)
-        return null
+        throw error
       }
     },
 
@@ -190,7 +190,7 @@ export const useMovieQueryById = (media_id:string, type:"movie" | "tv"="movie") 
         }
       } catch (error) {
         console.log("Error : " , error)
-        return null
+        throw error
       }
     }
   })

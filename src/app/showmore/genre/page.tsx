@@ -1,4 +1,4 @@
-import GenreList from "@/components/genreListPage/GenreList"
+import GenreList from "@/components/common/GenreList"
 
 //! index 0 for movie
 //! index 1 for tv

@@ -2,11 +2,11 @@ import { Skeleton } from "../ui/skeleton"
 
 const SkeletonGenreList = () => {
   return (
-    <div className="mb-20">
-        <Skeleton className="h-4 mx-auto w-52 mb-10"/>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center gap-y-4">
+    <div className="pb-10 min-h-screen">
+        <Skeleton className="h-8 mx-auto w-52 my-5 md:my-10"/>
+        <div className="grid grid-cols-2 gap-4 font-medium text-lg md:grid-cols-3 md:gap-6 lg:grid-cols-4">
             {Array(19).fill(null).map((_,i) => (
-                <Skeleton key={i} className="h-3 w-32"/>
+                <Skeleton key={i} className="h-20"/>
             ))}
         </div>
     </div>
