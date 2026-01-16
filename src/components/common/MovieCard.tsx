@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 const MovieCard = ({ movie, className, isMovie } : { movie : TypeMovie, className? : string, isMovie? : boolean }) => {
+  
   return (
     <Link href={`/${isMovie ? "movies" : "tv"}/detail/${movie.id}`} className={`group overflow-hidden aspect-[2/3] relative rounded group ${className}`} key={movie.id}>
       <Image src={movie.poster_path} alt={movie.title ?? ""} className="object-cover object-bottom group-hover:scale-110 duration-300 group-hover:brightness-40" fill sizes="25vw"/>

@@ -3,35 +3,32 @@
 import { useInfiniteMovieQuery } from "@/lib/api/getMovies"
 import { FC, useEffect, useMemo } from "react"
 import SkeletonGridMovieList from "../skeleton/SkeletonGridMovieList"
-import MovieCard from "./MovieCard"
 import { useSearchParams } from "next/navigation"
 import { useInView } from "react-intersection-observer"
 import { Spinner } from "../ui/spinner"
-import SelectReleaseYear from "../topRatedPage/SelectReleaseYear"
+import MovieCard from "../common/MovieCard"
+import HeaderGridMovieListByGenre from "./HeaderGridMovieListByGenre"
 
 type Props = {
-  endpoint : string
   isMovie? : boolean
-  title?: string
-  popular?: boolean
+  genreId: number
 }
 
-const GridMovieList : FC<Props> = ({ endpoint, isMovie=true, title="Movies", popular=false }) => {
+const GridMovieListByGenre : FC<Props> = ({ isMovie=true, genreId }) => {
 
   const searchParams = useSearchParams()
   const params = new URLSearchParams(searchParams.toString())
 
-  const yearParams = params.get("year")
+  const sortByParams = params.get("sort_by")
+  const voteCountParams = params.get("vote_count.gte")
 
   const realEndpoint = useMemo(() => {
-    if(!popular || !yearParams) return endpoint
-    if(!isMovie) return `/discover/tv?sort_by=popularity.desc&first_air_date.gte=${yearParams}-01-01&first_air_date.lte=${yearParams}-12-31`
-    return `/discover/${isMovie ? "movie" : "tv"}?sort_by=popularity.desc&primary_release_date.gte=${yearParams}-01-01&primary_release_date.lte=${yearParams}-12-31`
+    return `/discover/${isMovie ? "movie" : "tv"}?with_genres=${genreId}&sort_by=${sortByParams}&vote_count.gte=${voteCountParams}`
 
-  },[endpoint, popular, isMovie, yearParams])
+  },[isMovie, genreId, sortByParams, voteCountParams])
 
   const { data, isPending, error, fetchNextPage, isFetchingNextPage, hasNextPage } = useInfiniteMovieQuery({ endpoint: realEndpoint, page : Math.abs(Number(params.get("page"))) || 1, totalMoviePerRequest: 12 })
-
+  
   const { ref, inView } = useInView({
     threshold: 0,
     rootMargin: "200px",
@@ -49,8 +46,7 @@ const GridMovieList : FC<Props> = ({ endpoint, isMovie=true, title="Movies", pop
   const movies = data?.pages.flatMap(page => page?.movies ?? []) ?? []
   return (
     <div className="relative min-h-screen pb-28 mt-8 flex flex-col">
-      <h1 className="text-xl capitalize">{title}</h1>
-      {popular && <SelectReleaseYear />}
+      <HeaderGridMovieListByGenre isMovie={isMovie}/>
       {movies.length 
       ? 
         <div className="mt-8">
@@ -70,4 +66,4 @@ const GridMovieList : FC<Props> = ({ endpoint, isMovie=true, title="Movies", pop
   )
 }
 
-export default GridMovieList
+export default GridMovieListByGenre

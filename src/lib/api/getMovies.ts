@@ -61,8 +61,8 @@ export const useBannerQuery = ({ endpoint } : { endpoint: string }) => {
         const movies = results.slice(0,5).map((movie:TypeMovie & { name? : string }) => {
           return {
             ...movie, 
-            backdrop_path : process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + movie.backdrop_path,
-            poster_path :  process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  movie.poster_path,
+            backdrop_path : movie.backdrop_path != null ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + movie.backdrop_path : "/assets/img/backdrop_fallback.webp",
+            poster_path :  movie.poster_path != null? process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  movie.poster_path : "/assets/img/poster_fallback.webp",
             title : movie.title ?? movie.name ?? "No Title"
           }
         })
@@ -97,8 +97,8 @@ export const useMovieQuery = (params = defaultMovieQueryParams) => {
         const movies = results.slice(0,totalMoviePerRequest).map((movie:TypeMovie & { name? : string }) => {
           return {
             ...movie, 
-            backdrop_path : process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + movie.backdrop_path,
-            poster_path :  process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  movie.poster_path,
+            backdrop_path : movie.backdrop_path != null ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + movie.backdrop_path : "/assets/img/backdrop_fallback.webp",
+            poster_path :  movie.poster_path != null? process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  movie.poster_path : "/assets/img/poster_fallback.webp",
             title : movie.title ?? movie.name ?? "No Title"
           }
         })
@@ -145,11 +145,12 @@ export const useInfiniteMovieQuery = (
           .map((movie: TypeMovie & { name?: string }) => ({
             ...movie,
             backdrop_path:
-              process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL +
-              movie.backdrop_path,
+              movie.backdrop_path ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL +
+              movie.backdrop_path : "/assets/img/backdrop_fallback.webp",
             poster_path:
+              movie.poster_path ? 
               process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +
-              movie.poster_path,
+              movie.poster_path : "/assets/img/poster_fallback.webp",
             title: movie.title ?? movie.name ?? "No Title",
           }))
 
@@ -183,8 +184,8 @@ export const useMovieQueryById = (media_id:string, type:"movie" | "tv"="movie") 
           previewMovie,  
           descriptionMovie : {
             ...descriptionMovie,
-            poster_path : process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL +  descriptionMovie.poster_path,
-            backdrop_path : process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + descriptionMovie.backdrop_path,
+            poster_path : descriptionMovie.poster_path != null? process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  descriptionMovie.poster_path : "/assets/img/poster_fallback.webp",
+            backdrop_path : descriptionMovie.backdrop_path != null ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + descriptionMovie.backdrop_path : "/assets/img/backdrop_fallback.webp",
             title : descriptionMovie.title ?? descriptionMovie.name
           }
         }

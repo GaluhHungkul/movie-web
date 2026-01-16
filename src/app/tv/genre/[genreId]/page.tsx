@@ -1,4 +1,4 @@
-import GridMovieList from "@/components/common/GridMovieList"
+import GridMovieListByGenre from "@/components/genreIdPage/GridMovieListByGenre"
 import { TvGenres } from "@/lib/data/genres"
 import { redirect } from "next/navigation"
 
@@ -11,8 +11,8 @@ const TvByGenrePage  = async (props : { params : Promise<{ genreId : string }> }
 
   return (
     <div>
-      <h1 className="text-center font-bold text-xl mb-10">{genre.name}</h1>
-      <GridMovieList endpoint={`/discover/tv?with_genres=${params.genreId}`} isMovie={false}/>
+      <h1 className="text-center font-bold text-xl mb-10 lg:text-2xl">{genre.name}</h1>
+      <GridMovieListByGenre genreId={genre.id} isMovie={false} />
     </div>
   )
 }
