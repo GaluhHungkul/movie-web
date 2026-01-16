@@ -49,8 +49,8 @@ const GridMovieList : FC<Props> = ({ endpoint, isMovie=true, title="Movies", pop
   const movies = data?.pages.flatMap(page => page?.movies ?? []) ?? []
   return (
     <div className="relative min-h-screen pb-28 mt-8 flex flex-col">
-      <h1 className="text-xl">{title}</h1>
-      <SelectReleaseYear />
+      <h1 className="text-xl capitalize">{title}</h1>
+      {popular && <SelectReleaseYear />}
       {movies.length 
       ? 
         <div className="mt-8">

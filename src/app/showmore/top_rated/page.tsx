@@ -1,12 +1,7 @@
 import ClientTopRatedPage from "@/components/topRatedPage/ClientTopRatedPage"
-import { Suspense } from "react"
 
 const TopRatedPage = () => {
-  return (
-    <Suspense>
-      <ClientTopRatedPage />
-    </Suspense>
-  )
+  return <ClientTopRatedPage />
 }
 
 export default TopRatedPage

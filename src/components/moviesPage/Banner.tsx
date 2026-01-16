@@ -16,14 +16,13 @@ import 'swiper/css';
 
 
 type Props = {
-  tv?: boolean
+  tv?: boolean;
+  endpoint?: string
 }
 
-const Banner = ({ tv=false } : Props) => {
+const Banner = ({ tv=false, endpoint=`/${tv ? "tv" : "movie"}/popular` } : Props) => {
 
-  const { data, isPending, error } = useBannerQuery({ 
-    endpoint : `/${tv ? 'tv' : 'movie'}/popular`,
-  })
+  const { data, isPending, error } = useBannerQuery({ endpoint })
   
   const [swiperInstance, setSwiperInstance] = useState<SwiperType>(null!);
   const [activeIndex, setActiveIndex] = useState(0)
@@ -34,7 +33,7 @@ const Banner = ({ tv=false } : Props) => {
   if(error) return <p className="text-white font-bold text-center content-center h-[50vh]">Error : {error.message}</p>
 
   return (
-    <div className="rounded overflow-hidden mx-auto relative ">
+    <div className="rounded overflow-hidden mx-auto relative">
         <Swiper 
           onSwiper={setSwiperInstance}
           modules={[Autoplay, Navigation]}

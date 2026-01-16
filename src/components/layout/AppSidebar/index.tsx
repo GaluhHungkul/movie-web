@@ -86,11 +86,11 @@ const data = {
         // },
         {
           title: "Upcoming",
-          url: "/movies/upcoming",
+          url: "/movies/showmore/upcoming",
         },
         {
           title: "Now Playing",
-          url: "/movies/now_playing",
+          url: "/movies/showmore/now_playing",
         },
         {
           title: "Genre",
@@ -114,11 +114,11 @@ const data = {
         // },
         {
           title: "Airing Today",
-          url: "/tv/airing_today",
+          url: "/tv/showmore/airing_today",
         },
         {
           title: "On the Air",
-          url: "/tv/on_the_air",
+          url: "/tv/showmore/on_the_air",
         },
         {
           title: "Genre",

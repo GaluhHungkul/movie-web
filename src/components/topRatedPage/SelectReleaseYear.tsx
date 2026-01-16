@@ -25,14 +25,13 @@ const SelectReleaseYear = () => {
         (_, i) => String(currentYear - i)
     )
 
-    const [year, setYear] = useState<string>("")
+    const [year, setYear] = useState<string>(params.get("year") ?? "all")
 
     const handleYearChange = (value: string) => {
+        setYear(value)
         if(value === "all") {
-            setYear(value)
             params.delete("year")
         } else {
-            setYear(value)
             params.set("year", value)
         }
         router.replace(`${pathname}?${params.toString()}`, { scroll: false })
@@ -41,11 +40,11 @@ const SelectReleaseYear = () => {
   return (
     <Select onValueChange={handleYearChange} value={year}>
         <SelectTrigger className="w-[180px] mt-8 ml-auto border-muted-foreground! cursor-pointer">
-            <SelectValue placeholder="Release Year" />
+            <SelectValue placeholder={year ?? "Select release year"} />
         </SelectTrigger>
         <SelectContent>
             <SelectGroup>
-            <SelectLabel>Release Year</SelectLabel>
+            <SelectLabel>{year ?? "Release Year"}</SelectLabel>
             <SelectItem value={"all"}>All year</SelectItem>
             {years.map((y) => (
                 <SelectItem key={y} value={y}>{y}</SelectItem>

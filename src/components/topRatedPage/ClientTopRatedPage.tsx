@@ -62,7 +62,7 @@ const ClientTopRatedPage  = () => {
   const movies = data?.pages.flatMap(page => page?.movies ?? []) ?? []
   
   return (
-    <div className="relative min-h-screen pb-28">
+    <div className="relative min-h-screen pb-28 md:w-4/5 md:mx-auto">
       <HeaderTopRatedPage endpoint={endpoint} handleChangeEndpoint={handleChangeEndpoint}/>
       {movies.length ?  <TopRatedList data={movies} endpoint={endpoint}/> : <MovieNotFound /> }
       <div ref={ref} className="h-10" />

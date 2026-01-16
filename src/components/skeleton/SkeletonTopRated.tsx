@@ -2,13 +2,13 @@ import { Skeleton } from "../ui/skeleton"
 
 const SkeletonTopRated = () => {
   return (
-    <div className="mt-2">
+    <div className="mt-2 md:w-4/5 md:mx-auto">
         <div>
             <Skeleton className="h-2 w-20 mx-auto mb-6 md:h-4 md:w-32"/>
             <div className="mb-6 mt-2 md:mt-6 md:mb-10">
-                <section className="flex items-center justify-evenly">
-                    <Skeleton className="h-6 w-20 md:w-32"/>
-                    <Skeleton className="h-6 w-20 md:w-32"/>
+                <section className="flex items-center gap-4 justify-evenly">
+                    <Skeleton className="h-6 flex-1 lg:h-10"/>
+                    <Skeleton className="h-6 flex-1 lg:h-10"/>
                 </section>
                 <Skeleton className="ml-auto h-4 w-32 mt-8"/>
             </div>
