@@ -44,7 +44,6 @@ const SortGridMovieList = ({ isMovie } : { isMovie: boolean }) => {
 
     params.set("sort_by", value)
 
-    // reset optional filters
     params.delete("vote_count.gte")
     params.delete("primary_release_date.lte")
 
