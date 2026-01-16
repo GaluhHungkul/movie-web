@@ -11,7 +11,7 @@ type Props = {
 
 const validTagMovie : TypeTagMovie[] = ["now_playing", "upcoming"]
 
-const ShowMoreByTagMovie : FC<Props>= async (props) => {
+const ShowMoreMovieByTag : FC<Props>= async (props) => {
 
   const params = await props.params
 
@@ -28,4 +28,4 @@ const ShowMoreByTagMovie : FC<Props>= async (props) => {
   )
 }
 
-export default ShowMoreByTagMovie
+export default ShowMoreMovieByTag
