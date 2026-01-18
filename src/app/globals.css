@@ -32,7 +32,7 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-my-primary: oklch(57.7% 0.245 27.325);
+  --color-my-primary:oklch(45.382% 0.17679 26.696);
   --color-primary: var(--primary);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
