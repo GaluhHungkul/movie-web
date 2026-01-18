@@ -15,15 +15,13 @@ const Actors = ({ data } : { data: Cast[] }) => {
                         height={100}
                         className="rounded-full object-cover object-center aspect-square"
                     />
-
                     <div>
                         <p className="line-clamp-2 font-medium">{actor.name}</p>
                         <p className="line-clamp-2 text-sm text-white/70">
                         {actor.character}
                         </p>
                     </div>
-                    </div>
-
+                </div>
             ))}
         </section>
     </div>

@@ -4,13 +4,12 @@ import { useMovieQueryById } from "@/lib/api/getMovies"
 import MovieDescription from "./MovieDescription"
 import SkeletonDetailMovie from "../skeleton/SkeletonDetailMovie"
 import DetailMovieBanner from "./DetailMovieBanner"
-import { Calendar, Clock, Star } from "lucide-react"
 import { useSession } from "next-auth/react"
 import { useState } from "react"
 import PreviewVideo from "./PreviewVideo"
-import { Button } from "../ui/button"
 import Actors from "./Actors"
 import MoviePoster from "./MoviePoster"
+import FlyingMovieDescription from "./FlyingMovieDescription"
 
 type FavoriteMovieSent = { 
   backdrop_path : string | undefined
@@ -21,7 +20,7 @@ type FavoriteMovieSent = {
 
 const DetailMovie = ({ movieId, tv=false }: { movieId : string, tv?:boolean }) => {
 
-  const [isLoadingSubmitFavorite, setIsLoadingSubmitFavorite] = useState(false)
+  const [isLoadingAddToList, setIsLoadingAddToList] = useState(false)
 
   const type = tv ? "tv" : "movie"
 
@@ -31,9 +30,9 @@ const DetailMovie = ({ movieId, tv=false }: { movieId : string, tv?:boolean }) =
   if(isPending) return <SkeletonDetailMovie />
   if(error) return <h1 className="text-white  text-3xl h-[80vh] text-center content-center">Error : {error.message}</h1>
 
-  const handleFavorite = async (value:FavoriteMovieSent) => {
+  const handleAddToList = async (value:FavoriteMovieSent) => {
     try {
-      setIsLoadingSubmitFavorite(true)
+      setIsLoadingAddToList(true)
       await fetch(`/api/user/favorites`, {
         method : "POST",
         headers : {
@@ -44,13 +43,13 @@ const DetailMovie = ({ movieId, tv=false }: { movieId : string, tv?:boolean }) =
     } catch (error) {
       console.log("Error : " , error)
     } finally {
-      setIsLoadingSubmitFavorite(false)
+      setIsLoadingAddToList(false)
     }
   }
 
-  const handleClickFavorite = async () => {
+  const handleClick = async () => {
     const { backdrop_path, title, poster_path, id:movieId } = data?.descriptionMovie || {}
-    await handleFavorite({ backdrop_path, title, poster_path, movieId })
+    await handleAddToList({ backdrop_path, title, poster_path, movieId })
     await update()
   }
   return (
@@ -58,24 +57,7 @@ const DetailMovie = ({ movieId, tv=false }: { movieId : string, tv?:boolean }) =
       <MoviePoster poster_path={data?.descriptionMovie?.poster_path ?? ""} alt={data?.descriptionMovie?.title ?? ""}/>       
       <section className="relative md:block hidden">
         <DetailMovieBanner img={data?.descriptionMovie.backdrop_path ?? ""}/>
-        <section className="flex flex-col top-10 left-10 absolute lg:left-20">
-          <h1 className="text-4xl text-white">{data?.descriptionMovie.title}</h1>
-          <h1 className="mt-2 text-white/70">{data?.descriptionMovie.tagline}</h1>
-          <div className="flex mb-6 mt-4 justify-start gap-8 flex-wrap lg:mb-12 lg:mt-6">
-            <h2 className="text-lg flex items-center gap-2"><Star size={18} className="text-white"/>{data?.descriptionMovie.vote_average.toFixed(1) ?? "-"}</h2>
-            <h2 className="text-lg flex items-center gap-2"><Clock size={18} className="text-white"/>{(() => {
-                const runtime = data?.descriptionMovie.runtime ?? 0
-                const hours = Math.floor(runtime / 60)
-                const minutes = runtime % 60
-                return `${hours}H ${minutes}M`
-              })()}
-            </h2>
-            <h2 className="text-lg flex items-center gap-2"><Calendar size={18} className="text-white"/>{data?.descriptionMovie.release_date}</h2>
-          </div>
-          <h2 className="line-clamp-1 lg:line-clamp-5 w-2/3 text-lg"  title={data?.descriptionMovie.overview}>{data?.descriptionMovie.overview}</h2>
-          <h1 className="hidden lg:inline mt-5 text-xl" title={data?.descriptionMovie.popularity.toString()}><span className="text-white ">{data?.descriptionMovie?.popularity ?? ""}</span> Popularity Points</h1>
-          <Button onClick={handleClickFavorite} className="absolute -bottom-12 w-max bg-white text-black font-bold hover:bg-white/70 active:bg-white/50 cursor-pointer lg:-bottom-40 lg:text-xl lg:px-8 lg:py-6" disabled={isLoadingSubmitFavorite}>Add to List</Button>
-        </section>
+        <FlyingMovieDescription data={data} handleAddToList={handleClick} loadingSubmit={isLoadingAddToList}/>
       </section> 
       {!!data?.previewMovie?.results?.length && <PreviewVideo preview_video_key={data?.previewMovie?.results[0].key ?? ""}/>}
       <MovieDescription descriptionMovie={data?.descriptionMovie} isMovie={type !== "tv"} />
