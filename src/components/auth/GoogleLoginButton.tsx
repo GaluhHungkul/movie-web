@@ -11,7 +11,7 @@ const GoogleLoginButton = () => {
       className="items-center mt-4 gap-3 border border-gray-300  shadow-sm hover:shadow-md transition bg-white flex relative justify-center rounded-md  px-3 py-1.5 text-sm/6 font-semibold text-white focus-visible:outline-offset-2 w-full lg:py-6 cursor-pointer"
     >
       <Image
-        src="/assets/img/google.png"
+        src="/assets/images/google.png"
         alt="Google logo"
         width={20}
         height={20}

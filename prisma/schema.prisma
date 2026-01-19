@@ -13,23 +13,23 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid())
-  name String
-  email String @unique
-  image String @default("/assets/img/default_pp.png")
-  password String?
-  oauthProvider String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             String          @id @default(uuid())
+  name           String
+  email          String          @unique
+  image          String          @default("/assets/images/default_pp.png")
+  password       String?
+  oauthProvider  String?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
   favoritesMovie FavoriteMovie[]
 }
 
 model FavoriteMovie {
-  id String @id @default(uuid())
-  userId String
-  movieId String
-  title String
-  poster_path String
+  id            String @id @default(uuid())
+  userId        String
+  movieId       String
+  title         String
+  poster_path   String
   backdrop_path String
 
   user User @relation(fields: [userId], references: [id])

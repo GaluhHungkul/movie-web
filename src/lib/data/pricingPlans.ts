@@ -2,9 +2,9 @@ export const pricingPlans = [
   {
     id: 1,
     title: "Basic",
-    price: "$4.99",
+    price: "$9.99",
     period: "month",
-    description: "Good for personal use on a single device.",
+    description: "Enjoy an extensive library of movies and shows, featuring a range of content, including recently released titles",
     features: [
       "Unlimited movies and series",
       "Watch on 1 device",
@@ -16,9 +16,9 @@ export const pricingPlans = [
   {
     id: 2,
     title: "Standard",
-    price: "$9.99",
+    price: "$12.99",
     period: "month",
-    description: "Perfect balance for most users.",
+    description: "Access to a wider selection of movies and shows, including most new releases and exclusive content",
     features: [
       "Unlimited movies and series",
       "Watch on 2 devices",
@@ -33,7 +33,7 @@ export const pricingPlans = [
     title: "Premium",
     price: "$14.99",
     period: "month",
-    description: "Best experience with maximum quality.",
+    description: "Access to a widest selection of movies and shows, including all new releases and Offline Viewing",
     features: [
       "Unlimited movies and series",
       "Watch on 4 devices",

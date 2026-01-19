@@ -1,17 +1,17 @@
 "use client"
 
-import AnimatedBackground from './AnimatedBackground'
-import CTAButton from './CTAButton'
+import Image from 'next/image';
 import { Typewriter } from "react-simple-typewriter";
+import { Button } from '../ui/button';
 
 const Intro = () => {
   return (
-    <div className='flex flex-col items-center min-h-[85vh] pt-32 md:pt-40'>
-        <AnimatedBackground />
-        <h1 className="text-3xl text-center md:text-4xl lg:text-5xl">
+    <div className='flex flex-col items-center min-h-screen w-screen pt-32 md:pt-40 relative '>
+        <Image src={"/assets/images/hero-bg-img.png"} alt='Hero Background' fill sizes='100vw' className='relative z-[-1] object-cover object-center'/>
+        <h1 className="text-3xl text-foreground text-center md:text-4xl lg:text-5xl">
           <Typewriter
-            words={["Discover Your Next Favorite Movies", "Your favorite stories, all in one place.", "Stream thousands of movies and series."]}
-            loop
+            words={["Stream Everything You Love, Instantly"]}
+            // loop
             cursor
             cursorStyle="_"
             typeSpeed={70}
@@ -19,8 +19,8 @@ const Intro = () => {
             delaySpeed={1500}
           />
         </h1>
-        <h1 className="text-center text-sm text-gray-300 mt-6 md:text-xl lg:text-2xl">Explore thousands of movies, from timeless classics to the latest blockbusters.</h1>
-        <CTAButton />
+        <p className="text-center text-sm text-foreground font-medium mt-6 md:text-xl lg:text-2xl">Unlimited movies. Endless shows. Zero waiting. StreamVibe puts thousands of titles at your fingertips-new releases, classics, and everything in between. Create custom watchlists, stream on any device, and dive into your next favorite story whenever inspiration strikes.</p>
+        <Button className='mt-12 cursor-pointer md:scale-125 md:font-bold'>Start Watching Now</Button>
     </div>
   )
 }

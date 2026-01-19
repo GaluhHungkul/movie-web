@@ -3,12 +3,10 @@ import { Inter } from 'next/font/google'
 import type { Metadata } from 'next'
 import QueryProvider from '@/components/layout/QueryProvider'
 import Footer from '@/components/layout/Footer'
-import Header from '@/components/layout/Header'
+import Navbar from '@/components/layout/Navbar'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import SessionProviderWrapper from '@/components/layout/SessionProviderWrapper'
-import { SidebarProvider } from '@/components/ui/sidebar'
-import AppSidebar  from '@/components/layout/AppSidebar'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
@@ -27,18 +25,15 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={`${inter.variable} `} >
-      <body className='bg-foreground text-white relative overflow-x-hidden '>
+      <body className='bg-background text-white relative overflow-x-hidden dark'>
         <QueryProvider>
-            <SessionProviderWrapper session={session}>
-              <SidebarProvider>
-                <AppSidebar />
-                <main className='min-h-screen w-full overflow-x-hidden px-5 '>  
-                  <Header />
-                  {children}
-                  <Footer />
-                </main>
-              </SidebarProvider>
-            </SessionProviderWrapper>
+          <SessionProviderWrapper session={session}>
+              <Navbar />
+              <main className='min-h-svh overflow-x-hidden'>  
+                {children}
+              </main>
+              <Footer />
+          </SessionProviderWrapper>
         </QueryProvider>
       </body>
     </html>
