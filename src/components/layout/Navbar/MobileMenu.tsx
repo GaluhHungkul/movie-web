@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { Bell, Menu, Search, X } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 const MobileMenu = () => {
@@ -12,6 +12,10 @@ const MobileMenu = () => {
   const pathname = usePathname()
 
   const [showMenu, setShowMenu] = useState(false)
+
+  useEffect(() => {
+    setShowMenu(false)
+  },[pathname])
 
   return (
     <div className="relative md:hidden z-[100]">
