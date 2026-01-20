@@ -38,3 +38,48 @@ export const TvGenres = [
   { id: 10768, name: "War & Politics" },
   { id: 37,    name: "Western" }
 ]
+
+export const movieGenreImages = [
+  ["/assets/images/img-1.png", "/assets/images/img-2.png", "/assets/images/img-3.png", "/assets/images/img-4.png"],
+  ["/assets/images/img-5.png", "/assets/images/img-6.png", "/assets/images/img-7.png", "/assets/images/img-8.png"],
+  ["/assets/images/img-9.png", "/assets/images/img-10.png", "/assets/images/img-11.png", "/assets/images/img-12.png"],
+  ["/assets/images/img-13.png", "/assets/images/img-14.png", "/assets/images/img-15.png", "/assets/images/img-16.png"],
+  ["/assets/images/img-17.png", "/assets/images/img-18.png", "/assets/images/img-19.png", "/assets/images/img-20.png"],
+  ["/assets/images/img-21.png", "/assets/images/img-22.png", "/assets/images/img-23.png", "/assets/images/img-24.png"],
+  ["/assets/images/img-25.png", "/assets/images/img-26.png", "/assets/images/img-27.png", "/assets/images/img-28.png"],
+  ["/assets/images/img-29.png", "/assets/images/img-30.png", "/assets/images/img-31.png", "/assets/images/img-32.png"],
+  ["/assets/images/img-33.png", "/assets/images/img-34.png", "/assets/images/img-35.png", "/assets/images/img-36.png"],
+  ["/assets/images/img-37.png", "/assets/images/img-38.png", "/assets/images/img-39.png", "/assets/images/img-40.png"],
+  ["/assets/images/img-41.png", "/assets/images/img-42.png", "/assets/images/img-43.png", "/assets/images/img-44.png"],
+  ["/assets/images/img-45.png", "/assets/images/img-1.png", "/assets/images/img-2.png", "/assets/images/img-3.png"],
+  ["/assets/images/img-4.png", "/assets/images/img-5.png", "/assets/images/img-6.png", "/assets/images/img-7.png"],
+  ["/assets/images/img-8.png", "/assets/images/img-9.png", "/assets/images/img-10.png", "/assets/images/img-11.png"],
+  ["/assets/images/img-12.png", "/assets/images/img-13.png", "/assets/images/img-14.png", "/assets/images/img-15.png"],
+  ["/assets/images/img-16.png", "/assets/images/img-17.png", "/assets/images/img-18.png", "/assets/images/img-19.png"],
+  ["/assets/images/img-20.png", "/assets/images/img-21.png", "/assets/images/img-22.png", "/assets/images/img-23.png"],
+  ["/assets/images/img-24.png", "/assets/images/img-25.png", "/assets/images/img-26.png", "/assets/images/img-27.png"],
+  ["/assets/images/img-28.png", "/assets/images/img-29.png", "/assets/images/img-30.png", "/assets/images/img-31.png"],
+];
+
+
+export const tvGenreImages = [
+  ["/assets/images/img-12.png", "/assets/images/img-37.png", "/assets/images/img-5.png", "/assets/images/img-29.png"],
+  ["/assets/images/img-41.png", "/assets/images/img-18.png", "/assets/images/img-2.png", "/assets/images/img-34.png"],
+  ["/assets/images/img-9.png", "/assets/images/img-44.png", "/assets/images/img-21.png", "/assets/images/img-6.png"],
+  ["/assets/images/img-30.png", "/assets/images/img-14.png", "/assets/images/img-39.png", "/assets/images/img-1.png"],
+  ["/assets/images/img-25.png", "/assets/images/img-8.png", "/assets/images/img-42.png", "/assets/images/img-17.png"],
+  ["/assets/images/img-3.png", "/assets/images/img-35.png", "/assets/images/img-22.png", "/assets/images/img-11.png"],
+  ["/assets/images/img-28.png", "/assets/images/img-45.png", "/assets/images/img-7.png", "/assets/images/img-19.png"],
+  ["/assets/images/img-33.png", "/assets/images/img-4.png", "/assets/images/img-24.png", "/assets/images/img-38.png"],
+  ["/assets/images/img-16.png", "/assets/images/img-40.png", "/assets/images/img-10.png", "/assets/images/img-27.png"],
+  ["/assets/images/img-20.png", "/assets/images/img-31.png", "/assets/images/img-13.png", "/assets/images/img-36.png"],
+  ["/assets/images/img-26.png", "/assets/images/img-15.png", "/assets/images/img-43.png", "/assets/images/img-32.png"],
+  ["/assets/images/img-18.png", "/assets/images/img-5.png", "/assets/images/img-29.png", "/assets/images/img-41.png"],
+  ["/assets/images/img-2.png", "/assets/images/img-34.png", "/assets/images/img-9.png", "/assets/images/img-44.png"],
+  ["/assets/images/img-21.png", "/assets/images/img-6.png", "/assets/images/img-30.png", "/assets/images/img-14.png"],
+  ["/assets/images/img-39.png", "/assets/images/img-1.png", "/assets/images/img-25.png", "/assets/images/img-8.png"],
+  ["/assets/images/img-42.png", "/assets/images/img-17.png", "/assets/images/img-3.png", "/assets/images/img-35.png"],
+  ["/assets/images/img-22.png", "/assets/images/img-11.png", "/assets/images/img-28.png", "/assets/images/img-45.png"],
+  ["/assets/images/img-7.png", "/assets/images/img-19.png", "/assets/images/img-33.png", "/assets/images/img-4.png"],
+  ["/assets/images/img-24.png", "/assets/images/img-38.png", "/assets/images/img-16.png", "/assets/images/img-40.png"],
+];
