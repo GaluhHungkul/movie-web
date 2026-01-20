@@ -12,11 +12,12 @@ import { categoryItems } from "@/lib/data/categories"
 import { ArrowRight } from "lucide-react"
 import { Button } from "../ui/button"
 import Image from "next/image"
+import Link from "next/link"
 
 const CarouselMovieGenres = () => {
 
   return (
-    <div className="container mb-20">
+    <div className="container mb-20 flex flex-col">
         <Heading>Explore our wide variety of genres</Heading>
         <MutedText>Whether you&apos;re looking for a comedy to make you laugh, a drama to make you think, or a documentary to learn something new</MutedText>
         <Carousel>
@@ -44,6 +45,7 @@ const CarouselMovieGenres = () => {
             <CarouselPrevious className="-left-4 md:-left-12" />
             <CarouselNext className="-right-4 md:-right-12"/>
         </Carousel>
+        <Link className="ml-auto mt-4" href={"/genres"}><Button variant={"secondary"}>See More <ArrowRight /></Button></Link>
     </div>
   )
 }

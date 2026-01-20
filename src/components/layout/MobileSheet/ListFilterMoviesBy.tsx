@@ -12,7 +12,7 @@ const FILTERING_MOVIES = [
   },
   {
     by : "Popularity",
-    href : "/showmore/popularity",
+    href : "/showmore/popular",
     icon : ChartNoAxesCombined
   },
   {

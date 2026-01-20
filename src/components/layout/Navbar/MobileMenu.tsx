@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { navItems } from "@/lib/data/categories"
 import { AnimatePresence, motion } from "framer-motion"
-import { Bell, Menu, Search, X } from "lucide-react"
+import { Menu, Search, User, X } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
@@ -45,7 +45,7 @@ const MobileMenu = () => {
                 <Search />
               </Button>
               <Button variant={"ghost"}>
-                <Bell />
+                <User />
               </Button>
             </div>
           </motion.div>

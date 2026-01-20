@@ -21,8 +21,8 @@ export const navItems = [
   },
   {
     id: 5,
-    label: "Subscriptions",
-    href: "/subscriptions",
+    label: "Top Rated",
+    href: "/showmore/top_rated",
   },
 ];
 

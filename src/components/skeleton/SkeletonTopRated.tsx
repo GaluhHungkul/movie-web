@@ -2,7 +2,7 @@ import { Skeleton } from "../ui/skeleton"
 
 const SkeletonTopRated = () => {
   return (
-    <div className="mt-2 md:w-4/5 md:mx-auto">
+    <div className="mt-2 container">
         <div>
             <Skeleton className="h-2 w-20 mx-auto mb-6 md:h-4 md:w-32"/>
             <div className="mb-6 mt-2 md:mt-6 md:mb-10">

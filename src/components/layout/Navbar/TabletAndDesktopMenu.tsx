@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { navItems } from "@/lib/data/categories"
-import { Bell, Search } from "lucide-react"
+import { Search, User } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -22,7 +22,7 @@ const TabletAndDesktopMenu = () => {
                 <Search />
             </Button>
             <Button variant={"ghost"}>
-                <Bell />
+                <User />
             </Button>
         </div>
     </div>
