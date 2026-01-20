@@ -31,7 +31,7 @@ const MobileMenu = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute border right-0 top-12 bg-background  rounded p-2 w-max"
+            className="absolute border right-0 top-12 bg-background  rounded p-2 min-w-max w-48"
           >
             <ul className="gap-1 flex flex-col pb-4">
               {navItems.map(item => (
@@ -40,7 +40,7 @@ const MobileMenu = () => {
                 </li>
               ))}
             </ul>
-            <div className="border-t py-4 px-4 flex gap-4 text-muted-foreground">
+            <div className="border-t py-2 px-4 flex gap-4 text-muted-foreground">
               <Button variant={"ghost"}>
                 <Search />
               </Button>

@@ -2,11 +2,11 @@
 
 import GridMovieList from "../common/GridMovieList"
 import SwiperMovieList from "../homePage/SwiperMovieList"
-import Banner from "../moviesPage/Banner"
+import Banner from "../common/Banner"
 
 const ClientTvPage = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen container">
         <Banner tv/>
         <div className="mb-8"/>
         <SwiperMovieList tv endpoint="/tv/airing_today" href="/tv/showmore/airing_today" title="Airing Today" reverse/>

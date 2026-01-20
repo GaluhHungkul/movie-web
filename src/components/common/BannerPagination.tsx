@@ -6,7 +6,7 @@ const BannerPagination = ({ length, activeIndex, onClick=() => {} } : { length: 
         className={`
             h-1.5 w-6 rounded-full transition-all duration-300 cursor-pointer
             ${activeIndex === index 
-            ? "bg-my-primary w-10" 
+            ? "bg-primary w-10" 
             : "bg-white/40"}
         `}
         />

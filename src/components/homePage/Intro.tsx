@@ -12,7 +12,7 @@ const Intro = () => {
   const words = title.split(" ")
 
   return (
-    <div className='flex flex-col items-center min-h-screen w-screen justify-end relative pb-28'>
+    <div className='flex flex-col items-center min-h-screen w-screen justify-end relative pb-28 lg:pb-32'>
         <Image src={"/assets/images/hero-bg-img.png"} alt='Hero Background' fill sizes='100vw' className='relative z-[-1] object-cover object-center'/>
         <motion.h1 
           variants={splitTextContainer}
@@ -31,7 +31,7 @@ const Intro = () => {
             </motion.span>
           ))}
         </motion.h1>
-        <motion.p variants={fadeInUp} initial="hidden" whileInView={"show"} viewport={{ once: true }} className="text-center text-sm text-foreground font-medium mt-6 md:text-xl lg:text-2xl">Unlimited movies. Endless shows. Zero waiting. Chill puts thousands of titles at your fingertips-new releases, classics, and everything in between.</motion.p>
+        <motion.p variants={fadeInUp} initial="hidden" whileInView={"show"} viewport={{ once: true }} className="text-center text-sm text-muted-foreground font-medium mt-6 md:text-xl lg:text-2xl lg:w-4/5">Unlimited movies. Endless shows. Zero waiting. Chill puts thousands of titles at your fingertips-new releases, classics, and everything in between.</motion.p>
         <Button className='mt-8 cursor-pointer md:scale-125 md:font-bold'>Start Watching Now</Button>
     </div>
   )

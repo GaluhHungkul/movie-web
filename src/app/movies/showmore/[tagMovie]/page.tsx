@@ -1,5 +1,5 @@
 import GridMovieList from '@/components/common/GridMovieList'
-import Banner from '@/components/moviesPage/Banner'
+import Banner from '@/components/common/Banner'
 import { redirect } from 'next/navigation'
 import { FC } from 'react'
 

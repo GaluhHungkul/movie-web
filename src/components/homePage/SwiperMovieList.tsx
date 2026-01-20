@@ -11,7 +11,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC, useState } from "react";
 import SkeletonSwiperMovieList from "../skeleton/SkeletonSwiperMovieList";
-import BannerPagination from "../moviesPage/BannerPagination";
+import BannerPagination from "../common/BannerPagination";
 import { Swiper as SwiperType } from "swiper/types"
 import { Button } from "../ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -60,8 +60,8 @@ const SwiperMovieList : FC<Props> = ({ title, href, endpoint, reverse=false, tv=
         }}
         loop
         >
-            <Button id="prevEl" className="absolute z-[20] cursor-pointer left-4 top-1/2 -translate-y-1/2"><ChevronLeft strokeWidth={4}/></Button>
-            <Button id="nextEl" className="absolute z-[20] cursor-pointer right-4 top-1/2 -translate-y-1/2"><ChevronRight strokeWidth={4}/></Button>
+            <Button id="prevEl" variant={"secondary"} className="absolute z-[20] cursor-pointer left-4 top-1/2 -translate-y-1/2"><ChevronLeft strokeWidth={4}/></Button>
+            <Button id="nextEl" variant={"secondary"} className="absolute z-[20] cursor-pointer right-4 top-1/2 -translate-y-1/2"><ChevronRight strokeWidth={4}/></Button>
           
             {data?.movies.map(movie => (
                 <SwiperSlide key={movie.id} className="!w-28 md:!w-40 lg:!w-60">

@@ -6,16 +6,21 @@ export const navItems = [
   },
   {
     id: 2,
-    label: "Movies & Shows",
+    label: "Movies",
     href: "/movies",
   },
   {
     id: 3,
+    label: "TV Series",
+    href: "/tv",
+  },
+  {
+    id: 4,
     label: "Support",
     href: "/support",
   },
   {
-    id: 4,
+    id: 5,
     label: "Subscriptions",
     href: "/subscriptions",
   },

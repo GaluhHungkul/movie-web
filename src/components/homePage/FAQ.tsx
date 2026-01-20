@@ -21,7 +21,7 @@ const FAQ = () => {
         <Accordion
             type="single"
             collapsible
-            className="w-full grid md:grid-cols-2 gap-4"
+            className="w-full grid md:grid-cols-2 gap-4 lg:gap-8"
         >
             {faqListItems.map(item => (
                 <AccordionItem key={item.id} value={`item-${item.id}`}>
