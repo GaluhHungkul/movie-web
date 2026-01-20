@@ -196,56 +196,59 @@ export const devicesItems = [
     id: 1,
     icon: "/assets/images/icon-1.svg",
     title: "Smartphones",
-    text: "StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
+    text: "Chill is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
   },
   {
     id: 2,
     icon: "/assets/images/icon-2.svg",
     title: "Tablet",
-    text: "StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
+    text: "Chill is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
   },
   {
     id: 3,
     icon: "/assets/images/icon-3.svg",
     title: "Smart TV",
-    text: "StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
+    text: "Chill is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
   },
   {
     id: 4,
     icon: "/assets/images/icon-4.svg",
     title: "Laptops",
-    text: "StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
+    text: "Chill is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
   },
   {
     id: 5,
     icon: "/assets/images/icon-5.svg",
     title: "Gaming Consoles",
-    text: "StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
+    text: "Chill is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
   },
   {
     id: 6,
     icon: "/assets/images/icon-6.svg",
     title: "VR Headsets",
-    text: "StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
+    text: "Chill is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
   },
 ];
 
-export const pricingCardItem = [
+export const pricingCardItems = [
   {
     id: 1,
     title: "Basic Plan",
+    period: "Month",
     text: "Enjoy an extensive library of movies and shows, featuring a range of content, including recently released titles.",
     price: 9.99,
   },
   {
     id: 2,
     title: "Standard Plan",
+    period: "Month",
     text: "Access to a wider selection of movies and shows, including most new releases and exclusive content",
     price: 12.99,
   },
   {
     id: 3,
     title: "Premium Plan",
+    period: "Month",
     text: "Access to a widest selection of movies and shows, including all new releases and Offline Viewing",
     price: 14.99,
   },
@@ -254,43 +257,43 @@ export const pricingCardItem = [
 export const faqListItems = [
   {
     id: 1,
-    title: "What is StreamVibe?",
-    text: "StreamVibe is a streaming service that allows you to watch movies and shows on demand.",
+    title: "What is Chill?",
+    text: "Chill is a streaming service that allows you to watch movies and shows on demand.",
   },
   {
     id: 2,
-    title: "How much does StreamVibe cost?",
-    text: "StreamVibe is a streaming service that allows you to watch movies and shows on demand.",
+    title: "How much does Chill cost?",
+    text: "Chill is a streaming service that allows you to watch movies and shows on demand.",
   },
   {
     id: 3,
-    title: "What content is available on StreamVibe?",
-    text: "StreamVibe is a streaming service that allows you to watch movies and shows on demand.",
+    title: "What content is available on Chill?",
+    text: "Chill is a streaming service that allows you to watch movies and shows on demand.",
   },
   {
     id: 4,
-    title: "How can I watch StreamVibe?",
-    text: "StreamVibe is a streaming service that allows you to watch movies and shows on demand.",
+    title: "How can I watch Chill?",
+    text: "Chill is a streaming service that allows you to watch movies and shows on demand.",
   },
   {
     id: 5,
-    title: "How do I sign up for StreamVibe?",
-    text: "StreamVibe is a streaming service that allows you to watch movies and shows on demand.",
+    title: "How do I sign up for Chill?",
+    text: "Chill is a streaming service that allows you to watch movies and shows on demand.",
   },
   {
     id: 6,
-    title: "What is the StreamVibe free trial?",
-    text: "StreamVibe is a streaming service that allows you to watch movies and shows on demand.",
+    title: "What is the Chill free trial?",
+    text: "Chill is a streaming service that allows you to watch movies and shows on demand.",
   },
   {
     id: 7,
-    title: "How do I contact StreamVibe customer support?",
-    text: "StreamVibe is a streaming service that allows you to watch movies and shows on demand.",
+    title: "How do I contact Chill customer support?",
+    text: "Chill is a streaming service that allows you to watch movies and shows on demand.",
   },
   {
     id: 8,
-    title: "What are the StreamVibe payment methods?",
-    text: "StreamVibe is a streaming service that allows you to watch movies and shows on demand.",
+    title: "What are the Chill payment methods?",
+    text: "Chill is a streaming service that allows you to watch movies and shows on demand.",
   },
 ];
 
