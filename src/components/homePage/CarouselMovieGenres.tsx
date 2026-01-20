@@ -16,9 +16,9 @@ import Image from "next/image"
 const CarouselMovieGenres = () => {
 
   return (
-    <div className="container">
+    <div className="container mb-20">
         <Heading>Explore our wide variety of genres</Heading>
-        <MutedText>Whether you{"'"}re looking for a comedy to make you laugh, a drama to make you think, or a documentary to learn something new</MutedText>
+        <MutedText>Whether you&apos;re looking for a comedy to make you laugh, a drama to make you think, or a documentary to learn something new</MutedText>
         <Carousel>
             <CarouselContent>
                 {categoryItems.map((item, index) => (
