@@ -14,8 +14,8 @@ const MoviesByGenrePage : FC<Props> = async ({ params }) => {
   if(!genre) redirect("/")
 
   return (
-    <div>
-      <h1 className="text-center font-bold text-xl mb-10 lg:text-2xl">{genre.name}</h1>
+    <div className="container">
+      <h1 className="text-center font-bold text-xl my-10 lg:text-2xl">{genre.name}</h1>
       <GridMovieListByGenre genreId={genre.id} />
     </div>
   )

@@ -10,7 +10,7 @@ const TvByGenrePage  = async (props : { params : Promise<{ genreId : string }> }
   if(!genre) redirect("/")
 
   return (
-    <div>
+    <div className="container">
       <h1 className="text-center font-bold text-xl mb-10 lg:text-2xl">{genre.name}</h1>
       <GridMovieListByGenre genreId={genre.id} isMovie={false} />
     </div>
