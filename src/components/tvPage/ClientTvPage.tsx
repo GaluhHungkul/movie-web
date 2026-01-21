@@ -1,8 +1,8 @@
 "use client"
 
 import GridMovieList from "../common/GridMovieList"
-import SwiperMovieList from "../homePage/SwiperMovieList"
 import Banner from "../common/Banner"
+import SwiperMovieList from "../common/SwiperMovieList"
 
 const ClientTvPage = () => {
   return (

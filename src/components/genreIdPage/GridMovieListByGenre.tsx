@@ -2,7 +2,7 @@
 
 import { useInfiniteMovieQuery } from "@/lib/api/getMovies"
 import { FC, useEffect, useMemo } from "react"
-import SkeletonGridMovieList from "../skeleton/SkeletonGridMovieList"
+import SkeletonGridMovieList from "../skeletons/SkeletonGridMovieList"
 import { useSearchParams } from "next/navigation"
 import { useInView } from "react-intersection-observer"
 import { Spinner } from "../ui/spinner"

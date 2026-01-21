@@ -10,7 +10,7 @@ import "swiper/css/navigation"
 import Image from "next/image";
 import Link from "next/link";
 import { FC, useState } from "react";
-import SkeletonSwiperMovieList from "../skeleton/SkeletonSwiperMovieList";
+import SkeletonSwiperMovieList from "../skeletons/SkeletonSwiperMovieList";
 import BannerPagination from "../common/BannerPagination";
 import { Swiper as SwiperType } from "swiper/types"
 import { Button } from "../ui/button";

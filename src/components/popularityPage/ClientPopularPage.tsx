@@ -7,7 +7,7 @@ import HeaderPopularityPage from "./HeaderPopularityPage"
 import PopularList from "./PopularList"
 // import Pagination from "../common/Pagination"
 import MovieNotFound from "../common/MovieNotFound"
-import SkeletonPopularList from "../skeleton/SkeletonTopRated"
+import SkeletonPopularList from "../skeletons/SkeletonTopRated"
 
 const ClientPopularPage  = () => {
 

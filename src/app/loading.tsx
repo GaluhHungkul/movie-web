@@ -10,7 +10,7 @@ export default function Loading() {
         flex items-center justify-center
         h-screen
       ">
-        <Spinner className="size-20"/>
+        <Spinner className="size-14"/>
       </div>
     </div>
   )

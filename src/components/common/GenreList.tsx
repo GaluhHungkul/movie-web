@@ -2,7 +2,7 @@
 
 import { useOneTypeGenreQuery } from "@/lib/api/getGenres"
 import Link from "next/link"
-import SkeletonGenreList from "../skeleton/SkeletonGenreList"
+import SkeletonGenreList from "../skeletons/SkeletonGenreList"
 import { Card, CardContent, CardFooter } from "../ui/card"
 import { Button } from "../ui/button"
 import { ArrowRight } from "lucide-react"

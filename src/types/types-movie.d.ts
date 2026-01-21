@@ -16,6 +16,9 @@ export type TypeMovie = {
     release_date: string;
     runtime: number;
     tagline: string;
+    first_air_date?: string;
+    number_of_episodes?: number;
+    number_of_seasons?: number
 }
 
 type Cast = {

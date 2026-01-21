@@ -39,7 +39,7 @@ const SelectReleaseYear = () => {
 
   return (
     <Select onValueChange={handleYearChange} value={year}>
-        <SelectTrigger className="w-40 border-muted-foreground! cursor-pointer">
+        <SelectTrigger className="w-40 mt-4 ml-auto border-muted-foreground! cursor-pointer">
             <SelectValue placeholder={year ?? "Select release year"} />
         </SelectTrigger>
         <SelectContent>

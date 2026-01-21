@@ -3,7 +3,7 @@
 import { useBannerQuery } from "@/lib/api/getMovies"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Autoplay, Navigation } from "swiper/modules"
-import SkeletonBanner from "../skeleton/SkeletonBanner";
+import SkeletonBanner from "../skeletons/SkeletonBanner";
 import { useState } from "react";
 import { Swiper as SwiperType } from "swiper/types";
 import { Button } from "../ui/button";
@@ -60,7 +60,7 @@ const Banner = ({ tv=false, endpoint=`/${tv ? "tv" : "movie"}/popular` } : Props
           {/* gradient overlay  */}
           {data?.movies.map(movie => (
             <SwiperSlide className="aspect-[9/16] relative md:aspect-[3/2] lg:aspect-[2/1]" key={movie.id}>
-              <BannerSlideContent movie={movie} img={movie[isLargeScreen ? 'backdrop_path' : 'poster_path']}/>
+              <BannerSlideContent tv={tv} movie={movie} img={movie[isLargeScreen ? 'backdrop_path' : 'poster_path']}/>
             </SwiperSlide>
           ))}
           <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-30 flex gap-2">

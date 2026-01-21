@@ -1,4 +1,4 @@
-import ClientPopularPage  from '@/components/popularPage/ClientPopularPage'
+import ClientPopularPage  from '@/components/popularityPage/ClientPopularPage'
 import React, { Suspense } from 'react'
 
 const PopularityPage = () => {
