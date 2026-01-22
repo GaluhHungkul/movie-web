@@ -4,7 +4,7 @@ import { User } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import SearchDialog from "./SearchDialog"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const TabletAndDesktopMenu = () => {
     
@@ -12,6 +12,10 @@ const TabletAndDesktopMenu = () => {
 
     const [open, setOpen] = useState(false)
 
+    useEffect(() => {
+        setOpen(false)
+    },[pathname])
+    
   return (
     <div className="hidden md:flex flex-6 justify-between items-center lg:flex-3">
         <ul className="flex gap-2 bg-black px-2 py-4 border w-max rounded-md">

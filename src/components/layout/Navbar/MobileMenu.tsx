@@ -16,6 +16,7 @@ const MobileMenu = () => {
 
   useEffect(() => {
     setShowMenu(false)
+    setOpenSearchDialog(false)
   },[pathname])
 
   useEffect(() => {
