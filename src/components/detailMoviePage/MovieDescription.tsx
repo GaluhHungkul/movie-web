@@ -4,7 +4,6 @@ import Link from "next/link"
 import { Bookmark, Star } from "lucide-react"
 
 const MovieDescription = ({ descriptionMovie, isMovie } : { descriptionMovie : TypeMovie | undefined, isMovie : boolean }) => {
-  console.log(descriptionMovie)
   return (
     <div className="mt-10 space-y-3 md:text-xl md:mt-0 md:flex-1 lg:flex-2">
       <div className="flex justify-between items-center">
