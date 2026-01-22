@@ -1,4 +1,5 @@
 import { Cast, TypeMovie, Video } from "@/types/types-movie";
+import { TmdbMultiSearchResponse } from "@/types/types-search";
 import { useQuery } from "@tanstack/react-query";
 import { useInfiniteQuery } from "@tanstack/react-query"
 
@@ -9,8 +10,6 @@ type ResVideo = {
   id : number;
   results : Video[]
 }
-
-
 
 type ResMovieById = {
   descriptionMovie : TypeMovie,
@@ -195,6 +194,41 @@ export const useMovieQueryById = (media_id:string, type:"movie" | "tv"="movie") 
         console.log("Error : " , error)
         throw error
       }
+    }
+  })
+}
+
+export const useSearchMulti = (query: string) => {
+  return useInfiniteQuery({
+    queryKey: ["search", "multi", query],
+    initialPageParam: 1,
+    enabled: query.trim().length >= 2, // ⬅️ penting
+    queryFn: async ({ pageParam = 1 }) : Promise<TmdbMultiSearchResponse> => {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_TMDB_API_BASE_URL}/search/multi?query=${encodeURIComponent(query)}&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&page=${pageParam}`,)
+
+      if (!res.ok) throw new Error("Failed to fetch search results")
+      
+      const data = await res.json() as TmdbMultiSearchResponse
+
+      return {
+        ...data, 
+        results: data.results.map(item => (
+          item.media_type === "person" 
+          ? {
+            ...item, 
+            profile_path: item.profile_path ? process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  item.profile_path : "/assets/images/default_pp.png",
+          } 
+          : {
+            ...item, 
+            poster_path : item.poster_path ? process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  item.poster_path : "/assets/images/poster_fallback.webp",
+            backdrop_path : item.backdrop_path  ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + item.backdrop_path : "/assets/images/backdrop_fallback.webp",
+          }
+        )),
+        nextPage: data.page < data.total_pages ? data.page + 1 : undefined,
+      }
+    },
+    getNextPageParam: (lastpage) => {
+      return lastpage?.nextPage
     }
   })
 }

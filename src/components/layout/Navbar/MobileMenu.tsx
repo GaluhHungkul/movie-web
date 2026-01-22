@@ -1,21 +1,38 @@
 import { Button } from "@/components/ui/button"
 import { navItems } from "@/lib/data/categories"
 import { AnimatePresence, motion } from "framer-motion"
-import { Menu, Search, User, X } from "lucide-react"
+import { Menu, User, X } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
-
+import SearchDialog from "./SearchDialog"
 
 const MobileMenu = () => {
 
   const pathname = usePathname()
 
   const [showMenu, setShowMenu] = useState(false)
+  const [openSearchDialog, setOpenSearchDialog] = useState(false)
 
   useEffect(() => {
     setShowMenu(false)
   },[pathname])
+
+  useEffect(() => {
+    if(!showMenu) return
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setShowMenu(false)
+      }
+    }
+
+    window.addEventListener("keydown", handleEscape)
+    return () => window.removeEventListener("keydown", handleEscape)
+  }, [showMenu])
+
+  useEffect(() => {
+    if(!openSearchDialog) setShowMenu(false)
+  },[openSearchDialog])
 
   return (
     <div className="relative md:hidden z-[100]">
@@ -29,7 +46,7 @@ const MobileMenu = () => {
         {showMenu && 
           <motion.div 
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={{ opacity: openSearchDialog ? 0 : 1 }}
             exit={{ opacity: 0 }}
             className="absolute border right-0 top-12 bg-background  rounded p-2 min-w-max w-48"
           >
@@ -41,9 +58,7 @@ const MobileMenu = () => {
               ))}
             </ul>
             <div className="border-t py-2 px-4 flex gap-4 text-muted-foreground">
-              <Button variant={"ghost"}>
-                <Search />
-              </Button>
+              <SearchDialog open={openSearchDialog} onOpenChange={setOpenSearchDialog}/>
               <Button variant={"ghost"}>
                 <User />
               </Button>

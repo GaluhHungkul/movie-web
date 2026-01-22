@@ -20,7 +20,7 @@ export const movieGenres = [
   { id: 37, name: "Western" },
 ]
 
-export const TvGenres = [
+export const tvGenres = [
   { id: 10759, name: "Action & Adventure" },
   { id: 16,    name: "Animation" },
   { id: 35,    name: "Comedy" },

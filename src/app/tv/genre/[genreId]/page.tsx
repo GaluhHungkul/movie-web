@@ -1,12 +1,12 @@
 import GridMovieListByGenre from "@/components/genreIdPage/GridMovieListByGenre"
-import { TvGenres } from "@/lib/data/genres"
+import { tvGenres } from "@/lib/data/genres"
 import { redirect } from "next/navigation"
 
 
 const TvByGenrePage  = async (props : { params : Promise<{ genreId : string }> }) => {
 
   const params = await props.params
-  const genre = TvGenres.find(genre => genre.id === Number(params.genreId))
+  const genre = tvGenres.find(genre => genre.id === Number(params.genreId))
   if(!genre) redirect("/")
 
   return (

@@ -1,12 +1,16 @@
 import { Button } from "@/components/ui/button"
 import { navItems } from "@/lib/data/categories"
-import { Search, User } from "lucide-react"
+import { User } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import SearchDialog from "./SearchDialog"
+import { useState } from "react"
 
 const TabletAndDesktopMenu = () => {
     
     const pathname = usePathname()
+
+    const [open, setOpen] = useState(false)
 
   return (
     <div className="hidden md:flex flex-6 justify-between items-center lg:flex-3">
@@ -18,9 +22,7 @@ const TabletAndDesktopMenu = () => {
             ))}
         </ul>
         <div className="text-muted-foreground flex gap-4 lg:gap-8">
-            <Button variant={"ghost"}>
-                <Search />
-            </Button>
+            <SearchDialog open={open} onOpenChange={setOpen}/>
             <Button variant={"ghost"}>
                 <User />
             </Button>

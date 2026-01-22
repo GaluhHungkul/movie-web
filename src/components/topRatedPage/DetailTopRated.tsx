@@ -1,4 +1,4 @@
-import { movieGenres, TvGenres } from "@/lib/data/genres"
+import { movieGenres, tvGenres } from "@/lib/data/genres"
 import { TypeMovie } from "@/types/types-movie"
 import { FC } from "react"
 
@@ -9,7 +9,7 @@ type Props = {
 
 const DetailTopRated : FC<Props> = ({ data, isMovie }) => {
 
-    const dataGenres = isMovie ? movieGenres : TvGenres
+    const dataGenres = isMovie ? movieGenres : tvGenres
 
   return (
     <section className="w-full text-sm p-3 bg-white/5 group-hover:bg-white/10 duration-300 md:text-2xl md:px-8 md:py-5">
