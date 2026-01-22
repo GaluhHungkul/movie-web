@@ -7,6 +7,7 @@ import Navbar from '@/components/layout/Navbar'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import SessionProviderWrapper from '@/components/layout/SessionProviderWrapper'
+import { Toaster } from '@/components/ui/sonner'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
@@ -29,6 +30,7 @@ export default async function RootLayout({
         <QueryProvider>
           <SessionProviderWrapper session={session}>
               <Navbar />
+              <Toaster position='top-center'/>
               <main className='min-h-svh overflow-x-hidden'>  
                 {children}
               </main>

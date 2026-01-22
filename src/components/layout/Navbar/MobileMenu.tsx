@@ -6,6 +6,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import SearchDialog from "./SearchDialog"
+import { toast } from "sonner"
 
 const MobileMenu = () => {
 
@@ -58,9 +59,12 @@ const MobileMenu = () => {
                 </li>
               ))}
             </ul>
-            <div className="border-t py-2 px-4 flex gap-4 text-muted-foreground">
+            <div className="border-t py-2 px-4 flex gap-4 text-muted-foreground relative">
               <SearchDialog open={openSearchDialog} onOpenChange={setOpenSearchDialog}/>
-              <Button variant={"ghost"}>
+              <Button variant={"ghost"} onClick={() => {
+                toast.warning("This feature is not available yet")
+                setShowMenu(false)
+              }}>
                 <User />
               </Button>
             </div>
