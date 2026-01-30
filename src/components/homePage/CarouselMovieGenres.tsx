@@ -34,9 +34,11 @@ const CarouselMovieGenres = () => {
                             </CardContent>
                             <CardFooter className="flex items-center justify-between">
                                 <h1>{item.title}</h1>
-                                <Button variant={"outline"}>
-                                    <ArrowRight />
-                                </Button>
+                                    <Link href={`/movies/genre/${item.id}`}>
+                                        <Button variant={"outline"}>
+                                            <ArrowRight />
+                                        </Button>
+                                    </Link>
                             </CardFooter>
                         </Card>
                     </CarouselItem>

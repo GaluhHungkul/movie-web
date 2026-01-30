@@ -28,7 +28,7 @@ export const navItems = [
 
 export const categoryItems = [
   {
-    id: 1,
+    id: 28,
     imgs: [
       "/assets/images/img-1.png",
       "/assets/images/img-2.png",
@@ -38,7 +38,7 @@ export const categoryItems = [
     title: "Action",
   },
   {
-    id: 2,
+    id: 12,
     imgs: [
       "/assets/images/img-5.png",
       "/assets/images/img-6.png",
@@ -48,7 +48,7 @@ export const categoryItems = [
     title: "Adventure",
   },
   {
-    id: 3,
+    id: 35,
     imgs: [
       "/assets/images/img-9.png",
       "/assets/images/img-10.png",
@@ -58,7 +58,7 @@ export const categoryItems = [
     title: "Comedy",
   },
   {
-    id: 4,
+    id: 18,
     imgs: [
       "/assets/images/img-13.png",
       "/assets/images/img-14.png",
@@ -68,7 +68,7 @@ export const categoryItems = [
     title: "Drama",
   },
   {
-    id: 5,
+    id: 27,
     imgs: [
       "/assets/images/img-17.png",
       "/assets/images/img-18.png",
