@@ -254,7 +254,7 @@ export const pricingCardItems = [
     id: 3,
     title: "Premium Plan",
     period: "Month",
-    text: "Access to a widest selection of movies and shows, including all new releases and Offline Viewing",
+    text: "Access to a widest selection of movies and shows, including all new releases, popular and Offline Viewing",
     price: 14.99,
   },
 ];
