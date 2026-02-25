@@ -13,7 +13,7 @@ const Intro = () => {
 
   return (
     <div className='flex flex-col items-center min-h-screen w-screen justify-end relative pb-28 lg:pb-32'>
-        <Image src={"/assets/images/hero-bg-img.png"} alt='Hero Background' fill sizes='100vw' className='relative z-[-1] object-cover object-center'/>
+        <Image loading='eager' src={"/assets/img/hero-bg-img.png"} alt='Hero Background' fill sizes='100vw' className='relative z-[-1] object-cover object-center'/>
         <motion.h1 
           variants={splitTextContainer}
           initial="hidden"

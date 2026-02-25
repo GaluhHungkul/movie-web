@@ -54,8 +54,8 @@ export const useBannerQuery = ({ endpoint } : { endpoint: string }) => {
         const movies = results.slice(0,5).map((movie:TypeMovie & { name? : string }) => {
           return {
             ...movie, 
-            backdrop_path : movie.backdrop_path  ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + movie.backdrop_path : "/assets/images/backdrop_fallback.webp",
-            poster_path :  movie.poster_path ? process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  movie.poster_path : "/assets/images/poster_fallback.webp",
+            backdrop_path : movie.backdrop_path  ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + movie.backdrop_path : "/assets/img/backdrop_fallback.webp",
+            poster_path :  movie.poster_path ? process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  movie.poster_path : "/assets/img/poster_fallback.webp",
             title : movie.title ?? movie.name ?? "No Title"
           }
         })
@@ -90,8 +90,8 @@ export const useMovieQuery = (params = defaultMovieQueryParams) => {
         const movies = results.slice(0,totalMoviePerRequest).map((movie:TypeMovie & { name? : string }) => {
           return {
             ...movie, 
-            backdrop_path : movie.backdrop_path  ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + movie.backdrop_path : "/assets/images/backdrop_fallback.webp",
-            poster_path :  movie.poster_path ? process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  movie.poster_path : "/assets/images/poster_fallback.webp",
+            backdrop_path : movie.backdrop_path  ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + movie.backdrop_path : "/assets/img/backdrop_fallback.webp",
+            poster_path :  movie.poster_path ? process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  movie.poster_path : "/assets/img/poster_fallback.webp",
             title : movie.title ?? movie.name ?? "No Title"
           }
         })
@@ -139,11 +139,11 @@ export const useInfiniteMovieQuery = (
             ...movie,
             backdrop_path:
               movie.backdrop_path ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL +
-              movie.backdrop_path : "/assets/images/backdrop_fallback.webp",
+              movie.backdrop_path : "/assets/img/backdrop_fallback.webp",
             poster_path:
               movie.poster_path ? 
               process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +
-              movie.poster_path : "/assets/images/poster_fallback.webp",
+              movie.poster_path : "/assets/img/poster_fallback.webp",
             title: movie.title ?? movie.name ?? "No Title",
           }))
 
@@ -178,15 +178,15 @@ export const useMovieQueryById = (media_id:string, type:"movie" | "tv"="movie") 
           previewMovie,  
           descriptionMovie : {
             ...descriptionMovie,
-            poster_path : descriptionMovie.poster_path ? process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  descriptionMovie.poster_path : "/assets/images/poster_fallback.webp",
-            backdrop_path : descriptionMovie.backdrop_path  ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + descriptionMovie.backdrop_path : "/assets/images/backdrop_fallback.webp",
+            poster_path : descriptionMovie.poster_path ? process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  descriptionMovie.poster_path : "/assets/img/poster_fallback.webp",
+            backdrop_path : descriptionMovie.backdrop_path  ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + descriptionMovie.backdrop_path : "/assets/img/backdrop_fallback.webp",
             title : descriptionMovie.title ?? descriptionMovie.name
           },
           actors: {
             ...actors,
             cast : actors.cast.slice(0,12).map((c:Cast) => ({
               ...c, 
-              profile_path: c.profile_path ? process.env.NEXT_PUBLIC_TMDB_API_PP_BASE_URL + c.profile_path : "/assets/images/default_pp.png",
+              profile_path: c.profile_path ? process.env.NEXT_PUBLIC_TMDB_API_PP_BASE_URL + c.profile_path : "/assets/img/default_pp.png",
             }))
           }
         }
@@ -216,12 +216,12 @@ export const useSearchMulti = (query: string) => {
           item.media_type === "person" 
           ? {
             ...item, 
-            profile_path: item.profile_path ? process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  item.profile_path : "/assets/images/default_pp.png",
+            profile_path: item.profile_path ? process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  item.profile_path : "/assets/img/default_pp.png",
           } 
           : {
             ...item, 
-            poster_path : item.poster_path ? process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  item.poster_path : "/assets/images/poster_fallback.webp",
-            backdrop_path : item.backdrop_path  ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + item.backdrop_path : "/assets/images/backdrop_fallback.webp",
+            poster_path : item.poster_path ? process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  item.poster_path : "/assets/img/poster_fallback.webp",
+            backdrop_path : item.backdrop_path  ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + item.backdrop_path : "/assets/img/backdrop_fallback.webp",
           }
         )),
         nextPage: data.page < data.total_pages ? data.page + 1 : undefined,

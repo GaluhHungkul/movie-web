@@ -28,7 +28,7 @@ const CarouselMovieGenres = () => {
                             <CardContent className="aspect-square grid grid-cols-2 gap-2">
                                 {item.imgs.map(image => (
                                     <div key={image} className="relative">
-                                        <Image key={image} src={image} alt={`${item.title}-${index}`} fill className="object-cover object-center "/>
+                                        <Image sizes="20vw" key={image} src={image} alt={`${item.title}-${index}`} fill className="object-cover object-center "/>
                                     </div>
                                 ))}
                             </CardContent>

@@ -37,7 +37,7 @@ const MobileSheet = () => {
         <SheetHeader>
           <SheetTitle>
             <Link href={"/"}>
-              {/* <Image src={"/assets/images/icon_full.png"} alt="" width={100} height={400} className=""/> */}
+              {/* <Image src={"/assets/img/icon_full.png"} alt="" width={100} height={400} className=""/> */}
               <h1 className="font-bold text-3xl text-secondary">Chill.</h1>
             </Link>
           </SheetTitle>

@@ -2,13 +2,60 @@ import { TypeMovie } from "@/types/types-movie"
 import { Button } from "../ui/button"
 import Link from "next/link"
 import { Bookmark, Star } from "lucide-react"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { toast } from "sonner"
+import { Spinner } from "../ui/spinner"
+
+type FavoritesMovieMutation = {
+  backdrop_path: string
+  title: string
+  movieId: number
+  poster_path: string
+  isMovie: boolean
+}
 
 const MovieDescription = ({ descriptionMovie, isMovie } : { descriptionMovie : TypeMovie | undefined, isMovie : boolean }) => {
+
+  const queryClient = useQueryClient()
+
+  const favoritesMovieMutation = useMutation({
+    mutationKey: ["myFavoritesMovie"],
+    mutationFn: async (data: FavoritesMovieMutation) => {
+      const res = await fetch("/api/user/favoritesMovie", {
+        method: "POST",
+        body: JSON.stringify(data)
+      })
+      if(!res.ok) throw new Error("Failed")
+      const { message } = await res.json()
+      toast.success(message)
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["myFavoritesMovie"] })
+    },
+    onError: () => toast.error("Something went wrong")
+  })
+
+  const handleAddFavoritesMovie = () => {
+    if(!descriptionMovie) return toast.error("Movie detail incomplete")
+    favoritesMovieMutation.mutate({
+      movieId: descriptionMovie?.id,
+      backdrop_path: descriptionMovie?.backdrop_path,
+      poster_path: descriptionMovie?.poster_path,
+      title: descriptionMovie?.title ?? "Chill Movies",
+      isMovie
+    })
+  }
+
   return (
     <div className="mt-10 space-y-3 md:text-xl md:mt-0 md:flex-1 lg:flex-2">
       <div className="flex justify-between items-center">
         <h1 className="text-my-primary text-2xl">{descriptionMovie?.title}</h1>
-        <Button variant={"secondary"} title="Add to your list"><Bookmark /></Button>
+        <Button disabled={favoritesMovieMutation.isPending} onClick={handleAddFavoritesMovie} variant={"secondary"} title="Add to your list">
+          {favoritesMovieMutation.isPending 
+            ? <Spinner />
+            : <Bookmark />
+          }
+        </Button>
       </div>
       <h1 className="text-white/70 text-sm mb-8">{descriptionMovie?.tagline ?? ""}</h1>
       <section className="flex gap-2 items-center">

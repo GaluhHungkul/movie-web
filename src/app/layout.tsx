@@ -8,6 +8,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import SessionProviderWrapper from '@/components/layout/SessionProviderWrapper'
 import { Toaster } from '@/components/ui/sonner'
+import DialogAuthCard from '@/components/layout/DialogAuthCard'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
@@ -31,6 +32,7 @@ export default async function RootLayout({
           <SessionProviderWrapper session={session}>
               <Navbar />
               <Toaster position='top-center'/>
+              <DialogAuthCard />
               <main className='min-h-svh overflow-x-hidden'>  
                 {children}
               </main>

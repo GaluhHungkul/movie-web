@@ -182,7 +182,7 @@
   h2,
   h3,
   h4 {
-    @apply leading-[1.2] font-bold text-white;
+    @apply leading-[1.2] font-bold text-white md:text-lg lg:text-xl;
   }
   .section {
     @apply pt-20 lg:pt-32;

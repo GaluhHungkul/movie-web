@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,25 +8,41 @@ datasource db {
 
 model User {
   id             String          @id @default(uuid())
-  name           String
-  email          String          @unique
-  image          String          @default("/assets/images/default_pp.png")
+  name           String?
+  email          String?         @unique
   password       String?
   oauthProvider  String?
   createdAt      DateTime        @default(now())
   updatedAt      DateTime        @updatedAt
+  image          String          @default("/assets/img/default_pp.png")
   favoritesMovie FavoriteMovie[]
+  isSubscribe Boolean @default(false)
+  subscribePlan String? 
+  startedSubscribeAt DateTime?
+  expiredSubscribeAt DateTime?
 }
 
 model FavoriteMovie {
-  id            String @id @default(uuid())
+  id            String  @id @default(uuid())
   userId        String
   movieId       String
   title         String
   poster_path   String
   backdrop_path String
+  isMovie Boolean
+  added_at DateTime @default(now())
 
-  user User @relation(fields: [userId], references: [id])
-
+  user          User    @relation(fields: [userId], references: [id])
+  
   @@unique([userId, movieId])
 }
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+// model LearnUser {
+//   id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+//   created_at DateTime  @default(now()) @db.Timestamptz(6)
+//   updated_at DateTime? @default(now()) @db.Timestamp(6)
+//   name       String?   @db.VarChar
+//   email      String?   @db.VarChar
+//   age        BigInt?
+// }

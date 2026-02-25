@@ -22,12 +22,11 @@ export const authOptions : NextAuthOptions = {
                     const { email, password } = credentials
                     const currUser = await prisma.user.findUnique({ 
                         where : { email },
-                        include : {
-                            favoritesMovie : true
-                        }
+                        // include : {
+                        //     favoritesMovie : true
+                        // }
                     })
-                    if(!currUser) return null
-                    if(!currUser.password) return null
+                    if(!currUser || !currUser.password) return null
 
                     const isValidPassword = await compare(password, currUser.password)
                     if(!isValidPassword) return null
@@ -37,7 +36,7 @@ export const authOptions : NextAuthOptions = {
                         name : currUser.name,
                         email : currUser.email,
                         image : currUser.image,
-                        favoritesMovie : currUser.favoritesMovie
+                        // favoritesMovie : currUser.favoritesMovie
                     }
 
                 } catch (error) {
@@ -51,9 +50,9 @@ export const authOptions : NextAuthOptions = {
     session : {
         strategy : "jwt"
     },
-    pages : {
-        signIn : "/login"
-    },
+    // pages : {
+    //     signIn : "/login"
+    // },
     callbacks : {
         async signIn({ account, user }) {
             const { name, email } = user
@@ -65,48 +64,46 @@ export const authOptions : NextAuthOptions = {
                         name, email, 
                         oauthProvider : "google",
                         favoritesMovie : {
-                            create : []
+                            create: []
                         }
                     }})
                 }
             }
             return true
         },
-        async jwt({ token, user, trigger }) {
-            if(trigger === "update" && token.email) {
+        async jwt({ token, user }) {
+            if(token.email) {
                 const currUser = await prisma.user.findUnique({ 
-                    where : { email : token.email },
-                    include : {
-                        favoritesMovie : true
-                    }
+                    where : { email : token.email ?? "" },
+                    // include : {
+                    //     favoritesMovie : true
+                    // }
                 }) 
                 if(currUser) {
-                    const { id, name, email, image, favoritesMovie }  = currUser
+                    const { id, name, email, image }  = currUser
                     token.id = id
                     token.name = name
                     token.email= email
                     token.image = image
-                    token.favoritesMovie = favoritesMovie
+                    // token.favoritesMovie = favoritesMovie
                 }
             }
-
             if(user) {
-                token.id = user.id
+                // token.id = user.id
                 token.name = user.name
                 token.email = user.email
                 token.image = user.image
-                token.favoritesMovie = user.favoritesMovie
+                // token.favoritesMovie = user.favoritesMovie
             }
-
             return token
         },
-        async session({ session, token : { id, name, email, image, favoritesMovie } }) {
+        async session({ session, token : { id, name, email, image } }) {
             if(session.user) {
                 session.user.id = id!
                 session.user.name = name!
                 session.user.email = email!
                 session.user.image = image!
-                session.user.favoritesMovie = favoritesMovie
+                // session.user.favoritesMovie = favoritesMovie
             }
             return session
         }

@@ -1,5 +1,5 @@
 import { DefaultSession, DefaultUser } from "next-auth"
-import { FavoriteMovie, Prisma } from "@prisma/client"
+import { Prisma } from "@prisma/client"
 
 type UserWithFavorites = Prisma.UserGetPayload<{
   include : {
@@ -14,7 +14,7 @@ declare module "next-auth" {
 
   interface User extends DefaultUser {
     id: string
-    favoritesMovie : FavoriteMovie[]
+    // favoritesMovie : FavoriteMovie[]
   }
 }
 
@@ -24,7 +24,7 @@ declare module "next-auth/jwt" {
     name?: string | null
     email?: string | null
     image? : string | null
-    favoritesMovie : FavoriteMovie[]
+    // favoritesMovie : FavoriteMovie[]
   }
 }
 

@@ -5,9 +5,12 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import SearchDialog from "./SearchDialog"
 import { useEffect, useState } from "react"
-import { toast } from "sonner"
 
-const TabletAndDesktopMenu = () => {
+const TabletAndDesktopMenu = ({
+    handleClickUserIcon
+} : {
+    handleClickUserIcon: () => void
+}) => {
     
     const pathname = usePathname()
 
@@ -28,7 +31,7 @@ const TabletAndDesktopMenu = () => {
         </ul>
         <div className="text-muted-foreground flex gap-4 lg:gap-8">
             <SearchDialog open={open} onOpenChange={setOpen}/>
-            <Button variant={"ghost"} onClick={() => toast.warning("This feature is not available yet")}>
+            <Button variant={"ghost"} onClick={handleClickUserIcon}>
                 <User />
             </Button>
         </div>

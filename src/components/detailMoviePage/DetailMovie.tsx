@@ -32,7 +32,7 @@ const DetailMovie = ({ movieId, tv=false }: { movieId : string, tv?:boolean }) =
   // const handleAddToList = async (value:FavoriteMovieSent) => {
   //   try {
   //     setIsLoadingAddToList(true)
-  //     await fetch(`/api/user/favorites`, {
+  //     await fetch(`/api/user/favoritesMovie`, {
   //       method : "POST",
   //       headers : {
   //         "Content-Type" : "application/json"

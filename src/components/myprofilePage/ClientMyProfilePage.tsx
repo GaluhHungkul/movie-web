@@ -1,21 +1,19 @@
 "use client"
 
-import useUser from "@/zustand/useUser"
-import HeaderProfile from "./HeaderProfile"
 import MyFavoritesMovie from "./MyFavoritesMovie"
+import MyProfileCard from "./MyProfileCard"
+import SubscribtionCard from "./SubscribtionCard"
 
-const FAVORITES_MOVIE_SHOWED_IN_PROFILE = 4
 
 const ClientMyProfilePage = () => {
 
-
-  const { data } = useUser()
-
-
   return (
-    <div className="px-4  relative text-white lg:px-12 ">
-      <HeaderProfile data={data}/>
-      <MyFavoritesMovie data={data?.favoritesMovie?.slice(0,FAVORITES_MOVIE_SHOWED_IN_PROFILE) || []}/>
+    <div className="container space-y-10 pb-20 md:pb-32 lg:pt-10">
+      <section className="flex gap-10 flex-col md:flex-row">
+        <SubscribtionCard />
+        <MyProfileCard />
+      </section>
+      <MyFavoritesMovie />
     </div>
   )
 }
