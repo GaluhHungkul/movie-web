@@ -1,12 +1,9 @@
-import { DefaultSession, DefaultUser } from "next-auth"
+import { DefaultUser } from "next-auth"
+import { UserFE } from "./type-user-fe"
 
 declare module "next-auth" {
   interface Session {
-    user: DefaultSession["user"] & {
-      isSubscribe?: boolean;
-      id?: string
-      subscribePlanTitle?: string | "Basic Plan" | "Standard Plan" | "Premium Plan" | undefined | null
-    }
+    user: UserFE
   }
 
   interface User extends DefaultUser {
