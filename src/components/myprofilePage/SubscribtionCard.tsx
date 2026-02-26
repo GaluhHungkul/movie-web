@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import Link from 'next/link'
 import useUser from "@/store/useUser"
-import { User } from '@prisma/client'
+import { UserFE } from '@/types/type-user-fe'
 
 const SubscribtionCard = () => {
 
@@ -15,7 +15,7 @@ const SubscribtionCard = () => {
 
 export default SubscribtionCard
 
-const SubscribtionOn = ({ user } : { user: User | null }) => {
+const SubscribtionOn = ({ user } : { user: UserFE | null }) => {
   return (
     <Card>
         <CardHeader className='relative z-10'>
