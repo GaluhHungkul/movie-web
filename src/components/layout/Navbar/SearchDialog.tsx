@@ -15,6 +15,8 @@ import { Search } from "lucide-react"
 import { useEffect, useState } from "react"
 import ListSearchedCard from "./ListSearchedCard"
 import { useInView } from "react-intersection-observer"
+import useUser from "@/store/useUser"
+import { toast } from "sonner"
 
 const SearchDialog = ({ open, onOpenChange } : { open: boolean; onOpenChange: (open:boolean) => void}) => {
 
@@ -27,7 +29,10 @@ const SearchDialog = ({ open, onOpenChange } : { open: boolean; onOpenChange: (o
         rootMargin: "20px"
     })
 
+    const { user } = useUser()
+
     const { data, isPending, isLoading,  isError, error, isFetchingNextPage, fetchNextPage, hasNextPage } = useSearchMulti(debouncedSearch)
+
     const mainContent = isPending 
     ? <p className="text-center my-4">Find movies by title, genre, or release year.</p>
     : (
@@ -46,12 +51,14 @@ const SearchDialog = ({ open, onOpenChange } : { open: boolean; onOpenChange: (o
     )
 
     useEffect(() => {
-        if(inView && hasNextPage && !isFetchingNextPage) fetchNextPage()
-        
+      if(inView && hasNextPage && !isFetchingNextPage) fetchNextPage()
     },[inView, hasNextPage, isFetchingNextPage, fetchNextPage])
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={(value) => {
+      if(user?.subscribePlanTitle !== "Premium Plan") return toast.error("This feature is available for Premium Plan only.")
+      onOpenChange(value)
+    }}>
       <form>
         <DialogTrigger asChild>
           <Button variant={"ghost"}><Search /></Button>

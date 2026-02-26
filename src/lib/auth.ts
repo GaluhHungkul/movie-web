@@ -36,6 +36,8 @@ export const authOptions : NextAuthOptions = {
                         name : currUser.name,
                         email : currUser.email,
                         image : currUser.image,
+                        isSubscribe: currUser.isSubscribe,
+                        subscribePlanTitle: currUser.subscribePlanTitle
                         // favoritesMovie : currUser.favoritesMovie
                     }
 
@@ -80,11 +82,13 @@ export const authOptions : NextAuthOptions = {
                     // }
                 }) 
                 if(currUser) {
-                    const { id, name, email, image }  = currUser
+                    const { id, name, email, image, isSubscribe, subscribePlanTitle }  = currUser
                     token.id = id
                     token.name = name
                     token.email= email
                     token.image = image
+                    token.isSubscribe = isSubscribe
+                    token.subscribePlanTitle = subscribePlanTitle
                     // token.favoritesMovie = favoritesMovie
                 }
             }
@@ -93,16 +97,20 @@ export const authOptions : NextAuthOptions = {
                 token.name = user.name
                 token.email = user.email
                 token.image = user.image
+                token.isSubscribe = user.isSubscribe
+                token.subscribePlanTitle = user.subscribePlanTitle
                 // token.favoritesMovie = user.favoritesMovie
             }
             return token
         },
-        async session({ session, token : { id, name, email, image } }) {
+        async session({ session, token : { id, name, email, image, isSubscribe, subscribePlanTitle } }) {
             if(session.user) {
                 session.user.id = id!
                 session.user.name = name!
                 session.user.email = email!
                 session.user.image = image!
+                session.user.isSubscribe = isSubscribe
+                session.user.subscribePlanTitle = subscribePlanTitle
                 // session.user.favoritesMovie = favoritesMovie
             }
             return session

@@ -28,7 +28,7 @@ const SubscribtionOn = ({ user } : { user: User | null }) => {
             <p className='font-medium'>Your subscription is active. You&apos;re part of the experience.</p>
         </CardContent>
         <CardFooter className='justify-end z-10'>
-            <Button variant={"outline"}>{user?.subscribePlan ?? "Standard Plan"}</Button>
+            <Button variant={"outline"}>{user?.subscribePlanTitle}</Button>
         </CardFooter>
    </Card>
   )

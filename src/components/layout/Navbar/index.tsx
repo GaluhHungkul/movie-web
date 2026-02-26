@@ -26,8 +26,10 @@ const Navbar  = () => {
     router.push("/myprofile")
   }
   useEffect(() => {
-    if(status !== "loading" && session?.user) setUser(session.user)
+    if(status !== "loading" && session?.user) setUser(session?.user)
   },[status, session, setUser, pathname])
+
+  console.log(user)
   
   if(disabledLayout.includes(pathname)) return null
 

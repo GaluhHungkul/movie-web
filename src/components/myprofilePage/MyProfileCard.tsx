@@ -1,6 +1,8 @@
 import useUser from '@/store/useUser'
 import PhotoProfile from './PhotoProfile'
 import DialogEditProfile from './DialogEditProfile'
+import { Button } from '../ui/button'
+import { signOut } from 'next-auth/react'
 
 const MyProfileCard = () => {
 
@@ -17,6 +19,7 @@ const MyProfileCard = () => {
         </div>
         <DialogEditProfile />
       </section>
+      <Button className='md:mt-4' onClick={() => signOut({ callbackUrl: "/" })}>SignOut</Button>
     </div>
   )
 }

@@ -31,7 +31,7 @@ export default async function RootLayout({
         <QueryProvider>
           <SessionProviderWrapper session={session}>
               <Navbar />
-              <Toaster position='top-center'/>
+              <Toaster position='top-center' closeButton duration={1500} swipeDirections={["bottom", "left", "right", "top"]} />
               <DialogAuthCard />
               <main className='min-h-svh overflow-x-hidden'>  
                 {children}

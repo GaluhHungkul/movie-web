@@ -16,10 +16,14 @@ model User {
   updatedAt      DateTime        @updatedAt
   image          String          @default("/assets/img/default_pp.png")
   favoritesMovie FavoriteMovie[]
+  //? Subscription
   isSubscribe Boolean @default(false)
-  subscribePlan String? 
   startedSubscribeAt DateTime?
   expiredSubscribeAt DateTime?
+
+  subscribePlanTitle String?
+  subscribePlanId String?
+  subscribePlan SubscribePlan? @relation(fields: [subscribePlanId], references: [id]) 
 }
 
 model FavoriteMovie {
@@ -35,6 +39,16 @@ model FavoriteMovie {
   user          User    @relation(fields: [userId], references: [id])
   
   @@unique([userId, movieId])
+}
+
+model SubscribePlan {
+  id String @id @default(uuid())
+  title String
+  description String
+  price Float
+  timePeriod String? @default("Month")
+
+  user User[]
 }
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.

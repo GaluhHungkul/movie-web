@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "SubscribePlan" ALTER COLUMN "price" SET DATA TYPE DOUBLE PRECISION;

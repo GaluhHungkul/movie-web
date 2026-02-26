@@ -1,19 +1,18 @@
 import { DefaultSession, DefaultUser } from "next-auth"
-import { Prisma } from "@prisma/client"
-
-type UserWithFavorites = Prisma.UserGetPayload<{
-  include : {
-    favoritesMovie : true
-  }
-}>
 
 declare module "next-auth" {
   interface Session {
-    user: UserWithFavorites & DefaultSession["user"]
+    user: DefaultSession["user"] & {
+      isSubscribe?: boolean;
+      id?: string
+      subscribePlanTitle?: string | "Basic Plan" | "Standard Plan" | "Premium Plan" | undefined | null
+    }
   }
 
   interface User extends DefaultUser {
     id: string
+    isSubscribe?: boolean
+    subscribePlanTitle?: string | "Basic Plan" | "Standard Plan" | "Premium Plan" | undefined | null
     // favoritesMovie : FavoriteMovie[]
   }
 }
@@ -24,6 +23,8 @@ declare module "next-auth/jwt" {
     name?: string | null
     email?: string | null
     image? : string | null
+    isSubscribe?: boolean
+    subscribePlanTitle?: string | "Basic Plan" | "Standard Plan" | "Premium Plan" | undefined | null
     // favoritesMovie : FavoriteMovie[]
   }
 }

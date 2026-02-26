@@ -5,6 +5,7 @@ import { Bookmark, Star } from "lucide-react"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
 import { Spinner } from "../ui/spinner"
+import useUser from "@/store/useUser"
 
 type FavoritesMovieMutation = {
   backdrop_path: string
@@ -17,6 +18,8 @@ type FavoritesMovieMutation = {
 const MovieDescription = ({ descriptionMovie, isMovie } : { descriptionMovie : TypeMovie | undefined, isMovie : boolean }) => {
 
   const queryClient = useQueryClient()
+
+  const { user } = useUser()
 
   const favoritesMovieMutation = useMutation({
     mutationKey: ["myFavoritesMovie"],
@@ -36,6 +39,8 @@ const MovieDescription = ({ descriptionMovie, isMovie } : { descriptionMovie : T
   })
 
   const handleAddFavoritesMovie = () => {
+    if(!user?.isSubscribe) return toast.error("This feature is available for subscribers only.")
+
     if(!descriptionMovie) return toast.error("Movie detail incomplete")
     favoritesMovieMutation.mutate({
       movieId: descriptionMovie?.id,

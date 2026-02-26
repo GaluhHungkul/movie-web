@@ -5,6 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import SearchDialog from "./SearchDialog"
 import { useEffect, useState } from "react"
+import { toast } from "sonner"
 
 const TabletAndDesktopMenu = ({
     handleClickUserIcon
@@ -25,7 +26,12 @@ const TabletAndDesktopMenu = ({
         <ul className="flex gap-2 bg-black px-2 py-4 border w-max rounded-md">
             {navItems.map(item => (
                 <li key={item.id}>
-                    <Link className={`${pathname === item.href ? "bg-black-12" : ""}  text-foreground hover:bg-black-12 px-5 py-3 rounded`} href={item.href}>{item.label}</Link>
+                    <Link onClick={(e) => {
+                        if(item.href === "/showmore/top_rated") {
+                            e.preventDefault()
+                            toast.error("Standar or higher plan required")
+                        }
+                    }} className={`${pathname === item.href ? "bg-black-12" : ""}  text-foreground hover:bg-black-12 px-5 py-3 rounded`} href={item.href}>{item.label}</Link>
                 </li>
             ))}
         </ul>

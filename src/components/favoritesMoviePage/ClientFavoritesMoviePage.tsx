@@ -1,13 +1,12 @@
 "use client"
 
-import useUser from "@/store/useUser"
 import MyFavoritesMovie from "../myprofilePage/MyFavoritesMovie"
 
-const ClientFavoritesMoviePage = () => {
+const ClientFavoritesMoviePage = () => (
+    <div className="container pb-20 md:pb-32 pt-10">
+        <MyFavoritesMovie showMore={false}/>
+    </div>
+)
 
-    const { user } = useUser()
-
-  return <MyFavoritesMovie data={user?.favoritesMovie} showMore={false}/>
-}
 
 export default ClientFavoritesMoviePage
