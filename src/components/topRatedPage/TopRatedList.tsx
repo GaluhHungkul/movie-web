@@ -3,6 +3,7 @@ import Link from "next/link"
 import DetailTopRated from "./DetailTopRated"
 import { TypeMovie } from "@/types/types-movie"
 import { FC } from "react"
+import { useHandleToDetailMovie } from "@/lib/handleToDetailMovie"
 
 type Props = {
     data : TypeMovie[]
@@ -10,10 +11,13 @@ type Props = {
 }
 
 const TopRatedList : FC<Props> = ({ data, endpoint }) => {
+
+    const handleToDetailMovieClick = useHandleToDetailMovie()
+
   return (
     <div className="flex flex-col gap-2">
         {data.map((movie) => (            
-            <Link href={`/${endpoint.includes("movie") ? "movies" : "tv"}/detail/${movie.id}`} key={movie.id} className="w-full relative flex group rounded overflow-hidden">
+            <Link onClick={handleToDetailMovieClick} href={`/${endpoint.includes("movie") ? "movies" : "tv"}/detail/${movie.id}`} key={movie.id} className="w-full relative flex group rounded overflow-hidden">
                 <Image src={movie.poster_path} width={500} height={300} alt={movie.title ?? ""} className="w-32 md:w-80 object-center object-cover"/>
                 <DetailTopRated data={movie} isMovie={endpoint === "/movie/top_rated"}/>
             </Link>

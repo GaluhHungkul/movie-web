@@ -15,11 +15,14 @@ import { FormEvent, useState } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import { Spinner } from '../ui/spinner'
+import { useHandleToDetailMovie } from '@/lib/handleToDetailMovie'
 
 const FavoriteMovieCard = ({ isMovie, movieId, id, poster_path,title } : FavoriteMovie) => {
 
+  const handleToDetailMovieClick = useHandleToDetailMovie()
+  
   return (
-    <Link href={`/${isMovie ? "movies" : "tv"}/detail/${movieId}`} key={id} className="relative aspect-[2/3] rounded overflow-hidden group">
+    <Link href={`/${isMovie ? "movies" : "tv"}/detail/${movieId}`} onClick={handleToDetailMovieClick} key={id} className="relative aspect-[2/3] rounded overflow-hidden group">
         <Image src={poster_path} alt={title} className="object-cover object-center hover:scale- duration-300" fill sizes="25vw"/>
         <DialogRemoveFavoriteMovie movieId={movieId}/>
         <div className={`bg-background/70 absolute inset-0  rounded z-10 translate-y-full group-hover:translate-y-0 duration-500 delay-0 flex items-end p-4`}>

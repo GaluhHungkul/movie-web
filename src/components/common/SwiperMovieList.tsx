@@ -15,6 +15,7 @@ import BannerPagination from "../common/BannerPagination";
 import { Swiper as SwiperType } from "swiper/types"
 import { Button } from "../ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useHandleToDetailMovie } from "@/lib/handleToDetailMovie";
 
 type Props = {
     title : string;
@@ -31,6 +32,8 @@ const SwiperMovieList : FC<Props> = ({ title, href, endpoint, reverse=false, tv=
     const [swiperInstance, setSwiperInstance] = useState<SwiperType>(null!);
     const [activeIndex, setActiveIndex] = useState(0)
    
+    const handleToDetailMovieClick = useHandleToDetailMovie()
+
     if(isPending) return <SkeletonSwiperMovieList />
     if(error) return <p className="text-white font-bold text-center content-center h-[50vh]">Error : {error.message}</p>
 
@@ -65,7 +68,7 @@ const SwiperMovieList : FC<Props> = ({ title, href, endpoint, reverse=false, tv=
           
             {data?.movies.map(movie => (
                 <SwiperSlide key={movie.id} className="!w-28 md:!w-40 lg:!w-60">
-                    <Link href={`/${tv ? "tv" : "movies"}/detail/${movie.id}`}>
+                    <Link onClick={handleToDetailMovieClick} href={`/${tv ? "tv" : "movies"}/detail/${movie.id}`}>
                         <Image src={movie.poster_path} alt={movie.title ?? ""} width={900} height={500} />
                     </Link>
                 </SwiperSlide> 
