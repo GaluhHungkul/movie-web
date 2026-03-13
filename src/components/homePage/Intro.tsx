@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Button } from '../ui/button';
 import { motion } from 'framer-motion';
 import { fadeInUp, splitTextContainer, splitTextWord } from '@/lib/data/animation';
+import Link from 'next/link';
 
 const Intro = () => { 
 
@@ -32,7 +33,7 @@ const Intro = () => {
           ))}
         </motion.h1>
         <motion.p variants={fadeInUp} initial="hidden" whileInView={"show"} viewport={{ once: true }} className="text-center text-sm text-muted-foreground font-medium mt-6 md:text-xl lg:text-2xl lg:w-4/5">Unlimited movies. Endless shows. Zero waiting. Chill puts thousands of titles at your fingertips-new releases, classics, and everything in between.</motion.p>
-        <Button className='mt-8 cursor-pointer md:scale-125 md:font-bold'>Start Watching Now</Button>
+        <Link href={"/movies"}><Button className='mt-8 cursor-pointer md:scale-125 md:font-bold'>Start Watching Now</Button></Link>
     </div>
   )
 }

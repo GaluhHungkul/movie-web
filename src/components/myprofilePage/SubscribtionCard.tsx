@@ -11,7 +11,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { toast } from 'sonner'
 import { Spinner } from '../ui/spinner'
 import { Input } from '../ui/input'
@@ -44,7 +44,7 @@ const SubscribtionOn = ({ user } : { user: UserFE | null }) => {
         </CardContent>
         <CardFooter className='justify-end z-10 gap-2'>
             <DialogStopSubscription />
-            <Button variant={"outline"}>{user?.subscribePlanTitle}</Button>
+            <Button className='bg-accent! cursor-auto' variant={"outline"}>{user?.subscribePlanTitle}</Button>
         </CardFooter>
    </Card>
   )
@@ -82,7 +82,9 @@ const DialogStopSubscription = () => {
 
     const { update } = useSession()
 
-    const handleStop = async () => {
+    const handleStop = async (e:FormEvent) => {
+        e.preventDefault()
+        if(userInputToStop.trim() != WORD_TO_TYPE) return setOpen(true)
         seLoadingStopSubscription(true)
         try {
             const res = await fetch("/api/pricing", {
@@ -97,13 +99,14 @@ const DialogStopSubscription = () => {
         } finally {
             seLoadingStopSubscription(false)
             setOpen(false)
+            setUserInputToStop("")
         }
     }
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button variant={"outline"}>Stop subscription</Button>
+                <Button>Stop subscription</Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-md" showCloseButton={false}>
                 <DialogHeader>
@@ -112,16 +115,16 @@ const DialogStopSubscription = () => {
                         This action can&apos;t be undone
                     </DialogDescription>
                 </DialogHeader>
-                <div className='space-y-8 mt-2'>
+                <form onSubmit={handleStop} className='space-y-8 mt-2'>
                     <section className='space-y-4'>
                         <Label className='lg:text-base' htmlFor='input'>To confirm, type {`"${WORD_TO_TYPE}"`}</Label>
                         <Input id='input' placeholder={WORD_TO_TYPE} value={userInputToStop} onChange={(e) => setUserInputToStop(e.target.value)}/>
                     </section>
                     <section className="flex items-center justify-end gap-2">
                         <Button onClick={() => setOpen(false)} variant={"outline"}>Close</Button>
-                        <Button onClick={handleStop} disabled={loadingStopSubscription || userInputToStop.trim() != WORD_TO_TYPE}>{loadingStopSubscription ? <Spinner /> : "Yes"}</Button>
+                        <Button disabled={loadingStopSubscription || userInputToStop.trim() != WORD_TO_TYPE}>{loadingStopSubscription ? <Spinner /> : "Yes"}</Button>
                     </section>
-                </div>
+                </form>
             </DialogContent>
         </Dialog>
     )

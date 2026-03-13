@@ -68,7 +68,7 @@ const DialogEditProfile = () => {
                 </Label>
                 <Input required onChange={(e) => setNewname(e.target.value)} />
             </div>
-            <Button disabled={loadingChangeName} className="w-full">{loadingChangeName ? "Submitting..." : "Change"}</Button>
+            <Button variant={"secondary"} disabled={loadingChangeName} className="w-full">{loadingChangeName ? "Submitting..." : "Change"}</Button>
         </form>
       </DialogContent>
     </Dialog>

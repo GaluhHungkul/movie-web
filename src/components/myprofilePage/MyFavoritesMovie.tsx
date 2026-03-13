@@ -44,7 +44,7 @@ const MyFavoritesMovie = ({ showMore=true, count=null } : { showMore? : boolean;
                   :
                   <div>
                     <h1 className="text-center">
-                      You dont&apos;t have any favorites movie
+                      You don&apos;t have any favorites movie
                     </h1>
                   </div>  
                 }

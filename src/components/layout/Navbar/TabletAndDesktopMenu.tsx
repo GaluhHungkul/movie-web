@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation"
 import SearchDialog from "./SearchDialog"
 import { useEffect, useState } from "react"
 import { toast } from "sonner"
+import useUser from "@/store/useUser"
 
 const TabletAndDesktopMenu = ({
     handleClickUserIcon
@@ -14,8 +15,9 @@ const TabletAndDesktopMenu = ({
 }) => {
     
     const pathname = usePathname()
-
     const [open, setOpen] = useState(false)
+
+    const { user } = useUser()
 
     useEffect(() => {
         setOpen(false)
@@ -27,7 +29,7 @@ const TabletAndDesktopMenu = ({
             {navItems.map(item => (
                 <li key={item.id}>
                     <Link onClick={(e) => {
-                        if(item.href === "/showmore/top_rated") {
+                        if(item.href === "/showmore/top_rated" && !["Premium Plan", "Standard Plan"].includes(user?.subscribePlanTitle ?? "")) {
                             e.preventDefault()
                             toast.error("Standar or higher plan required")
                         }
