@@ -50,3 +50,30 @@ export async function POST(req:NextRequest) {
     }
 }
 
+
+export async function DELETE(req:NextRequest) {
+    try {
+        const token = await getToken({ req, secret })
+        if(!token) return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
+    
+        await prisma.user.update({
+            where: { id: token.id },
+            data: {
+                isSubscribe: false, 
+                subscribePlan: {
+                    disconnect: true,
+                },
+                subscribePlanTitle: null,
+                stopedSubscribeAt: new Date()
+            }
+        })        
+
+        return NextResponse.json({ message: "Successfully stop your plan."})
+
+    } catch (error) {
+        console.log("Error : " , error)
+        return NextResponse.json({
+            message: "Internal server error"
+        }, { status: 500})
+    }
+}

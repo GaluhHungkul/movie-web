@@ -3,6 +3,20 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import Link from 'next/link'
 import useUser from "@/store/useUser"
 import { UserFE } from '@/types/type-user-fe'
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+import { useState } from 'react'
+import { toast } from 'sonner'
+import { Spinner } from '../ui/spinner'
+import { Input } from '../ui/input'
+import { Label } from '../ui/label'
+import { useSession } from 'next-auth/react'
 
 const SubscribtionCard = () => {
 
@@ -16,6 +30,7 @@ const SubscribtionCard = () => {
 export default SubscribtionCard
 
 const SubscribtionOn = ({ user } : { user: UserFE | null }) => {
+
   return (
     <Card>
         <CardHeader className='relative z-10'>
@@ -27,7 +42,8 @@ const SubscribtionOn = ({ user } : { user: UserFE | null }) => {
         <CardContent className='relative z-10'>
             <p className='font-medium'>Your subscription is active. You&apos;re part of the experience.</p>
         </CardContent>
-        <CardFooter className='justify-end z-10'>
+        <CardFooter className='justify-end z-10 gap-2'>
+            <DialogStopSubscription />
             <Button variant={"outline"}>{user?.subscribePlanTitle}</Button>
         </CardFooter>
    </Card>
@@ -54,4 +70,59 @@ const SubscriptionOff = () => {
         </CardFooter>
    </Card>
   )
+}
+
+const WORD_TO_TYPE = "stop my plan"
+
+const DialogStopSubscription = () => {
+
+    const [open, setOpen] = useState(false)
+    const [loadingStopSubscription, seLoadingStopSubscription] = useState(false)
+    const [userInputToStop, setUserInputToStop] = useState("")
+
+    const { update } = useSession()
+
+    const handleStop = async () => {
+        seLoadingStopSubscription(true)
+        try {
+            const res = await fetch("/api/pricing", {
+                method: "DELETE"
+            })
+            if(!res.ok) throw new Error("Failed processing your request")
+            toast.success("Successfully stop your plan")
+            update()
+        } catch (error) {
+            console.log("Error : ", error)
+            toast.error("Something went wrong")
+        } finally {
+            seLoadingStopSubscription(false)
+            setOpen(false)
+        }
+    }
+
+    return (
+        <Dialog open={open} onOpenChange={setOpen}>
+            <DialogTrigger asChild>
+                <Button variant={"outline"}>Stop subscription</Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-md" showCloseButton={false}>
+                <DialogHeader>
+                    <DialogTitle>Are you sure to stop your plan?</DialogTitle>
+                    <DialogDescription>
+                        This action can&apos;t be undone
+                    </DialogDescription>
+                </DialogHeader>
+                <div className='space-y-8 mt-2'>
+                    <section className='space-y-4'>
+                        <Label className='lg:text-base' htmlFor='input'>To confirm, type {`"${WORD_TO_TYPE}"`}</Label>
+                        <Input id='input' placeholder={WORD_TO_TYPE} value={userInputToStop} onChange={(e) => setUserInputToStop(e.target.value)}/>
+                    </section>
+                    <section className="flex items-center justify-end gap-2">
+                        <Button onClick={() => setOpen(false)} variant={"outline"}>Close</Button>
+                        <Button onClick={handleStop} disabled={loadingStopSubscription || userInputToStop.trim() != WORD_TO_TYPE}>{loadingStopSubscription ? <Spinner /> : "Yes"}</Button>
+                    </section>
+                </div>
+            </DialogContent>
+        </Dialog>
+    )
 }

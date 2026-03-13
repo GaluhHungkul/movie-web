@@ -34,7 +34,7 @@ const SignInForm = () => {
   const [loadingSignIn, setLoadingSignIn] = useState<boolean>(false)
 
   const myHandleSignIn = async ({password, email}: SignInSchema) => {
-    const loadingToast = toast.loading("Memproses data login...")
+    const loadingToast = toast.loading("Loading")
     try {
       setLoadingSignIn(true);    
       const res = await signIn("credentials", {
@@ -45,10 +45,10 @@ const SignInForm = () => {
       if(!res?.ok) throw new Error(`${res?.error}`)      
 
       reset()
-      toast.success("Selamat Datang!")
+      toast.success("Welcome!")
       setCurrentAuth(null)
     } catch (error) {
-      let errorMessage = "Login gagal"
+      let errorMessage = "Login failed"
         if (error instanceof Error) {
           errorMessage = error.message;
         } else if (typeof error === "string") {

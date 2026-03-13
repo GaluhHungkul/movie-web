@@ -20,7 +20,7 @@ model User {
   isSubscribe Boolean @default(false)
   startedSubscribeAt DateTime?
   expiredSubscribeAt DateTime?
-
+  stopedSubscribeAt DateTime?
   subscribePlanTitle String?
   subscribePlanId String?
   subscribePlan SubscribePlan? @relation(fields: [subscribePlanId], references: [id]) 

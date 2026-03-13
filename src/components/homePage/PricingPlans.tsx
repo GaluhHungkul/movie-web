@@ -16,7 +16,6 @@ import {
 import { Spinner } from '../ui/spinner'
 import { FormEvent, useState } from 'react'
 import { toast } from 'sonner'
-import { useRouter } from 'next/navigation'
 import { useSession } from "next-auth/react"
 import useUser from '@/store/useUser'
 
@@ -60,7 +59,7 @@ const PricingPlans = ({ homepage=true } : { homepage?: boolean }) => {
                         <h1 className='text-2xl'>${item.price} / {item.timePeriod}</h1>
                     </CardContent>
                     <CardFooter className='gap-2 justify-end'>
-                        {index === 0 && <Button variant={"outline"} onClick={() => toast("This feature is not available yet")}>Start From Trial</Button>}
+                        {index === 0 && <Button variant={"outline"} onClick={() => toast("This feature is not available")}>Start From Trial</Button>}
                         <DialogBuySubscription subscribePlanId={item.id} titlePlan={item.title} update={update}/>
                     </CardFooter>
                 </Card>
@@ -85,7 +84,6 @@ const DialogBuySubscription = ({
     const [open, setOpen] = useState(false)
     const [loadingBuy, setLoadingBuy] = useState(false)
 
-    const router = useRouter()
     const { user } = useUser()
         
     const handleBuy = async () => {
@@ -96,12 +94,8 @@ const DialogBuySubscription = ({
                 body: JSON.stringify({ subscribePlanId })
             })
             if(!res.ok) throw new Error("Failed processing your request")
-            const { message } = await res.json()
-            toast.success(message + " Redirecting...")
+            toast.success("Successfully buy plan")
             update()
-            setTimeout(() => {
-                router.push("/myprofile")
-            }, 2000);
         } catch (error) {
             console.log("Error : ", error)
             toast.error("Something went wrong")
