@@ -29,7 +29,7 @@ type PricingPlans = {
     timePeriod: string
 }
 
-const PricingPlans = () => {
+const PricingPlans = ({ homepage=true } : { homepage?: boolean }) => {
 
     const { update } = useSession()
 
@@ -47,8 +47,8 @@ const PricingPlans = () => {
 
   return (
     <div className='container'>
-        <Heading>Choose the plan that&apos;s right for you</Heading>
-        <MutedText>Join Chill and select from our flexible subscription options tailored to suit your viewing preferences Get ready for non-stop entertainment!</MutedText>
+        <Heading className={`${homepage ? "" : "text-center mt-10 lg:mt-20 lg:mb-24"}`}>Choose the plan that&apos;s right for you</Heading>
+        {homepage && <MutedText>Join Chill and select from our flexible subscription options tailored to suit your viewing preferences Get ready for non-stop entertainment!</MutedText>}
         <section className='grid md:grid-cols-2 gap-4 mt-10 lg:gap-10 lg:grid-cols-3'>
             {data?.map((item, index) => (
                 <Card key={item.id}>
@@ -60,7 +60,7 @@ const PricingPlans = () => {
                         <h1 className='text-2xl'>${item.price} / {item.timePeriod}</h1>
                     </CardContent>
                     <CardFooter className='gap-2 justify-end'>
-                        {index === 0 && <Button variant={"outline"}>Start From Trial</Button>}
+                        {index === 0 && <Button variant={"outline"} onClick={() => toast("This feature is not available yet")}>Start From Trial</Button>}
                         <DialogBuySubscription subscribePlanId={item.id} titlePlan={item.title} update={update}/>
                     </CardFooter>
                 </Card>
