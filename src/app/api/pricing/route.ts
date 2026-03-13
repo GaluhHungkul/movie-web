@@ -4,11 +4,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 const secret = process.env.NEXTAUTH_SECRET
 
-export async function GET(req: NextRequest) {
+export async function GET() {
     try {
-        const token = await getToken({ req, secret })
-        if(!token) return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
-
         const pricings = await prisma.subscribePlan.findMany()
 
         return NextResponse.json({ pricings })

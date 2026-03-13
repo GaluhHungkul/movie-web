@@ -13,7 +13,7 @@ const ClientMyProfilePage = () => {
         <SubscribtionCard />
         <MyProfileCard />
       </section>
-      <MyFavoritesMovie />
+      <MyFavoritesMovie showMore count={8}/>
     </div>
   )
 }

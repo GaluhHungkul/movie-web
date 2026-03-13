@@ -17,9 +17,9 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import { Spinner } from '../ui/spinner'
 
-const MyFavoritesMovie = ({ showMore=true } : { showMore? : boolean }) => {
+const MyFavoritesMovie = ({ showMore=true, count=null } : { showMore? : boolean; count?: number | null }) => {
 
-  const { data, isPending, isError, error } = useMyFavoritesMovie()
+  const { data, isPending, isError, error } = useMyFavoritesMovie(count)
   
   return (
     <div className="relative flex flex-col">

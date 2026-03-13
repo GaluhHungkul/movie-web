@@ -23,7 +23,6 @@ export async function GET(req: NextRequest) {
             },
             take
         })
-
         return NextResponse.json({
             data: {
                 movies
