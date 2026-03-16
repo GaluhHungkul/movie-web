@@ -26,7 +26,6 @@ const DialogEditProfile = () => {
     const loadingToast = toast.loading("Loading")
     try {
         e.preventDefault()
-        return toast.success("Updated")
         if(name.trim() === "" || name.trim().length < 8) return toast.warning("Please enter a valid name")
         setLoadingChangeName(true)
         const res = await fetch("/api/user/updateName", {
@@ -34,7 +33,7 @@ const DialogEditProfile = () => {
             headers : {
                 "Content-Type" : "application/json"
             },
-            body : JSON.stringify(name)
+            body : JSON.stringify({name})
         })
         if(!res.ok) throw new Error("Failed to change name")
         await session.update()

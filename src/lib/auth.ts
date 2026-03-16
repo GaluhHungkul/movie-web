@@ -52,6 +52,17 @@ export const authOptions : NextAuthOptions = {
     session : {
         strategy : "jwt"
     },
+    cookies: {
+        sessionToken: {
+            name: "movie-web-session-token",
+            options: {
+                httpOnly: true,
+                sameSite: "lax",
+                path: "/",
+                secure: false,
+            },
+        }
+    },
     // pages : {
     //     signIn : "/login"
     // },
