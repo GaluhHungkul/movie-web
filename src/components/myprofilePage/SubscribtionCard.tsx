@@ -115,16 +115,16 @@ const DialogStopSubscription = () => {
                         This action can&apos;t be undone
                     </DialogDescription>
                 </DialogHeader>
-                <form onSubmit={handleStop} className='space-y-8 mt-2'>
+                <div className='space-y-8 mt-2'>
                     <section className='space-y-4'>
                         <Label className='lg:text-base' htmlFor='input'>To confirm, type {`"${WORD_TO_TYPE}"`}</Label>
                         <Input id='input' placeholder={WORD_TO_TYPE} value={userInputToStop} onChange={(e) => setUserInputToStop(e.target.value)}/>
                     </section>
                     <section className="flex items-center justify-end gap-2">
                         <Button onClick={() => setOpen(false)} variant={"outline"}>Close</Button>
-                        <Button disabled={loadingStopSubscription || userInputToStop.trim() != WORD_TO_TYPE}>{loadingStopSubscription ? <Spinner /> : "Yes"}</Button>
+                        <Button onClick={handleStop} disabled={loadingStopSubscription || userInputToStop.trim() != WORD_TO_TYPE}>{loadingStopSubscription ? <Spinner /> : "Yes"}</Button>
                     </section>
-                </form>
+                </div>
             </DialogContent>
         </Dialog>
     )
