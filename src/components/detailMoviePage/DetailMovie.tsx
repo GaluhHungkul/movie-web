@@ -63,7 +63,7 @@ const DetailMovie = ({ movieId, tv=false }: { movieId : string, tv?:boolean }) =
         <MoviePoster poster_path={data?.descriptionMovie?.poster_path ?? ""} alt={data?.descriptionMovie?.title ?? ""}/>       
         <MovieDescription descriptionMovie={data?.descriptionMovie} isMovie={type !== "tv"} />
       </div>
-      <Actors data={data?.actors.cast ?? []}/>
+      {data?.actors.cast.length && <Actors data={data?.actors.cast ?? []}/>}
     </div>
   )
 }

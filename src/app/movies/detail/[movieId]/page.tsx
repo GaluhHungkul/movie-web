@@ -10,8 +10,8 @@ export async function generateMetadata(props:{
   const data = await res.json()
 
   return {
-    title: data.title ?? `Detail Movie ${movieId}`,
-    description: data.title ?? `Detail Movie ${movieId}`
+    title: data.title ? `Movie | ${data.title}` : `Detail Movie`,
+    description: data.title ? `Movie | ${data.title}` : `Detail Movie`
   }
 }
 
