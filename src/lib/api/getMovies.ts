@@ -47,11 +47,12 @@ export const useBannerQuery = ({ endpoint } : { endpoint: string }) => {
     queryKey : ["banner", endpoint],
     queryFn: async () : Promise<ReturnMovieQuery | null> => {
       try {         
-        const path = process.env.NEXT_PUBLIC_TMDB_API_BASE_URL + endpoint 
-        const res = await fetch(`${path}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`);
+        const path = `/api/movies?endpoint=${encodeURIComponent(endpoint)}`
+        const res = await fetch(path);
+
         if (!res.ok) throw new Error("Failed to fetch banner data");
-        const { results, page: currPage, total_pages } = await res.json()
-        const movies = results.slice(0,5).map((movie:TypeMovie & { name? : string }) => {
+        const { movies, page: currPage, total_pages } = await res.json()
+        const data = movies.slice(0,5).map((movie:TypeMovie & { name? : string }) => {
           return {
             ...movie, 
             backdrop_path : movie.backdrop_path  ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + movie.backdrop_path : "/assets/img/backdrop_fallback.webp",
@@ -60,7 +61,7 @@ export const useBannerQuery = ({ endpoint } : { endpoint: string }) => {
           }
         })
         return {
-          movies, 
+          movies: data, 
           isNextPage : currPage < total_pages
         }
       } catch (error) {
@@ -82,23 +83,13 @@ export const useMovieQuery = (params = defaultMovieQueryParams) => {
     queryFn: async () : Promise<ReturnMovieQuery | null> => {
       try {         
         const chain = endpoint.includes("?") ? "&" : "?"
-        const path = process.env.NEXT_PUBLIC_TMDB_API_BASE_URL + endpoint + `${chain}page=${page}` 
-        const res = await fetch(`${path}&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`);
+        const path = "/api/movies/" + `${chain}endpoint=${endpoint}&page=${page}&limit=${totalMoviePerRequest}` 
+        const res = await fetch(path)
         if (!res.ok) throw new Error("Failed to fetch movie data");
-        const data = await res.json()
-        const { results, page: currPage, total_pages } = data
-        const movies = results.slice(0,totalMoviePerRequest).map((movie:TypeMovie & { name? : string }) => {
-          return {
-            ...movie, 
-            backdrop_path : movie.backdrop_path  ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + movie.backdrop_path : "/assets/img/backdrop_fallback.webp",
-            poster_path :  movie.poster_path ? process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  movie.poster_path : "/assets/img/poster_fallback.webp",
-            title : movie.title ?? movie.name ?? "No Title"
-          }
-        })
-        return {
-          movies, 
-          isNextPage : currPage < total_pages
-        }
+
+        const { movies, isNextPage } = await res.json()
+
+        return { movies, isNextPage }
       } catch (error) {
         console.log("Error : " , error)
         throw error
@@ -119,33 +110,14 @@ export const useInfiniteMovieQuery = (
     initialPageParam: 1,
     queryFn: async ({ pageParam = 1 }): Promise<ReturnInfiniteMovieQuery | null> => {
       try {
-        const chain = endpoint.includes("?") ? "&" : "?"
-        const path =
-          process.env.NEXT_PUBLIC_TMDB_API_BASE_URL +
-          endpoint +
-          `${chain}page=${pageParam}`
 
-        const res = await fetch(
-          `${path}&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
-        )
+        const path = "/api/movies" + `?endpoint=${encodeURIComponent(endpoint)}&page=${pageParam}&limit=${totalMoviePerRequest}&infinite=true`
 
+
+        const res = await fetch(path)
         if (!res.ok) throw new Error("Failed to fetch movie data")
 
-        const { results, page, total_pages } = await res.json()
-
-        const movies = results
-          .slice(0, totalMoviePerRequest)
-          .map((movie: TypeMovie & { name?: string }) => ({
-            ...movie,
-            backdrop_path:
-              movie.backdrop_path ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL +
-              movie.backdrop_path : "/assets/img/backdrop_fallback.webp",
-            poster_path:
-              movie.poster_path ? 
-              process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +
-              movie.poster_path : "/assets/img/poster_fallback.webp",
-            title: movie.title ?? movie.name ?? "No Title",
-          }))
+        const { movies, page, total_pages } = await res.json()
 
         return {
           movies,
@@ -169,27 +141,12 @@ export const useMovieQueryById = (media_id:string, type:"movie" | "tv"="movie") 
     queryFn : async () : Promise<ResMovieById | null> => {
       try {
               
-        const [previewMovie, descriptionMovie, actors] = await Promise.all([
-          fetch(`https://api.themoviedb.org/3/${type}/${media_id}/videos?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`).then(res => res.json()),
-          fetch(`${process.env.NEXT_PUBLIC_TMDB_API_BASE_URL}/${type}/${media_id}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`).then(res => res.json()),
-          fetch(`${process.env.NEXT_PUBLIC_TMDB_API_BASE_URL}/${type}/${media_id}/credits?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`).then(res => res.json()),
-        ])
-        return {
-          previewMovie,  
-          descriptionMovie : {
-            ...descriptionMovie,
-            poster_path : descriptionMovie.poster_path ? process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  descriptionMovie.poster_path : "/assets/img/poster_fallback.webp",
-            backdrop_path : descriptionMovie.backdrop_path  ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + descriptionMovie.backdrop_path : "/assets/img/backdrop_fallback.webp",
-            title : descriptionMovie.title ?? descriptionMovie.name
-          },
-          actors: {
-            ...actors,
-            cast : actors.cast.slice(0,12).map((c:Cast) => ({
-              ...c, 
-              profile_path: c.profile_path ? process.env.NEXT_PUBLIC_TMDB_API_PP_BASE_URL + c.profile_path : "/assets/img/default_pp.png",
-            }))
-          }
-        }
+        const res = await fetch(`/api/movies/${media_id}?type=${type}`)
+        if(!res.ok) throw Error()
+        
+        const { previewMovie, descriptionMovie, actors } = await res.json()
+
+        return { actors, descriptionMovie, previewMovie }
       } catch (error) {
         console.log("Error : " , error)
         throw error
@@ -204,28 +161,13 @@ export const useSearchMulti = (query: string) => {
     initialPageParam: 1,
     enabled: query.trim().length >= 2, // ⬅️ penting
     queryFn: async ({ pageParam = 1 }) : Promise<TmdbMultiSearchResponse> => {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_TMDB_API_BASE_URL}/search/multi?query=${encodeURIComponent(query)}&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&page=${pageParam}`,)
-
+      const res = await fetch(`/api/movies/search/?query=${encodeURIComponent(query)}&page=${pageParam}`,)
       if (!res.ok) throw new Error("Failed to fetch search results")
       
-      const data = await res.json() as TmdbMultiSearchResponse
+      const { results, nextPage, page, total_pages, total_results } = await res.json() as TmdbMultiSearchResponse
 
-      return {
-        ...data, 
-        results: data.results.map(item => (
-          item.media_type === "person" 
-          ? {
-            ...item, 
-            profile_path: item.profile_path ? process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  item.profile_path : "/assets/img/default_pp.png",
-          } 
-          : {
-            ...item, 
-            poster_path : item.poster_path ? process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  item.poster_path : "/assets/img/poster_fallback.webp",
-            backdrop_path : item.backdrop_path  ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + item.backdrop_path : "/assets/img/backdrop_fallback.webp",
-          }
-        )),
-        nextPage: data.page < data.total_pages ? data.page + 1 : undefined,
-      }
+      return { results, nextPage, page, total_pages, total_results }
+        
     },
     getNextPageParam: (lastpage) => {
       return lastpage?.nextPage
