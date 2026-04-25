@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { hash } from "bcrypt";
 import { NextRequest, NextResponse } from "next/server";
+import jwt from "jsonwebtoken"
 
 export async function POST(req:NextRequest) {
     try {
@@ -12,7 +13,7 @@ export async function POST(req:NextRequest) {
 
         const hashedPassword = await hash(password, 10)
 
-        const newUser = await prisma.user.create({
+        const user = await prisma.user.create({
             data : { 
                 name, email, 
                 password : hashedPassword,
@@ -21,8 +22,18 @@ export async function POST(req:NextRequest) {
                 }
             }
         })
-        if(!newUser) return NextResponse.json({ message : "Sign up error. Something went wrong"}, { status : 500 })
-        return NextResponse.json({ message : "Sign up success" }, { status : 200 })
+        if(!user) return NextResponse.json({ message : "Sign up error. Something went wrong"}, { status : 500 })
+        
+        const token = jwt.sign({
+            id: user.id,
+            email: user.email
+        }, 
+            process.env.NEXTAUTH_SECRET!,
+            {
+                expiresIn: "7d"
+            }
+        )
+        return NextResponse.json({ message : "Sign up success", user, token }, { status : 200 })
         
     } catch (error) {
         console.log("Error : " , error)
