@@ -52,16 +52,9 @@ export const useBannerQuery = ({ endpoint } : { endpoint: string }) => {
 
         if (!res.ok) throw new Error("Failed to fetch banner data");
         const { movies, page: currPage, total_pages } = await res.json()
-        const data = movies.slice(0,5).map((movie:TypeMovie & { name? : string }) => {
-          return {
-            ...movie, 
-            backdrop_path : movie.backdrop_path  ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + movie.backdrop_path : "/assets/img/backdrop_fallback.webp",
-            poster_path :  movie.poster_path ? process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  movie.poster_path : "/assets/img/poster_fallback.webp",
-            title : movie.title ?? movie.name ?? "No Title"
-          }
-        })
+
         return {
-          movies: data, 
+          movies, 
           isNextPage : currPage < total_pages
         }
       } catch (error) {
