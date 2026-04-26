@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
 
         const chain = endpoint.includes("?") ? "&" : "?"
 
-        const res = await fetch(`${process.env.TMDB_API_BASE_URL}${endpoint}${chain}page=${pageRequest}&api_key=3543dcd2e4f8a7ade29629e3b9c4a27c`)
+        const res = await fetch(`${process.env.TMDB_API_BASE_URL}${endpoint}${chain}page=${pageRequest}&api_key=${process.env.TMDB_API_KEY}`)
         if(!res.ok) return NextResponse.json({
             error: res.statusText
         }, { status: res.status })
