@@ -51,7 +51,20 @@ export const useBannerQuery = ({ endpoint } : { endpoint: string }) => {
         const res = await fetch(path);
 
         if (!res.ok) throw new Error("Failed to fetch banner data");
-        const { movies, page: currPage, total_pages } = await res.json()
+        const { results, page: currPage, total_pages } = await res.json()
+
+        const movies = results
+          .map((movie: TypeMovie & { name?: string }) => ({
+            ...movie,
+            backdrop_path:
+                movie.backdrop_path ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL +
+                movie.backdrop_path : "/assets/img/backdrop_fallback.webp",
+            poster_path:
+                movie.poster_path ? 
+                process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +
+                movie.poster_path : "/assets/img/poster_fallback.webp",
+            title: movie.title ?? movie.name ?? "No Title",
+          }))
 
         return {
           movies, 
@@ -80,7 +93,20 @@ export const useMovieQuery = (params = defaultMovieQueryParams) => {
         const res = await fetch(path)
         if (!res.ok) throw new Error("Failed to fetch movie data");
 
-        const { movies, isNextPage } = await res.json()
+        const { results, isNextPage } = await res.json()
+
+        const movies = results
+          .map((movie: TypeMovie & { name?: string }) => ({
+            ...movie,
+            backdrop_path:
+                movie.backdrop_path ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL +
+                movie.backdrop_path : "/assets/img/backdrop_fallback.webp",
+            poster_path:
+                movie.poster_path ? 
+                process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +
+                movie.poster_path : "/assets/img/poster_fallback.webp",
+            title: movie.title ?? movie.name ?? "No Title",
+          }))
 
         return { movies, isNextPage }
       } catch (error) {
@@ -110,7 +136,20 @@ export const useInfiniteMovieQuery = (
         const res = await fetch(path)
         if (!res.ok) throw new Error("Failed to fetch movie data")
 
-        const { movies, page, total_pages } = await res.json()
+        const { results, page, total_pages } = await res.json()
+
+        const movies = results
+          .map((movie: TypeMovie & { name?: string }) => ({
+            ...movie,
+            backdrop_path:
+                movie.backdrop_path ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL +
+                movie.backdrop_path : "/assets/img/backdrop_fallback.webp",
+            poster_path:
+                movie.poster_path ? 
+                process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +
+                movie.poster_path : "/assets/img/poster_fallback.webp",
+            title: movie.title ?? movie.name ?? "No Title",
+          }))
 
         return {
           movies,
@@ -138,8 +177,23 @@ export const useMovieQueryById = (media_id:string, type:"movie" | "tv"="movie") 
         if(!res.ok) throw Error()
         
         const { previewMovie, descriptionMovie, actors } = await res.json()
-
-        return { actors, descriptionMovie, previewMovie }
+        
+        return {
+          previewMovie,
+          descriptionMovie : {
+            ...descriptionMovie,
+            poster_path : descriptionMovie.poster_path ? process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  descriptionMovie.poster_path : "/assets/img/poster_fallback.webp",
+            backdrop_path : descriptionMovie.backdrop_path  ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + descriptionMovie.backdrop_path : "/assets/img/backdrop_fallback.webp",
+            title : descriptionMovie.title ?? descriptionMovie.name
+          },
+          actors: {
+            ...actors,
+            cast : actors.cast.slice(0,12).map((c:Cast) => ({
+              ...c, 
+              profile_path: c.profile_path ? process.env.NEXT_PUBLIC_TMDB_API_PP_BASE_URL + c.profile_path : "/assets/img/default_pp.png",
+            }))
+          }
+        }
       } catch (error) {
         console.log("Error : " , error)
         throw error

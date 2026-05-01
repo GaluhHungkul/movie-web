@@ -1,4 +1,3 @@
-import { Cast } from "@/types/types-movie";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest, { params } : { 
@@ -18,19 +17,8 @@ export async function GET(req: NextRequest, { params } : {
         ])
         return NextResponse.json({
             previewMovie,  
-            descriptionMovie : {
-                ...descriptionMovie,
-                poster_path : descriptionMovie.poster_path ? process.env.TMDB_API_IMG_BASE_URL +  descriptionMovie.poster_path : "/assets/img/poster_fallback.webp",
-                backdrop_path : descriptionMovie.backdrop_path  ? process.env.TMDB_API_BANNER_BASE_URL + descriptionMovie.backdrop_path : "/assets/img/backdrop_fallback.webp",
-                title : descriptionMovie.title ?? descriptionMovie.name
-            },
-            actors: {
-                ...actors,
-                cast : actors.cast.slice(0,12).map((c:Cast) => ({
-                    ...c, 
-                    profile_path: c.profile_path ? process.env.TMDB_API_PP_BASE_URL + c.profile_path : "/assets/img/default_pp.png",
-                }))
-            }
+            descriptionMovie,
+            actors
         })
     } catch (error) {
         console.log("Error: " , error)

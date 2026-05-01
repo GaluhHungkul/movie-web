@@ -1,4 +1,3 @@
-import { TypeMovie } from "@/types/types-movie";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -17,25 +16,12 @@ export async function GET(req: NextRequest) {
         }, { status: res.status })
         
         const { results, page, total_pages } = await res.json()
-        
-        const movies = results
-            .slice(0, limit)
-            .map((movie: TypeMovie & { name?: string }) => ({
-                ...movie,
-                backdrop_path:
-                    movie.backdrop_path ? process.env.TMDB_API_BANNER_BASE_URL +
-                    movie.backdrop_path : "/assets/img/backdrop_fallback.webp",
-                poster_path:
-                    movie.poster_path ? 
-                    process.env.TMDB_API_IMG_BASE_URL +
-                    movie.poster_path : "/assets/img/poster_fallback.webp",
-                title: movie.title ?? movie.name ?? "No Title",
-            }))
+        const data = results.slice(0, limit)
 
         const response = isInfinite 
-        ? { movies, page, total_pages }
+        ? { results: data, page, total_pages }
         : { 
-            movies, 
+            results: data, 
             isNextPage: page < total_pages
         }
 
