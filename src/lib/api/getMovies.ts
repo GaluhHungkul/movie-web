@@ -211,9 +211,26 @@ export const useSearchMulti = (query: string) => {
       const res = await fetch(`/api/movies/search/?query=${encodeURIComponent(query)}&page=${pageParam}`,)
       if (!res.ok) throw new Error("Failed to fetch search results")
       
-      const { results, nextPage, page, total_pages, total_results } = await res.json() as TmdbMultiSearchResponse
+      const data = await res.json() as TmdbMultiSearchResponse
 
-      return { results, nextPage, page, total_pages, total_results }
+      const response = {
+        ...data, 
+        results: data.results.map(item => (
+            item.media_type === "person" 
+            ? {
+            ...item, 
+            profile_path: item.profile_path ? process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  item.profile_path : "/assets/img/default_pp.png",
+            } 
+            : {
+            ...item, 
+            poster_path : item.poster_path ? process.env.NEXT_PUBLIC_TMDB_API_IMG_BASE_URL +  item.poster_path : "/assets/img/poster_fallback.webp",
+            backdrop_path : item.backdrop_path  ? process.env.NEXT_PUBLIC_TMDB_API_BANNER_BASE_URL + item.backdrop_path : "/assets/img/backdrop_fallback.webp",
+            }
+        )),
+        nextPage: data.page < data.total_pages ? data.page + 1 : undefined,
+      }
+
+      return response
         
     },
     getNextPageParam: (lastpage) => {
