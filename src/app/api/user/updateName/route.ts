@@ -13,14 +13,16 @@ export async function PUT(req: NextRequest) {
         const { name } = await req.json()
         if(!name) return NextResponse.json({ message : "Invalid body request"}, { status: 400})
 
-        await prisma.user.update({
+        const user = await prisma.user.update({
             where: { id: token.id },
             data: {
                 name
             }
         })
-        
-        return NextResponse.json({ message : "User name updated successfully"})
+        return NextResponse.json({ 
+            message : "User name updated successfully",
+            user
+        })
         
 
     } catch (error) {

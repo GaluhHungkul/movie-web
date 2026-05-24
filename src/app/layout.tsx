@@ -13,7 +13,7 @@ import DialogAuthCard from '@/components/layout/DialogAuthCard'
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
-  title: 'Movie Web',
+  title: 'Chill Movie',
   description: 'Best movies in one place',
 }
 

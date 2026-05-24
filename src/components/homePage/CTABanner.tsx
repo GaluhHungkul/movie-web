@@ -1,8 +1,11 @@
+"use client"
+
 import { Card, CardContent } from '../ui/card'
 import Image from 'next/image'
 import { Button } from '../ui/button'
 import Heading from '../common/Heading'
 import MutedText from '../common/MutedText'
+import { toast } from 'sonner'
 
 const CTABanner = () => {
   return (
@@ -12,7 +15,7 @@ const CTABanner = () => {
         <CardContent className='relative z-10 text-center'>
             <Heading animate={false}>Start your free trial today!</Heading>
             <MutedText animate={false}>Start your free trial today and discover why millions choose Chill for their entertainment.</MutedText>
-            <Button>Start a Free Trial!</Button>
+            <Button onClick={() => toast.warning("This feature is not available yet")}>Start a Free Trial!</Button>
         </CardContent>
     </Card>
     </div>

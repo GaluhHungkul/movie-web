@@ -18,6 +18,7 @@ import { FormEvent, useState } from 'react'
 import { toast } from 'sonner'
 import { useSession } from "next-auth/react"
 import useUser from '@/store/useUser'
+import { useRouter } from 'next/navigation'
 
 type PricingPlans = {
     id: string,
@@ -81,6 +82,8 @@ const DialogBuySubscription = ({
     update: () => void
 }) => {
 
+    const router = useRouter()
+
     const [open, setOpen] = useState(false)
     const [loadingBuy, setLoadingBuy] = useState(false)
 
@@ -96,6 +99,7 @@ const DialogBuySubscription = ({
             if(!res.ok) throw new Error("Failed processing your request")
             toast.success("Successfully buy plan")
             update()
+            router.push("/myprofile")
         } catch (error) {
             console.log("Error : ", error)
             toast.error("Something went wrong")

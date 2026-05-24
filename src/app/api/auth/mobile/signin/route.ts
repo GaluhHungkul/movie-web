@@ -5,8 +5,9 @@ import jwt from "jsonwebtoken"
 
 export async function POST(req: NextRequest) {
     try {
+        console.log("masuk ke /signin")
         const { email, password } = await req.json()
-
+        console.log({email, password})
         const user = await prisma.user.findUnique({
             where: { email }
         })
@@ -20,9 +21,6 @@ export async function POST(req: NextRequest) {
             email: user.email
         }, 
             process.env.NEXTAUTH_SECRET!,
-            {
-                expiresIn: "7d"
-            }
         )
 
         return NextResponse.json({ user, token })

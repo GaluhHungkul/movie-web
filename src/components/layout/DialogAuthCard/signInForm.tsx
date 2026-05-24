@@ -88,9 +88,11 @@ const GoogleLoginButton = ({ loadingSignIn, setLoadingSignIn } : { loadingSignIn
 
 
     return (
-        <Button onClick={() => {
+        <Button onClick={async () => {
           setLoadingSignIn(true)
-          signIn("google")
+          await  signIn("google", { callbackUrl: "/myprofile" })
+          setLoadingSignIn(false)
+          toast.success("Welcome")
         }} variant={"secondary"} className="w-full font-bold" disabled={loadingSignIn}>{
           loadingSignIn 
           ? <Spinner /> 

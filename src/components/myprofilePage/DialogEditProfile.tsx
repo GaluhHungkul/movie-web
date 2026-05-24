@@ -65,7 +65,7 @@ const DialogEditProfile = () => {
                 <Label htmlFor="link" className="sr-only">
                 Link
                 </Label>
-                <Input required onChange={(e) => setNewname(e.target.value)} />
+                <Input placeholder="Enter minimal 8 character" required onChange={(e) => setNewname(e.target.value)} />
             </div>
             <Button variant={"secondary"} disabled={loadingChangeName} className="w-full">{loadingChangeName ? "Submitting..." : "Change"}</Button>
         </form>
