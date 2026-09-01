@@ -7,10 +7,10 @@ import { useSearchParams } from "next/navigation";
 
 type Props ={
   handleChangeEndpoint : (val:"/tv/top_rated" | "/movie/top_rated") => void
-  title: string
+  title?: string
 }
 
-const HeaderTopRatedPage : FC<Props> = ({ handleChangeEndpoint, title }) => {
+const HeaderTopRatedPage : FC<Props> = ({ handleChangeEndpoint, title="Top rated" }) => {
 
   const searchParams = useSearchParams()
   const isTv = searchParams.get("type")?.toLocaleLowerCase() === "tv"

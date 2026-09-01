@@ -40,7 +40,7 @@ const ClientTopRatedPage  = () => {
 
   return (
     <div className="relative min-h-screen pb-28 container ">
-      <HeaderTopRatedPage handleChangeEndpoint={handleChangeEndpoint}/>
+      <HeaderTopRatedPage handleChangeEndpoint={handleChangeEndpoint} />
       <GridMovieList endpoint={endpoint} title="" isMovie={params.get("type") !== 'tv'}/>
     </div>
   )
